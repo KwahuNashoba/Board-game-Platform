@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug DLL|Win32">
@@ -15,13 +15,27 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BehaviorWorldListener.h" />
+    <ClInclude Include="BoardGamePluginPCH.h" />
+    <ClInclude Include="BrightWarriorControllerComponent.h" />
+    <ClInclude Include="BrightWarriorEntity.h" />
+    <ClInclude Include="ControllerComponent.h" />
+    <ClInclude Include="DarkWarriorControllerComponent.h" />
+    <ClInclude Include="DarkWarriorEntity.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="BoardGamePluginModule.h" />
-    <ClInclude Include="BoardGamePluginPCH.h" />
     <ClInclude Include="myComponent.h" />
     <ClInclude Include="TemplateAction.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="WarriorEntity.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BehaviorWorldListener.cpp" />
+    <ClCompile Include="BrightWarriorControllerComponent.cpp" />
+    <ClCompile Include="BrightWarriorEntity.cpp" />
+    <ClCompile Include="ControllerComponent.cpp" />
+    <ClCompile Include="DarkWarriorControllerComponent.cpp" />
+    <ClCompile Include="DarkWarriorEntity.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="BoardGamePluginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">Create</PrecompiledHeader>
@@ -31,10 +45,13 @@
     <ClCompile Include="myComponent.cpp" />
     <ClCompile Include="PluginMain.cpp" />
     <ClCompile Include="TemplateAction.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="WarriorEntity.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{789E94DE-ED72-4C0F-A6BB-65BE92BCA08C}</ProjectGuid>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>BoardGamePlugin</ProjectName>
   </PropertyGroup>

@@ -9,29 +9,66 @@
 
 //  This class show how to use the vForge "play the Game" mode
 
-#ifndef PLUGINMANAGER_H_INCLUDED
-#define PLUGINMANAGER_H_INCLUDED
+#ifndef BG_PLUGIN_GAME_MANAGER_H__
+#define BG_PLUGIN_GAME_MANAGER_H__
+//TODO: postavi vrednost kako treba
+#define BG_WARRIOR_MODEL_WIDTH 100
 
 #include "BoardGamePluginModule.h"
 
-class MyGameManager : public IVisCallbackHandler_cl
+class BG_WarriorEntity;
+class BG_BrightWarriorEntity;
+class BG_DarkWarriorEntity;
+class BG_UIManager;
+
+class GameManager : public IVisCallbackHandler_cl
 {
 public:
-  virtual void OnHandleCallback(IVisCallbackDataObject_cl *pData) HKV_OVERRIDE;
+	GameManager();
 
-  // called when plugin is loaded/unloaded
-  void OneTimeInit();
-  void OneTimeDeInit();
+	// called when plugin is loaded/unloaded
+	void OneTimeInit();
+	void OneTimeDeInit();
 
-  // switch to play-the-game mode. When not in vForge, this is default
-  void SetPlayTheGame(bool bStatus);
+	//x and y are board coordinates NOT world coordinates (0 <= x < 8), (0 <= y < 8)
+	void AddWarrior(BG_WarriorEntity* warrior, int x, int y);
+	//TODO: ovo mozda nece da treba
+	void RemoveWarrior(int x, int y);
 
-  // access one global instance of the Game manager
-  static MyGameManager& GlobalManager() {return g_GameManager;}
+	//TODO: mozda ovo moze i pametnije da se odradi umesto dve funkcije koje rade gotovo istu stvar
+	BG_BrightWarriorEntity* CreateBrightWarriorEntity(const hkvVec3& position);
+	BG_DarkWarriorEntity* CreateDarkWarriorEntity(const hkvVec3& position);
+
+	// switch to play-the-game mode. When not in vForge, this is default
+	void SetPlayTheGame(bool bStatus);
+
+	// access one global instance of the Game manager
+	static GameManager& GlobalManager() {return GameManager::g_GameManager;}
+
+	void SetMouseInput(const hkvVec3& mouseInput) { m_mouseInput = mouseInput; }
 
 private:
-  bool m_bPlayingTheGame;
-  static MyGameManager g_GameManager;
+	void OnBeforeSceneLoaded(char const* sceneFileName);
+	void OnAfterSceneLoaded();
+	void OnBeforeSceneUnloaded();
+	void OnAfterSceneUnloaded();
+	void OnUpdateSceneBegin();
+
+	//IVisCallbackHendler_cl
+	void OnHandleCallback(IVisCallbackDataObject_cl *callbackData) HKV_OVERRIDE;
+
+private:
+	VString m_sceneFileName;
+
+	BG_WarriorEntity *m_board[8][8];
+	BG_WarriorEntity *m_selectedWarrior;
+
+	hkvVec3 m_mouseInput;
+
+	BG_UIManager* m_UIManager;
+
+	bool m_bPlayingTheGame;
+	static GameManager g_GameManager;
 };
 
 

@@ -13,7 +13,7 @@
 #include "myComponent.h"
 
 //  Register the class in the engine module so it is available for RTTI
-V_IMPLEMENT_SERIAL( MyComponent, IVObjectComponent, 0, &g_BoardGameModule);
+V_IMPLEMENT_SERIAL( MyComponent, IVObjectComponent, 0, &g_BoardGamePluginModule);
 
 //  Start up our manager class, one global instance of our manager
 MyComponent_ComponentManager MyComponent_ComponentManager::g_GlobalManager;

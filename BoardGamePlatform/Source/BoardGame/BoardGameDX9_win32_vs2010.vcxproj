@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug DLL|Win32">
@@ -16,7 +16,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{57A549C5-5B49-47F4-8650-7F147D8B4C06}</ProjectGuid>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>BoardGame</ProjectName>
   </PropertyGroup>

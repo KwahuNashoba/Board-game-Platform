@@ -95,7 +95,13 @@ void BoardGame_App::AfterSceneLoaded(bool bLoadingSuccessful)
   RegisterAppModule(new VHelp(help));
 
   // Create a mouse controlled camera (set above the ground so that we can see the ground)
-  Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(0.0f, 0.0f, 170.0f));
+  //Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(0.0f, 0.0f, 170.0f));
+  //VisContextCamera_cl *camera = (VisContextCamera_cl*)Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(692, -116, 950));
+  //camera->SetDirection(hkvVec3(300,300,0));
+  hkvMat3 directionMatrix;
+  hkvVec3 lookFrom(400, -50, 600), lookAt(400,250,0);
+  directionMatrix.setLookInDirectionMatrix (lookAt - lookFrom);
+  Vision::Camera.Set(directionMatrix, lookFrom);
 
   // Add other initial game code here
   // [...]

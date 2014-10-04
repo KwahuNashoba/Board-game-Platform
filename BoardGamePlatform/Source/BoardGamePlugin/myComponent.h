@@ -37,29 +37,29 @@ class MyComponent : public IVObjectComponent
 {
 
 public:
-  V_DECLARE_SERIAL  ( MyComponent, SAMPLEPLUGIN_IMPEXP ); // for RTTI
-  V_DECLARE_VARTABLE( MyComponent, SAMPLEPLUGIN_IMPEXP );
+  V_DECLARE_SERIAL  ( MyComponent, BG_PLUGIN_IMPEXP ); // for RTTI
+  V_DECLARE_VARTABLE( MyComponent, BG_PLUGIN_IMPEXP );
 
-  SAMPLEPLUGIN_IMPEXP MyComponent()
+  BG_PLUGIN_IMPEXP MyComponent()
   {
     Vision::Message.reset();
     Vision::Message.Add(1,"myComponent - Class Constructor");
   }
 
-  SAMPLEPLUGIN_IMPEXP ~MyComponent(){}
+  BG_PLUGIN_IMPEXP ~MyComponent(){}
   
 //----------------------------------------------------------------------------------------------------
 //  MyComponent::SetOwner(...)
 //  Overridden function to respond to owner changes
 //----------------------------------------------------------------------------------------------------
-  SAMPLEPLUGIN_IMPEXP VOVERRIDE void SetOwner( VisTypedEngineObject_cl *pOwner );
+  BG_PLUGIN_IMPEXP VOVERRIDE void SetOwner( VisTypedEngineObject_cl *pOwner );
 
 
 //----------------------------------------------------------------------------------------------------
 //  MyComponent::CanAttachToObject(...)
 //  Overridden function. Cpmponent can be attached to specified type instances
 //----------------------------------------------------------------------------------------------------
-  SAMPLEPLUGIN_IMPEXP VOVERRIDE BOOL CanAttachToObject( VisTypedEngineObject_cl *pObject, VString &sErrorMsgOut )
+  BG_PLUGIN_IMPEXP VOVERRIDE BOOL CanAttachToObject( VisTypedEngineObject_cl *pObject, VString &sErrorMsgOut )
   {
     if ( !IVObjectComponent::CanAttachToObject( pObject, sErrorMsgOut ))return FALSE;  
 
@@ -77,12 +77,12 @@ public:
 //  MyComponent::OnVariableValueChanged(...)
 //  Overridden function to respond to variable changes
 //----------------------------------------------------------------------------------------------------
-  SAMPLEPLUGIN_IMPEXP VOVERRIDE void OnVariableValueChanged(VisVariable_cl *pVar, const char * value)
+  BG_PLUGIN_IMPEXP VOVERRIDE void OnVariableValueChanged(VisVariable_cl *pVar, const char * value)
   {}
 //----------------------------------------------------------------------------------------------------
 //  MyComponent::Serialize(...)
 //----------------------------------------------------------------------------------------------------
-  SAMPLEPLUGIN_IMPEXP VOVERRIDE void Serialize( VArchive &ar );
+  BG_PLUGIN_IMPEXP VOVERRIDE void Serialize( VArchive &ar );
 
 
 //----------------------------------------------------------------------------------------------------
@@ -92,11 +92,11 @@ public:
 //----------------------------------------------------------------------------------------------------
 //  You do not have to call this function manually, since the VPlayableCharacterComponentManager
 //  class will take care of this.  
-  SAMPLEPLUGIN_IMPEXP void onFrameUpdate();
+  BG_PLUGIN_IMPEXP void onFrameUpdate();
 
-  SAMPLEPLUGIN_IMPEXP void onStartup( VisTypedEngineObject_cl *pOwner );
+  BG_PLUGIN_IMPEXP void onStartup( VisTypedEngineObject_cl *pOwner );
 
-  SAMPLEPLUGIN_IMPEXP void onRemove(  VisTypedEngineObject_cl *pOwner );
+  BG_PLUGIN_IMPEXP void onRemove(  VisTypedEngineObject_cl *pOwner );
 
 
 protected:

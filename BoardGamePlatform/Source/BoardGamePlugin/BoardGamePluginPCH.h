@@ -14,8 +14,26 @@
 #endif
 
 #include <Vision/Runtime/Engine/System/Vision.hpp>
+#include "BoardGamePluginModule.h"
 
-extern VModule g_BoardGameModule;
+#include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokConversionUtils.hpp>
+
+//Havok Ai
+#include <Vision\Runtime\EnginePlugins\Havok\HavokAiEnginePlugin\vHavokAiModule.hpp>
+#include <Ai\Pathfinding\World\hkaiWorld.h>
+#include <Ai\Pathfinding\Character\hkaiCharacter.h>
+#include <Ai\Pathfinding\Character\Behavior\hkaiPathFollowingBehavior.h>
+#include <Ai\Pathfinding\Character\LocalSteering\hkaiLocalSteeringFilter.h>
+#include <Ai\Physics2012Bridge\LocalSteering\hkaiPhysics2012BodyObstacleGenerator.h>
+
+//Havok Behavor
+#include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorModule.hpp>
+#include <Behavior\Behavior\Character\hkbCharacter.h>
+
+//Havok Physics
+#include <Vision/Runtime/EnginePlugins/Havok/HavokPhysicsEnginePlugin/vHavokPhysicsModule.hpp>
+
+extern VModule g_BoardGamePluginModule;
 
 #endif
 

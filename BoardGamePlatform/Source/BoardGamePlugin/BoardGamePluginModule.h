@@ -9,26 +9,36 @@
 //  Plugin Defines removed from stdafx and placed here.
 // 
 
-#ifndef BOARDGAMEPLUGINMODULE_H_INCLUDED
-#define BOARDGAMEPLUGINMODULE_H_INCLUDED
+#ifndef BG_PLUGIN_MODULE_H__
+#define BG_PLUGIN_MODULE_H__
+
+namespace BG_UserMessages
+{
+	enum Enum
+	{
+		kUserMessageStart = VIS_MSG_USER,
+
+		kAnimationEvent,
+	};
+}
 
 #ifdef WIN32
-  #ifdef SAMPLEPLUGIN_EXPORTS
-    #define SAMPLEPLUGIN_IMPEXP __declspec(dllexport)
-  #elif SAMPLEPLUGIN_IMPORTS
-    #define SAMPLEPLUGIN_IMPEXP __declspec(dllimport)
+  #ifdef BG_PLUGIN_EXPORTS
+    #define BG_PLUGIN_IMPEXP __declspec(dllexport)
+  #elif BG_PLUGIN_IMPORTS
+    #define BG_PLUGIN_IMPEXP __declspec(dllimport)
   #else
-    #define SAMPLEPLUGIN_IMPEXP __declspec()
+    #define BG_PLUGIN_IMPEXP __declspec()
   #endif
 
 #elif defined (_VISION_IOS) || defined(_VISION_ANDROID) || defined(HK_PLATFORM_TIZEN)
-  #define SAMPLEPLUGIN_IMPEXP
+  #define BG_PLUGIN_IMPEXP
 
 #else
   #error Undefined platform!
 #endif
 
-#endif //  BOARDGAMEPLUGINMODULE_H_INCLUDED
+#endif //  BG_PLUGIN_MODULE_H_INCLUDED
 
 /*
  * Havok SDK - Base file, BUILD(#20140328)

@@ -17,7 +17,7 @@
 
 //  Register the action with a module - this always has to be in the .cpp file
 //  The string "MyAction" is the name of the cammand to be used in the console
-V_IMPLEMENT_ACTION( "MyAction", MyAction_cl, VAction,&g_BoardGameModule, NULL )
+V_IMPLEMENT_ACTION( "MyAction", MyAction_cl, VAction,&g_BoardGamePluginModule, NULL )
 
 //============================================================================================================
 //============================================    A C T I O N   ==============================================

@@ -1,11 +1,19 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="BoardGamePluginModule.h" />
-    <ClInclude Include="BoardGamePluginPCH.h" />
     <ClInclude Include="myComponent.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="TemplateAction.h" />
+    <ClInclude Include="WarriorEntity.h" />
+    <ClInclude Include="ControllerComponent.h" />
+    <ClInclude Include="BehaviorWorldListener.h" />
+    <ClInclude Include="BoardGamePluginPCH.h" />
+    <ClInclude Include="BrightWarriorEntity.h" />
+    <ClInclude Include="DarkWarriorEntity.h" />
+    <ClInclude Include="BrightWarriorControllerComponent.h" />
+    <ClInclude Include="UIManager.h" />
+    <ClInclude Include="DarkWarriorControllerComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardGamePluginPCH.cpp" />
@@ -13,5 +21,13 @@
     <ClCompile Include="PluginMain.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="TemplateAction.cpp" />
+    <ClCompile Include="WarriorEntity.cpp" />
+    <ClCompile Include="ControllerComponent.cpp" />
+    <ClCompile Include="BehaviorWorldListener.cpp" />
+    <ClCompile Include="BrightWarriorEntity.cpp" />
+    <ClCompile Include="DarkWarriorEntity.cpp" />
+    <ClCompile Include="BrightWarriorControllerComponent.cpp" />
+    <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="DarkWarriorControllerComponent.cpp" />
   </ItemGroup>
 </Project>
