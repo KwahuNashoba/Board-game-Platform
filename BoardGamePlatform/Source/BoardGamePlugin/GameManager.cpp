@@ -14,12 +14,17 @@
 #include "DarkWarriorEntity.h"
 #include "ControllerComponent.h"
 #include "UIManager.h"
+#include "CheckersGameLogic.h"
 
 GameManager GameManager::g_GameManager;
 
 GameManager::GameManager()
 	:m_mouseInput(hkvVec3(-1,-1,-1)),
-	m_selectedWarrior(NULL)
+	m_selectedWarrior(NULL),
+	m_whiteNext(true),
+	m_playingTheMoveStart(false),
+	m_playingTheMoveEnd(false),
+	m_startPosition()
 {
 }
 
@@ -57,14 +62,6 @@ void GameManager::AddWarrior(BG_WarriorEntity* warrior, int x, int y)
 	}
 }
 
-void GameManager::RemoveWarrior(int x, int y)
-{
-	if(m_board[x][y])
-	{
-		m_board[x][y] = NULL;
-	}
-}
-
 BG_BrightWarriorEntity* GameManager::CreateBrightWarriorEntity(const hkvVec3& position)
 {
 	BG_BrightWarriorEntity* entity = static_cast<BG_BrightWarriorEntity*>(Vision::Game.CreateEntity("BG_BrightWarriorEntity", position));
@@ -91,8 +88,36 @@ void GameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
 		  for(int j = 0; j < 8; j++)
 		  {
 			  if(m_board[i][j] != NULL)
-				  Vision::Message.Print(1,10,(i*8+j)*20,"%d %d", m_board[i][j]->GetPosition().x, m_board[i][j]->GetPosition().y);
+				  Vision::Message.Print(1,610 + i * 10,(7-j)*10,"%c", m_board[i][j] != NULL ? (m_board[i][j]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId() ? 'B' : 'D') : ' ');
 		  }
+	  }
+
+	  if(m_selectedWarrior)
+	  {
+		  Vision::Message.Print(1,50,200, "MoveSpeed: %f", m_selectedWarrior->GetControllerComponent()->GetSpeed());		  		
+		  Vision::Message.Print(1,50,250, m_selectedWarrior->GetControllerComponent()->GetCurentStateName());
+		  if(m_possibleMoves.GetSize() > 0)
+		  {
+			for(int i = 0; i<m_possibleMoves.GetSize(); i++)
+			{
+				Vision::Message.Print(1, 50, 100+ i*33, "x: %d  y: %d", (int)m_possibleMoves.GetAt(i).x, (int)m_possibleMoves.GetAt(i).y);
+			}
+		  }
+		  else
+		  {
+			  Vision::Message.Print(1,50,100, "No possible moves for selected warrior");
+		  }
+
+		  if(m_selectedWarrior->GetControllerComponent()->GetTarget())
+			{
+				int x = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().x/BG_WARRIOR_MODEL_WIDTH;
+				int y = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().y/BG_WARRIOR_MODEL_WIDTH;
+				Vision::Message.Print(1,50,300, "Attacking x: %d  y: %d", x, y);
+			}
+	  }
+	  else
+	  {
+		  Vision::Message.Print(1,50,100, "No selected warrior");
 	  }
 	  
 	  OnUpdateSceneBegin();
@@ -111,7 +136,7 @@ void GameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
 
   if (pData->m_pSender==&Vision::Callbacks.OnBeforeSceneLoaded)
   {
-	  //OnBeforeSceneLoaded(static_cast<VisSceneLoadedDataObject_cl*>(pData)->m_szSceneFileName);
+	  OnBeforeSceneLoaded(static_cast<VisSceneLoadedDataObject_cl*>(pData)->m_szSceneFileName);
 	  return;
   }
 
@@ -124,10 +149,22 @@ void GameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
 	  return;
   }
 
+  if(pData->m_pSender==&Vision::Callbacks.OnBeforeSceneUnloaded)
+  {
+	  OnBeforeSceneUnloaded();
+	  return;
+  }
+  if(pData->m_pSender==&Vision::Callbacks.OnAfterSceneUnloaded)
+  {
+	  OnAfterSceneUnloaded();
+	  return;
+  }
+
   if (pData->m_pSender==&Vision::Callbacks.OnWorldDeInit) 
   {
      // this is important when running outside vForge
     SetPlayTheGame(false);
+	m_gameLogic = NULL;
     return;
   }
 }
@@ -204,6 +241,8 @@ void GameManager::OnAfterSceneLoaded()
 		}
 
 		m_UIManager = new BG_UIManager();
+
+		m_gameLogic = new CheckersGameLogic();
 }
 
 void GameManager::OnBeforeSceneUnloaded()
@@ -213,32 +252,114 @@ void GameManager::OnBeforeSceneUnloaded()
 void GameManager::OnAfterSceneUnloaded()
 {
 	Vision::Callbacks.OnUpdateSceneBegin -= this;
+
+	if (!VStringUtil::IsEmpty(m_sceneFileName))
+		{
+			// Only try to remove the listener if a scene was actually loaded
+			vHavokBehaviorModule *const havok_behavior_module = vHavokBehaviorModule::GetInstance();
+			havok_behavior_module->getBehaviorWorld()->removeListener(&BG_BehaviorWorldListener::g_behaviorWorldListener);
+		}
 }
 
 void GameManager::OnUpdateSceneBegin()
 {
-	if(!m_mouseInput.isIdentical(hkvVec3(-1,-1,-1)))
+	if(!m_playingTheMoveStart)
 	{
-		int x = m_mouseInput.x/BG_WARRIOR_MODEL_WIDTH;
-		int y = m_mouseInput.y/BG_WARRIOR_MODEL_WIDTH;
-		if(m_selectedWarrior)
+		if(!m_mouseInput.isIdentical(hkvVec3(-1,-1,-1)))
 		{
-			//TODO: dodaj da ga deselektuje ako klikne na istog
-			m_selectedWarrior->GetControllerComponent()->SetTargetPoint(
-				hkvVec3(x*BG_WARRIOR_MODEL_WIDTH + BG_WARRIOR_MODEL_WIDTH/2, y*BG_WARRIOR_MODEL_WIDTH + BG_WARRIOR_MODEL_WIDTH/2, m_selectedWarrior->GetPosition().z)
-				);
+			//grab mouse input
+			int x = m_mouseInput.x/BG_WARRIOR_MODEL_WIDTH;
+			int y = m_mouseInput.y/BG_WARRIOR_MODEL_WIDTH;
 
-			m_board[x][y] = m_selectedWarrior;
-			m_board[(int)m_selectedWarrior->GetPosition().x/BG_WARRIOR_MODEL_WIDTH][(int)m_selectedWarrior->GetPosition().y/BG_WARRIOR_MODEL_WIDTH] =
-				NULL;
+			if(m_selectedWarrior)
+			{
+				//deselect warrior if the same is clicked again
+				if( x == (int)(m_selectedWarrior->GetPosition().x/BG_WARRIOR_MODEL_WIDTH) &&
+					y == (int)(m_selectedWarrior->GetPosition().y/BG_WARRIOR_MODEL_WIDTH))
+				{
+					m_selectedWarrior = NULL;
+					//dehajlajtuj moguce poteze
+				}
+				else
+				{
+					if(m_possibleMoves.Find(hkvVec2(x,y)) >= 0)
+					{
+						//start playing the move
+						m_playingTheMoveStart = true;
 
-			//TODO: sad ide logika da li treba da napada i sl
-			m_selectedWarrior = NULL;
+						m_endPosition = hkvVec2(x,y);
+
+						//set final target point
+						m_selectedWarrior->GetControllerComponent()->SetTargetPoint(
+							hkvVec3((x + 0.5)*BG_WARRIOR_MODEL_WIDTH,
+									(y + 0.5)*BG_WARRIOR_MODEL_WIDTH,
+									m_selectedWarrior->GetPosition().z)
+							);
+
+
+						//set targets to eliminate
+						VArray<BG_WarriorEntity*> targets;
+						VArray<hkvVec2> targetCoords = m_gameLogic->PlayMove(
+							hkvVec2(m_startPosition.x, m_startPosition.y),
+							hkvVec2(x,y),
+							m_whiteNext);
+
+						for(int i = 0; i<targetCoords.GetSize(); i++)
+						{
+							hkvVec2 targetCoord = targetCoords.GetAt(i);
+							targets.Add(m_board[(int)targetCoord.x][(int)targetCoord.y]);
+							//update board state
+							m_board[(int)targetCoord.x][(int)targetCoord.y] = NULL;
+						}
+
+						m_selectedWarrior->GetControllerComponent()->SetTargets(targets);
+
+						//TODO: dodaj da dehajlajtuje moguca polja
+					}
+				}			
+			}
+			else if(m_board[x][y])
+			{
+				//select warrior and set possible moves
+				if(m_whiteNext)
+				{
+					if(m_board[x][y]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId())
+					{
+						m_startPosition = hkvVec2(x,y);
+
+						m_selectedWarrior = m_board[x][y];
+						m_possibleMoves = m_gameLogic->PossibleMoves(hkvVec2(x,y), m_whiteNext);
+						//TODO: hajlajtuj moguca polja
+					}
+				}
+				else
+				{
+					if(m_board[x][y]->GetTypeId() == BG_DarkWarriorEntity::GetClassTypeId())
+					{
+						m_startPosition = hkvVec2(x,y);
+
+						m_selectedWarrior = m_board[x][y];
+						m_possibleMoves = m_gameLogic->PossibleMoves(hkvVec2(x,y), m_whiteNext);
+						//TODO: hajlajtuj moguca polja
+					}
+				}
+			}
 		}
-		else
-		{
-			m_selectedWarrior = m_board[x][y];
-		}
+	}
+	else if(m_playingTheMoveEnd) //if move is finished, update board state and alow next move to be played
+	{
+		//update warrior position on board		
+		m_board[(int)m_endPosition.x][(int)m_endPosition.y]	= m_selectedWarrior;
+		m_board[(int)m_startPosition.x][(int)m_startPosition.y]	= NULL;
+
+		//deselect warrior
+		m_selectedWarrior = NULL;
+
+		//reset move flags
+		m_playingTheMoveStart = false;
+		m_playingTheMoveEnd = false;
+
+		m_whiteNext = !m_whiteNext;
 	}
 }
 

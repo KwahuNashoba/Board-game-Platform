@@ -16,15 +16,15 @@ START_VAR_TABLE(BG_WarriorEntity, VisBaseEntity_cl, "Base warrior entity", 0, ""
 	// entity properties
 	DEFINE_VAR_FLOAT_AND_NAME(BG_WarriorEntity, m_eyeHeight, "Eye Height", "Height of this character's eyes", "150", 0, 0);
 	DEFINE_VAR_FLOAT_AND_NAME(BG_WarriorEntity, m_sensorSize, "Ai SensorSize", "Character Sensor Size", "128", 0, 0);
-	DEFINE_VAR_FLOAT_AND_NAME(BG_WarriorEntity, m_desiredSpeed, "Ai DesiredSpeed", "Character Desired Speed", "200", 0, 0);
+	DEFINE_VAR_FLOAT_AND_NAME(BG_WarriorEntity, m_desiredSpeed, "Ai DesiredSpeed", "Character Desired Speed", "100", 0, 0);
 END_VAR_TABLE
 
 BG_WarriorEntity::BG_WarriorEntity()
-	: m_collisionRadius(40.f),
-	m_collisionHeight(160.f),
+	: m_collisionRadius(20.f),
+	m_collisionHeight(100.f),
 	m_eyeHeight(150.0f),
 	m_sensorSize(128.0f),
-	m_desiredSpeed(200.0f),
+	m_desiredSpeed(100.0f),
 	m_dead(false),
 	m_dying(false),
 	m_timeOfDeath(0.0f)
@@ -88,10 +88,10 @@ void BG_WarriorEntity::PostInitialize()
 	m_characterController->Capsule_Radius = m_collisionRadius;
 	m_characterController->Character_Bottom = hkvVec3(0.0f, 0.0f, m_collisionRadius);
 	m_characterController->Character_Top = hkvVec3(0.0f, 0.0f, m_collisionHeight - m_collisionRadius);
-	m_characterController->Gravity_Scale = 3.0f;
+	m_characterController->Gravity_Scale = 1.0f;
 	m_characterController->SetPosition(GetPosition());
 	AddComponent(m_characterController);
-	m_characterController->SetDebugRendering(true);
+	//m_characterController->SetDebugRendering(true);
 	
 	//Used to put warrior back on board after deserialization
 	GameManager::GlobalManager().AddWarrior(this, (int)GetPosition().x/BG_WARRIOR_MODEL_WIDTH, (int)GetPosition().y/BG_WARRIOR_MODEL_WIDTH);
@@ -102,11 +102,6 @@ void BG_WarriorEntity::PostInitialize()
 //Called to shut down the character
 void BG_WarriorEntity::DisposeObject()
 {
-	if(Vision::Editor.IsPlaying())
-	{
-		GameManager::GlobalManager().RemoveWarrior(7, 7);
-	}
-
 	m_characterController = NULL;
 	m_havokBehavior = NULL;
 	m_controller = NULL;
@@ -121,7 +116,9 @@ void BG_WarriorEntity::ThinkFunction()
 	// decompose it if it is dead
 	if(IsDead())
 	{
-		//TODO: implementiraj uklanjanje sa table nakon smrti
+		float timeDif = Vision::GetTimer()->GetTime() - m_timeOfDeath;
+		if(timeDif > 4)
+			DisposeObject();
 		return;
 	}
 
@@ -139,7 +136,6 @@ void BG_WarriorEntity::OnTick(float deltaTime)
 	if(m_controller)
 	{
 		m_controller->OnTick(deltaTime);
-
 		SetAnimationVariable(BG_WarriorAnimationVariable::kMoveSpeed, m_controller->GetSpeed());
 	}
 	else if(m_characterController)
@@ -238,11 +234,9 @@ void BG_WarriorEntity::SetAnimationVariable(BG_WarriorAnimationVariable::Enum co
 
 void BG_WarriorEntity::InitAnimationEventIds()
 {
-	//TODO: dovrsi ovo
+	//TODO: ovde ce ti mozda trebati event zam oruzje koje udara u protivnika
 	hkStringMap<int> const& eventNameToIdMap = vHavokBehaviorModule::GetInstance()->getBehaviorWorld()->accessEventLinker().m_nameToIdMap;
 	m_animationEventIds[BG_WarriorAnimationEvent::kDie] = eventNameToIdMap.getWithDefault("Die", -1);
-
-	m_animationEventIds[BG_WarriorAnimationEvent::kTakeControl] = eventNameToIdMap.getWithDefault("TakeControl", -1);
 
 	m_animationEventIds[BG_WarriorAnimationEvent::kMove] = eventNameToIdMap.getWithDefault("Move", -1);
 	m_animationEventIds[BG_WarriorAnimationEvent::kMoveEnd] = eventNameToIdMap.getWithDefault("MoveEnd", -1);
@@ -250,7 +244,6 @@ void BG_WarriorEntity::InitAnimationEventIds()
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttack] = eventNameToIdMap.getWithDefault("MeleeAttack", -1);
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttackEnd] = eventNameToIdMap.getWithDefault("MeleeAttackEnd", -1);
 
-	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttackFire] = eventNameToIdMap.getWithDefault("MeleeAttackFire", -1);
 	m_animationEventIds[BG_WarriorAnimationEvent::kFootStepEffect] = eventNameToIdMap.getWithDefault("FootStepEffect", -1);
 }
 

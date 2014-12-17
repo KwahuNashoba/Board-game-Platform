@@ -24,9 +24,12 @@ namespace BG_WarriorAnimationEvent
 		kMeleeAttackEnd,
 		//TODO: dodaj ono sto treba
 
+		//TODO: ovo nece da ti treba
+		kAoeAttack,
+		kAoeAttackEnd,
+
 		kFootStepEffect,
 		kMeleeAttackFire,
-
 
 		kAnimationEventCount
 	};
@@ -41,6 +44,9 @@ namespace BG_WarriorAnimationVariable
 		kAnimationVariableCount
 	};
 }
+
+//TODO: postavi vrednost kako treba
+#define BG_WARRIOR_MODEL_WIDTH 100
 
 class BG_WarriorEntity : public VisBaseEntity_cl
 {
@@ -59,7 +65,7 @@ public:
 
 	void SetVisible(bool visible);
 
-	virtual void CalcImpactReceivePosition(hkvVec3& targetPoint) const;	//returns position where enemy entity should impact this entity
+	virtual void CalcImpactReceivePosition(hkvVec3& targetPoint) const;	//TODO: mozda ne treba - returns position where enemy entity should impact this entity
 
 	virtual VType* GetControllerComponentType() { return NULL; }
 
@@ -76,7 +82,6 @@ public:
 	void SetController(BG_ControllerComponent *newController);
 	BG_ControllerComponent *GetControllerComponent();
 	BG_ControllerComponent const *GetControllerComponent() const;
-	void SetControllerComponent(BG_ControllerComponent* newController);
 	bool IsOnNavMesh(float const testRadius = 1.0f) const;
 
 	int GetIdForAnimationEvent(BG_WarriorAnimationEvent::Enum animationEvent) const { return m_animationEventIds[animationEvent]; }
@@ -87,8 +92,8 @@ public:
 
 	virtual void Die();
 	bool IsDead() const;
-	bool IsDying() const;
-	const hkvVec3 GetDeathImpulse() const;
+	bool IsDying() const; //TODO: proveri da li ovo treba
+	const hkvVec3 GetDeathImpulse() const; //TODO: i ovo
 
 	void InitAnimationEventIds();
 	void InitAnimationVariableIds();

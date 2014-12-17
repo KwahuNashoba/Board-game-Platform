@@ -80,7 +80,7 @@ bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point, hkVecto
 
 	hkVector4 rayStart, rayEnd;
 	vHavokConversionUtils::VisVecToPhysVecLocal(cameraPosition, rayStart);
-	vHavokConversionUtils::VisVecToPhysVecLocal(cameraPosition + traceDirOut*5000.0f, rayEnd);
+	vHavokConversionUtils::VisVecToPhysVecLocal(cameraPosition + traceDirOut*3000.0f, rayEnd);
 
 	hkaiNavMeshQueryMediator::HitDetails hit;
 	if(vHavokAiModule::GetInstance()->GetAiWorld()->getDynamicQueryMediator()->castRay(rayStart, rayEnd, hit))

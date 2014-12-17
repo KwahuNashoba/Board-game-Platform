@@ -41,8 +41,8 @@ void BoardGame_App::SetupAppConfig(VisAppConfig_cl& config)
   // if not in fullscreen. This is only relevant on windows
   config.m_videoConfig.m_iXRes = 1280; // Set the Window size X if not in fullscreen.
   config.m_videoConfig.m_iYRes = 720;  // Set the Window size Y if not in fullscreen.
-  config.m_videoConfig.m_iXPos = 50;   // Set the Window position X if not in fullscreen.
-  config.m_videoConfig.m_iYPos = 50;   // Set the Window position Y if not in fullscreen.
+  config.m_videoConfig.m_iXPos = 10;   // Set the Window position X if not in fullscreen.
+  config.m_videoConfig.m_iYPos = 10;   // Set the Window position Y if not in fullscreen.
 
   // Name to be displayed in the windows title bar.
   config.m_videoConfig.m_szWindowTitle = "BoardGamePlatform";
@@ -78,7 +78,8 @@ void BoardGame_App::Init()
 {
   // Set filename and paths to our stand alone version.
   // Note: "/Data/Vision/Base" is always added by the sample framework
-  VisAppLoadSettings settings("Scenes/Default.vscene");
+  VisAppLoadSettings settings("Scenes/BattleField.vscene");
+	//VisAppLoadSettings settings("C:\\Users\\Danilo\\Desktop\\BoardGamevForge\\Scenes\\BattleField.vscene");
   settings.m_customSearchPaths.Append(":template_root/Assets");
   LoadScene(settings);
 }
@@ -99,7 +100,10 @@ void BoardGame_App::AfterSceneLoaded(bool bLoadingSuccessful)
   //VisContextCamera_cl *camera = (VisContextCamera_cl*)Vision::Game.CreateEntity("VisMouseCamera_cl", hkvVec3(692, -116, 950));
   //camera->SetDirection(hkvVec3(300,300,0));
   hkvMat3 directionMatrix;
-  hkvVec3 lookFrom(400, -50, 600), lookAt(400,250,0);
+  //hkvVec3 lookFrom(400, -650, 400), lookAt(400,1050,0);
+  //hkvVec3 lookFrom(400, -390, 400), lookAt(400,300,0);
+  //hkvVec3 lookFrom(-250, 400, 400), lookAt(200,400,0); //najbolje do sada
+  hkvVec3 lookFrom(400, -285, 600), lookAt(400,200,100);
   directionMatrix.setLookInDirectionMatrix (lookAt - lookFrom);
   Vision::Camera.Set(directionMatrix, lookFrom);
 

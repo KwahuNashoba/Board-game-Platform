@@ -4,7 +4,7 @@
 V_IMPLEMENT_SERIAL(BG_ControllerComponent, IVObjectComponent, 0, &g_BoardGamePluginModule);
 START_VAR_TABLE(BG_ControllerComponent, IVObjectComponent, "Board Game Controller component", VFORGE_HIDECLASS, "")
 	DEFINE_VAR_FLOAT_AND_NAME(BG_ControllerComponent, m_sensorSize, "SensorSize", "Warrior sensor size", "128", 0, NULL);
-	DEFINE_VAR_FLOAT_AND_NAME(BG_ControllerComponent, m_desiredSpeed, "DesiredSpeed", "Warrior desired speed", "200", 0, NULL);	
+	DEFINE_VAR_FLOAT_AND_NAME(BG_ControllerComponent, m_desiredSpeed, "DesiredSpeed", "Warrior desired speed", "100", 0, NULL);	
 END_VAR_TABLE
 
 namespace
@@ -40,11 +40,16 @@ BG_ControllerComponent::BG_ControllerComponent(int id, int componentFlag)
 	m_currentStateId(BG_ControllerStateId::kIdling),
 	m_settingState(false),
 	m_sensorSize(100.0f),
-	m_desiredSpeed(300.0f),
+	m_desiredSpeed(100.0f),
 	m_cachedDirection(0.0f, 0.0f, 0.0f),
 	m_cachedSpeed(0.0f),
-	m_target(NULL)
+	m_currentTarget(NULL)
 {
+}
+
+char const *BG_ControllerComponent::GetCurentStateName()
+{
+	return m_states[m_currentStateId]->GetName();
 }
 
 void BG_ControllerComponent::SetState(BG_ControllerStateId::Enum newStateId)
@@ -101,6 +106,24 @@ void BG_ControllerComponent::SetSensorSize(float sensorSize)
 void BG_ControllerComponent::SetDesiredSpeed(float desiredSpeed)
 {
 	m_desiredSpeed = desiredSpeed;
+}
+
+void BG_ControllerComponent::SetFinalDirection()
+{
+	m_finalDirection = ((m_targetPoint.x - GetWarriorEntity()->GetPosition().x) > 0 ? hkvVec3(1.0f,0.0f,0.0f) : hkvVec3(-1.0f,0.0f,0.0f));
+}
+
+void BG_ControllerComponent::SetNextTarget()
+{
+	if(m_targets.GetSize() > 0)
+	{
+		//TODO: implementiraj logiku za uklanjanje protivnika po odredjenom redosledu
+		m_currentTarget = static_cast<BG_WarriorEntity*>(m_targets.GetAt(0));
+		m_targets.RemoveAt(0);
+		return;
+	}
+
+	m_currentTarget = NULL;
 }
 
 void BG_ControllerComponent::OnTick(float deltaTime)
@@ -326,24 +349,13 @@ void BG_ControllerStateBase::OnTick(BG_ControllerComponent *const controller, fl
 {
 }
 
-void BG_ControllerState::NotControlled::OnProcessAnimationEvent(BG_ControllerComponent* controller, hkbEvent const& animationEvent)
-{
-	BG_ControllerStateBase::OnProcessAnimationEvent(controller, animationEvent);
-
-	BG_WarriorEntity *const warriorEntity = controller->GetWarriorEntity();
-
-	//TODO: ovo mozda nece da ti treba...isprobaj dal ga okine kad postavis inicijalno stanje na kNotControlled
-	if(warriorEntity->GetIdForAnimationEvent(BG_WarriorAnimationEvent::kTakeControl) == animationEvent.getId())
-	{
-		controller->SetState(BG_ControllerStateId::kIdling);
-	}
-}
-
-void BG_ControllerState::Moving::OnEnterState(BG_ControllerComponent* controller)
+void BG_ControllerState::Moving::OnEnterState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnEnterState(controller);
 	BG_WarriorEntity *const warriorEntity = controller->GetWarriorEntity();
 	//TODO: create moving effect
+	controller->SetFinalDirection();
+	controller->SetNextTarget();
 	warriorEntity->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMove);
 }
 
@@ -424,8 +436,8 @@ void BG_ControllerHelper::GetProjectedDirAndDistFromTarget(BG_WarriorEntity cons
 
 float BG_ControllerHelper::GetMinDistanceToAttack(BG_WarriorEntity const* warrior, BG_WarriorEntity *const target)
 {
-	//TODO: ovo ti mozda treba a mozda i ne
-	float f = 100;
+	//TODO: ovo ti mozda treba a mozda i ne - ce ti treba pa ce ti usi mrdaju!
+	float f = 130;
 	return f;
 }
 
@@ -484,7 +496,7 @@ hkBool32 LocalSteeringFilter::isCharacterEnabled(hkaiCharacter const *aiCharacte
 	BG_WarriorEntity *const otherWarrior = ((BG_ControllerComponent *const)otherAiCharacter->m_userData)->GetWarriorEntity();
 
 	//Don't steer around the character we are about to attack
-	return controller->getTarget() == otherWarrior ? 0 : 1;
+	return controller->GetTarget() == otherWarrior ? 0 : 1;
 }
 
 hkBool32 LocalSteeringFilter::isObstacleEnabled(hkaiCharacter const *aiCharacter, hkaiObstacleGenerator const *otherObstacle) const

@@ -15,10 +15,10 @@ namespace BG_ControllerStateId
 {
 	enum Enum
 	{
-		kNotControlled,
 		kIdling,
 		kMoving,
-		//TODO: dodaj napade kad ih smislis
+		
+		kMeleeAttacking,
 
 		kStateCount
 	};
@@ -42,10 +42,14 @@ public:
 	float GetSpeed() const { return m_cachedSpeed; }
 	void SetSensorSize(float sensorSize);
 	void SetDesiredSpeed(float desiredSpeed);
+	void SetFinalDirection();	//set final direction depending on a new and previous position
+	hkvVec3 GetFinalDirection() { return m_finalDirection; }
+	char const *GetCurentStateName();
 
 	//Entity to attack
-	void SetTarget(BG_WarriorEntity* target) { m_target = (target ? target->GetWeakReference() : NULL); }
-	BG_WarriorEntity* getTarget() const { return vstatic_cast<BG_WarriorEntity*>(m_target); }
+	void SetTargets(VArray<BG_WarriorEntity*> targets) { m_targets = targets; }
+	void SetNextTarget();
+	BG_WarriorEntity* GetTarget() const { return vstatic_cast<BG_WarriorEntity*>(m_currentTarget); }
 	
 	void SetTargetPoint(hkvVec3 const& targetPoint) { m_targetPoint = targetPoint; }
 	hkvVec3 const& GetTargetPoint() { return m_targetPoint; }
@@ -79,9 +83,11 @@ protected:
 	float m_desiredSpeed;
 	float m_cachedSpeed;
 	hkvVec3 m_cachedDirection;
-
-	VWeakPtr<VisBaseEntity_cl> m_target;
-	hkvVec3 m_targetPoint;
+	
+	VArray<BG_WarriorEntity*> m_targets;	//targets to eliminate from board
+	BG_WarriorEntity *m_currentTarget;		//current target
+	hkvVec3 m_targetPoint;					//point where entity should end up at the end of the move
+	hkvVec3 m_finalDirection;				//direction to be set at the end of the move
 };
 
 //Abstract class used for managing BG_ControllerComponent's state
@@ -89,26 +95,19 @@ protected:
 class BG_ControllerStateBase : public VRefCounter
 {
 public:
-	virtual void OnEnterState(BG_ControllerComponent* controller);
-	virtual void OnExitState(BG_ControllerComponent* controller);
-	virtual void OnProcessAnimationEvent(BG_ControllerComponent* controller, hkbEvent const& animationEvent);
-	virtual void OnTick(BG_ControllerComponent* controller, float deltaTime);
+	virtual void OnEnterState(BG_ControllerComponent *const controller);
+	virtual void OnExitState(BG_ControllerComponent *const controller);
+	virtual void OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent);
+	virtual void OnTick(BG_ControllerComponent *const controller, float deltaTime);
 	virtual char const *GetName() const = 0;
 };
 
 namespace BG_ControllerState
 {
-	class NotControlled : public BG_ControllerStateBase
-	{
-		void OnProcessAnimationEvent(BG_ControllerComponent* controller, hkbEvent const& animationEvent) HKV_OVERRIDE;
-
-		char const *GetName() const HKV_OVERRIDE { return "Controller::NotControlled"; }
-	};
-
 	class Moving : public BG_ControllerStateBase
 	{
-		void OnEnterState(BG_ControllerComponent* controller) HKV_OVERRIDE;
-		void OnExitState(BG_ControllerComponent* controller) HKV_OVERRIDE;
+		void OnEnterState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
+		void OnExitState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
 
 		char const *GetName() const HKV_OVERRIDE { return "Controller::Moving"; }
 	};

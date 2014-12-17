@@ -14,6 +14,8 @@
     <ClInclude Include="BrightWarriorControllerComponent.h" />
     <ClInclude Include="UIManager.h" />
     <ClInclude Include="DarkWarriorControllerComponent.h" />
+    <ClInclude Include="GameLogic.h" />
+    <ClInclude Include="CheckersGameLogic.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardGamePluginPCH.cpp" />
@@ -29,5 +31,7 @@
     <ClCompile Include="BrightWarriorControllerComponent.cpp" />
     <ClCompile Include="UIManager.cpp" />
     <ClCompile Include="DarkWarriorControllerComponent.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
+    <ClCompile Include="CheckersGameLogic.cpp" />
   </ItemGroup>
 </Project>

@@ -7,7 +7,7 @@
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
 
 V_IMPLEMENT_SERIAL(BG_DarkWarriorEntity, BG_WarriorEntity, 0, &g_BoardGamePluginModule);
-START_VAR_TABLE(BG_DarkWarriorEntity, BG_WarriorEntity, "Dark warrior enity", 0, "Models/Guardian_Melee/Guardian_Melee.model")
+START_VAR_TABLE(BG_DarkWarriorEntity, BG_WarriorEntity, "Dark warrior enity", 0, "Models/Dark_Warrior/Dark_Warrior.model")
 END_VAR_TABLE
 
 BG_DarkWarriorEntity::BG_DarkWarriorEntity()
@@ -26,16 +26,27 @@ void BG_DarkWarriorEntity::InitFunction()
 	BG_WarriorEntity::InitFunction();
 
 	m_havokBehavior = new vHavokBehaviorComponent();
-	m_havokBehavior->m_projectName = "D:\\Havok\\AnarchySDK\\Data\\Vision\\Samples\\Engine\\RPG\\HavokAnimation\\Project\\Project.hkt";
-	m_havokBehavior->m_characterName = "Guardian_Melee.hkt";
-	m_havokBehavior->m_behaviorName = "Guardian_Melee.hkt";
+	m_havokBehavior->m_projectName = "HavokAnimation/BG_Warriors.hkt";
+	m_havokBehavior->m_characterName = "Dark_Warrior.hkt";
+	m_havokBehavior->m_behaviorName = "Dark_Warrior.hkt";
 	AddComponent(m_havokBehavior);
 
-	//TODO: treba da se inicijalizuju ostali parametri
+	VTextureObject *textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_cloth.png");
+	GetMesh()->GetSurface(3)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_bones.png");
+	GetMesh()->GetSurface(1)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons.tga");
+	GetMesh()->GetSurface(2)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons.tga");
+	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+
 	m_collisionRadius = 40;
 	m_collisionHeight = 160;
 	m_sensorSize = 256;
-	m_desiredSpeed = 350;
+	m_desiredSpeed = 80;
 
 	PostInitialize();
 

@@ -7,8 +7,7 @@ BoardGamePlatform/Data
 BoardGamePlatform/External
 BoardGamePlatform/Lib
 BoardGamePlatform/Obj
-BoardGamePlatform/Assets/AssetMgmt_data
-
+BoardGamePlatform/Assets
 
 # External tool builders
 .externalToolBuilders/

@@ -19,9 +19,11 @@
     <ClInclude Include="BoardGamePluginPCH.h" />
     <ClInclude Include="BrightWarriorControllerComponent.h" />
     <ClInclude Include="BrightWarriorEntity.h" />
+    <ClInclude Include="CheckersGameLogic.h" />
     <ClInclude Include="ControllerComponent.h" />
     <ClInclude Include="DarkWarriorControllerComponent.h" />
     <ClInclude Include="DarkWarriorEntity.h" />
+    <ClInclude Include="GameLogic.h" />
     <ClInclude Include="GameManager.h" />
     <ClInclude Include="BoardGamePluginModule.h" />
     <ClInclude Include="myComponent.h" />
@@ -33,9 +35,11 @@
     <ClCompile Include="BehaviorWorldListener.cpp" />
     <ClCompile Include="BrightWarriorControllerComponent.cpp" />
     <ClCompile Include="BrightWarriorEntity.cpp" />
+    <ClCompile Include="CheckersGameLogic.cpp" />
     <ClCompile Include="ControllerComponent.cpp" />
     <ClCompile Include="DarkWarriorControllerComponent.cpp" />
     <ClCompile Include="DarkWarriorEntity.cpp" />
+    <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="BoardGamePluginPCH.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">Create</PrecompiledHeader>

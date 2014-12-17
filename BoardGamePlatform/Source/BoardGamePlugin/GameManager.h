@@ -11,8 +11,6 @@
 
 #ifndef BG_PLUGIN_GAME_MANAGER_H__
 #define BG_PLUGIN_GAME_MANAGER_H__
-//TODO: postavi vrednost kako treba
-#define BG_WARRIOR_MODEL_WIDTH 100
 
 #include "BoardGamePluginModule.h"
 
@@ -20,6 +18,7 @@ class BG_WarriorEntity;
 class BG_BrightWarriorEntity;
 class BG_DarkWarriorEntity;
 class BG_UIManager;
+class BG_GameLogic;
 
 class GameManager : public IVisCallbackHandler_cl
 {
@@ -32,8 +31,6 @@ public:
 
 	//x and y are board coordinates NOT world coordinates (0 <= x < 8), (0 <= y < 8)
 	void AddWarrior(BG_WarriorEntity* warrior, int x, int y);
-	//TODO: ovo mozda nece da treba
-	void RemoveWarrior(int x, int y);
 
 	//TODO: mozda ovo moze i pametnije da se odradi umesto dve funkcije koje rade gotovo istu stvar
 	BG_BrightWarriorEntity* CreateBrightWarriorEntity(const hkvVec3& position);
@@ -41,6 +38,8 @@ public:
 
 	// switch to play-the-game mode. When not in vForge, this is default
 	void SetPlayTheGame(bool bStatus);
+
+	void SetPlayingTheMoveEnd(bool status) {m_playingTheMoveEnd = status; };
 
 	// access one global instance of the Game manager
 	static GameManager& GlobalManager() {return GameManager::g_GameManager;}
@@ -68,7 +67,17 @@ private:
 	BG_UIManager* m_UIManager;
 
 	bool m_bPlayingTheGame;
+	bool m_playingTheMoveStart;			//true from the moment when warrior starts moving/killing until it finish
+	bool m_playingTheMoveEnd;			//true after warrior finish move
 	static GameManager g_GameManager;
+
+	BG_GameLogic* m_gameLogic;
+
+	VArray<hkvVec2> m_possibleMoves;	//possible moves for currently selected warrior
+	hkvVec2 m_startPosition;
+	hkvVec2 m_endPosition;
+
+	bool m_whiteNext;					//true if white player plays next, false if it's black
 };
 
 

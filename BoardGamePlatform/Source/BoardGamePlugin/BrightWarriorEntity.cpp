@@ -26,16 +26,28 @@ void BG_BrightWarriorEntity::InitFunction()
 	BG_WarriorEntity::InitFunction();
 
 	m_havokBehavior = new vHavokBehaviorComponent();
-	m_havokBehavior->m_projectName = "D:\\Havok\\AnarchySDK\\Data\\Vision\\Samples\\Engine\\RPG\\HavokAnimation\\Project\\Project.hkt";
+	m_havokBehavior->m_projectName = "HavokAnimation/BG_Warriors.hkt";
 	m_havokBehavior->m_characterName = "Barbarian.hkt";
 	m_havokBehavior->m_behaviorName = "Barbarian.hkt";
 	AddComponent(m_havokBehavior);
 
-	//TODO: treba da se inicijalizuju ostali parametri
+	//load textures
+	VTextureObject *textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Barbarian/Barbarian_Body_Low_d.tga");
+	GetMesh()->GetSurface(1)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+	
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Barbarian/Barbarian_Body_Low_n.tga");
+	GetMesh()->GetSurface(1)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
+	
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Barbarian/Barbarian_Belt_Low_d.tga");
+	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+	
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Barbarian/Barbarian_Belt_Low_n.tga");
+	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
+	
 	m_collisionRadius = 40;
 	m_collisionHeight = 160;
 	m_sensorSize = 256;
-	m_desiredSpeed = 350;
+	m_desiredSpeed = 100;
 
 	PostInitialize();
 	
