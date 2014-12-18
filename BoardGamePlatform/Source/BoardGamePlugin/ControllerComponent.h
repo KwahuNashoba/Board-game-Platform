@@ -104,12 +104,30 @@ public:
 
 namespace BG_ControllerState
 {
+	class Idling : public BG_ControllerStateBase
+	{
+		void OnEnterState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
+		void OnTick(BG_ControllerComponent *const controller, float deltaTime) HKV_OVERRIDE;
+
+		char const *GetName() const HKV_OVERRIDE { return "Controller::Idling"; }
+	};
+
 	class Moving : public BG_ControllerStateBase
 	{
 		void OnEnterState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
+		void OnTick(BG_ControllerComponent *const controller, float deltaTime) HKV_OVERRIDE;
 		void OnExitState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
 
 		char const *GetName() const HKV_OVERRIDE { return "Controller::Moving"; }
+	};
+
+	class MeleeAttacking : public BG_ControllerStateBase
+	{
+		void OnEnterState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
+		void OnTick(BG_ControllerComponent *const controller, float deltaTime) HKV_OVERRIDE;
+		void OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent) HKV_OVERRIDE;
+
+		char const *GetName() const HKV_OVERRIDE { return "Controller::MeleeAttacking"; }
 	};
 }
 

@@ -1,5 +1,7 @@
 #include "BoardGamePluginPCH.h"
 #include "ControllerComponent.h"
+#include "GameManager.h"
+#include "Serializer.h"
 
 V_IMPLEMENT_SERIAL(BG_ControllerComponent, IVObjectComponent, 0, &g_BoardGamePluginModule);
 START_VAR_TABLE(BG_ControllerComponent, IVObjectComponent, "Board Game Controller component", VFORGE_HIDECLASS, "")
@@ -226,7 +228,12 @@ void BG_ControllerComponent::SetOwner(VisTypedEngineObject_cl* newOwner)
 
 		vHavokAiModule::GetInstance()->getCharacterBehaviors().pushBack(m_aiBehavior);
 
-		aiWorldListener.AddController(this);
+		aiWorldListener.AddController(this);		
+
+		//Init states
+		m_states[BG_ControllerStateId::kMoving] = new BG_ControllerState::Moving();
+		m_states[BG_ControllerStateId::kIdling] = new BG_ControllerState::Idling();
+		m_states[BG_ControllerStateId::kMeleeAttacking] = new BG_ControllerState::MeleeAttacking();
 	}
 	else
 	{
@@ -251,86 +258,9 @@ void BG_ControllerComponent::SetOwner(VisTypedEngineObject_cl* newOwner)
 
 void BG_ControllerComponent::Serialize(VArchive& ar)
 {
-	//TODO: imas dupli kod za serializaciju. Smisli gde ces da ga stavis i pretvoris ga u neku staticku funckiju
-	//call parent class Serialize function
 	IVObjectComponent::Serialize(ar);
 
-	if(ar.IsLoading())
-	{
-		//get list of objects variables
-		VARIABLE_LIST const* const varList = this->GetVariableList();
-		VASSERT(varList);
-		if(varList)
-		{
-			int const numVars = varList->GetSize();
-			ar << numVars;
-
-			for(VARIABLE_ELEM const* el = varList->first; el; el = el->next)
-			{
-				VisVariable_cl const* const var = el->value;
-				ar << var->name;
-				ar << var->type;
-
-				switch(var->type)
-				{
-					case VULPTYPE_REFERENCED_OBJECT:
-						{
-							// cast entity objects address in char*(string) and add offset of this var in its objects class, then cast it to VTypedObjectReference
-							//as far as I understood it :)
-							VTypedObjectReference const* const ref = (VTypedObjectReference const*)((char const*)this + var->clsOffset);
-							//grab variable and put in archive
-							ar << ref->GetReferencedObject();
-						}
-						break;
-					default:
-						{
-							char valueString[1000];
-							const_cast<VisVariable_cl*>(var)->GetValue(const_cast<VTypedObject*>((VTypedObject const*) this), valueString);
-							ar << valueString;
-						}
-				}
-			}
-		}
-	}
-	else
-	{
-		int numVars;
-		ar >> numVars;
-		for(int i = 0; i < numVars; i++)
-		{
-			VString varName;
-			ar >> varName;
-
-			int varType;
-			ar >> varType;
-
-			VisVariable_cl *const var = this->GetVariable(varName);
-			VASSERT(var && var->type == varType);
-			if(var && var->type == varType)
-			{
-				switch(varType)
-				{
-					case VULPTYPE_REFERENCED_OBJECT:
-						{
-							VTypedObject *varObj;
-							ar >> varObj;
-
-							VTypedObjectReference *const ref = (VTypedObjectReference*)((char*)this + var->clsOffset);
-							ref->SetReferencedObject(varObj);
-						}
-						break;
-
-					default:
-						{
-							VString varValue;
-							ar >> varValue;
-
-							var->SetValue((VTypedObject*)this, varValue.AsChar());
-						}
-				}
-			}
-		}
-	}
+	BG_Serializer::Serialize(this, ar);
 }
 
 void BG_ControllerStateBase::OnEnterState(BG_ControllerComponent *const controller)
@@ -349,6 +279,40 @@ void BG_ControllerStateBase::OnTick(BG_ControllerComponent *const controller, fl
 {
 }
 
+////////////////////////
+///State Idling
+////////////////////////
+void BG_ControllerState::Idling::OnEnterState(BG_ControllerComponent *const controller)
+{
+	GameManager::GlobalManager().SetPlayingTheMoveEnd(true);
+}
+
+void BG_ControllerState::Idling::OnTick(BG_ControllerComponent *controller, float deltaTime)
+{
+	BG_ControllerStateBase::OnTick(controller, deltaTime);
+
+	BG_WarriorEntity *warrior = static_cast<BG_WarriorEntity*>(controller->GetOwner());
+
+	hkvVec3 targetPoint = controller->GetTargetPoint();
+	//get distance from warrior to target point
+	hkvVec3 warriorToTargetPointVector(warrior->GetPosition() - targetPoint);
+	//use getLengthSquared when comparing relative lengths, since the computation of the squared length does not require a sqrt
+	targetPoint.z = 0.0f;
+	warriorToTargetPointVector.z = 0.0f;
+
+	float const  warriorToTargetPointDistanceSqr = warriorToTargetPointVector.getLengthSquared();
+	float const pathGoalReachedToleranceSqr = controller->GetPathGoalReachedTolerance() * controller->GetPathGoalReachedTolerance();
+
+	if(warriorToTargetPointDistanceSqr > pathGoalReachedToleranceSqr)
+	{
+		controller->SetState(BG_ControllerStateId::kMoving);
+		return;
+	}
+}
+
+////////////////////////
+///State Moving
+////////////////////////
 void BG_ControllerState::Moving::OnEnterState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnEnterState(controller);
@@ -359,6 +323,61 @@ void BG_ControllerState::Moving::OnEnterState(BG_ControllerComponent *const cont
 	warriorEntity->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMove);
 }
 
+void BG_ControllerState::Moving::OnTick(BG_ControllerComponent *controller, float deltaTime)
+{
+	BG_ControllerStateBase::OnTick(controller, deltaTime);
+
+	BG_WarriorEntity *warrior = vstatic_cast<BG_WarriorEntity*>(controller->GetWarriorEntity());
+	BG_WarriorEntity *target = controller->GetTarget();
+	hkvVec3 targetPoint;
+
+	//KILL 'EM ALL!
+	if(target)
+	{
+		hkvVec3 targetToWarriorProjectedDirection;
+		float targetToWarriorProjectedDistance;
+		BG_ControllerHelper::GetProjectedDirAndDistFromTarget(warrior, target, targetToWarriorProjectedDirection, targetToWarriorProjectedDistance);
+
+		float const minDistanceToAttack = BG_ControllerHelper::GetMinDistanceToAttack(warrior, target);
+
+		if(targetToWarriorProjectedDistance < minDistanceToAttack)
+		{
+			controller->SetState(BG_ControllerStateId::kMeleeAttacking);
+			return;
+		}
+		else
+		{
+			targetPoint = target->GetPosition();
+		}
+	}
+	else
+	{
+		targetPoint = controller->GetTargetPoint();
+	}
+
+	hkvVec3 const warriorToTargetPointVector(warrior->GetPosition() - targetPoint);
+	//use getLengthSquared when comparing relative lengths, since the computation of the squared length does not require a sqrt
+	float const  warriorToTargetPointDistanceSqr = warriorToTargetPointVector.getLengthSquared();
+	float const pathGoalReachedToleranceSqr = controller->GetPathGoalReachedTolerance() * controller->GetPathGoalReachedTolerance();
+
+	if(warriorToTargetPointDistanceSqr <= pathGoalReachedToleranceSqr)
+	{
+		controller->SetState(BG_ControllerStateId::kIdling);
+		//since warrior reached target point reset it to warrior current position
+		controller->SetTargetPoint(warrior->GetPosition());
+		warrior->SetDirection(controller->GetFinalDirection());
+		return;
+	}
+	else
+	{
+		controller->RequestPath(targetPoint);
+	}
+
+	hkvVec3 direction;
+	BG_ControllerHelper::CalcDirection(direction, warrior->GetDirection(), controller->GetDirection(), 0.25);
+	controller->GetWarriorEntity()->SetDirection(direction);
+}
+
 void BG_ControllerState::Moving::OnExitState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnExitState(controller);
@@ -367,6 +386,45 @@ void BG_ControllerState::Moving::OnExitState(BG_ControllerComponent *const contr
 	//TODO: pause moving effect
 	warriorEntity->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMoveEnd);
 }
+
+////////////////////////
+///State Melee Attacking
+////////////////////////
+void BG_ControllerState::MeleeAttacking::OnEnterState(BG_ControllerComponent *const controller)
+{
+	BG_ControllerStateBase::OnEnterState(controller);
+
+	controller->GetWarriorEntity()->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttack);
+}
+
+void BG_ControllerState::MeleeAttacking::OnTick(BG_ControllerComponent *controller, float deltaTime)
+{
+	BG_ControllerStateBase::OnTick(controller, deltaTime);
+
+	BG_WarriorEntity const *const target = controller->GetTarget();
+
+	if(target)
+	{
+		BG_ControllerHelper::FaceTowards(controller, target->GetPosition(), deltaTime);
+	}
+}
+
+void BG_ControllerState::MeleeAttacking::OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent)
+{
+	BG_ControllerStateBase::OnProcessAnimationEvent(controller, animationEvent);
+
+	BG_WarriorEntity *warrior = controller->GetWarriorEntity();
+
+	if(warrior->GetIdForAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttackEnd) == animationEvent.getId())
+	{
+		controller->SetState(BG_ControllerStateId::kMoving);
+	}
+	else if(warrior->GetIdForAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttack) == animationEvent.getId())
+	{
+		controller->GetTarget()->Die();
+	}
+}
+
 
 //Helper functions
 void BG_ControllerHelper::CalcDirection(hkvVec3& resultDirection, hkvVec3& currentDirection, hkvVec3& desiredDirection, float t)

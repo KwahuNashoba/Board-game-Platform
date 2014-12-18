@@ -2,12 +2,14 @@
 #include "WarriorEntity.h"
 #include "GameManager.h"
 #include "ControllerComponent.h"
+#include "Serializer.h"
 
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
 #include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
 
 #include <Behavior/Behavior/Event/hkbEventQueue.h>
 #include <Behavior/Behavior/World/hkbWorld.h>
+
 
 V_IMPLEMENT_SERIAL(BG_WarriorEntity, VisBaseEntity_cl, 0, &g_BoardGamePluginModule);
 START_VAR_TABLE(BG_WarriorEntity, VisBaseEntity_cl, "Base warrior entity", 0, "")	
@@ -179,11 +181,6 @@ bool BG_WarriorEntity::IsDying() const
 	return m_dying;
 }
 
-const hkvVec3 BG_WarriorEntity::GetDeathImpulse() const
-{
-	return m_deathImpulse;
-}
-
 float BG_WarriorEntity::GetCollisionRadius() const
 {
 	return m_collisionRadius;
@@ -192,14 +189,6 @@ float BG_WarriorEntity::GetCollisionRadius() const
 float BG_WarriorEntity::GetCollisionHeight() const
 {
 	return m_collisionHeight;
-}
-
-hkvVec3 const BG_WarriorEntity::GetEyePosition() const
-{
-	hkvVec3 position = GetPosition();
-	position.z += m_eyeHeight;
-
-	return position;
 }
 
 vHavokBehaviorComponent *BG_WarriorEntity::GetBehaviorComponent()
@@ -361,88 +350,7 @@ void BG_WarriorEntity::Serialize(VArchive& ar)
 {
 	//call parent class Serialize function
 	VisBaseEntity_cl::Serialize(ar);
-
-	if(ar.IsLoading())
-	{
-		//get list of objects variables
-		VARIABLE_LIST const* const varList = this->GetVariableList();
-		VASSERT(varList);
-		if(varList)
-		{
-			int const numVars = varList->GetSize();
-			ar << numVars;
-
-			for(VARIABLE_ELEM const* el = varList->first; el; el = el->next)
-			{
-				VisVariable_cl const* const var = el->value;
-				ar << var->name;
-				ar << var->type;
-
-				switch(var->type)
-				{
-					case VULPTYPE_REFERENCED_OBJECT:
-						{
-							// cast entity objects address in char*(string) and add offset of this var in its objects class, then cast it to VTypedObjectReference
-							//as far as I understood it :)
-							VTypedObjectReference const* const ref = (VTypedObjectReference const*)((char const*)this + var->clsOffset);
-							//grab variable and put in archive
-							ar << ref->GetReferencedObject();
-						}
-						break;
-					default:
-						{
-							char valueString[1000];
-							const_cast<VisVariable_cl*>(var)->GetValue(const_cast<VTypedObject*>((VTypedObject const*) this), valueString);
-							ar << valueString;
-						}
-				}
-			}
-		}
-	}
-	else
-	{
-		int numVars;
-		ar >> numVars;
-		for(int i = 0; i < numVars; i++)
-		{
-			VString varName;
-			ar >> varName;
-
-			int varType;
-			ar >> varType;
-
-			VisVariable_cl *const var = this->GetVariable(varName);
-			VASSERT(var && var->type == varType);
-			if(var && var->type == varType)
-			{
-				switch(varType)
-				{
-					case VULPTYPE_REFERENCED_OBJECT:
-						{
-							VTypedObject *varObj;
-							ar >> varObj;
-
-							VTypedObjectReference *const ref = (VTypedObjectReference*)((char*)this + var->clsOffset);
-							ref->SetReferencedObject(varObj);
-						}
-						break;
-
-					default:
-						{
-							VString varValue;
-							ar >> varValue;
-
-							var->SetValue((VTypedObject*)this, varValue.AsChar());
-						}
-				}
-			}
-		}
-	}
-}
-
-void BG_WarriorEntity::CalcImpactReceivePosition(hkvVec3& targetPoint) const
-{
-	targetPoint = 0.5f * (GetEyePosition() + GetPosition());
+	BG_Serializer::Serialize(this, ar);
 }
 
 VBool BG_WarriorEntity::WantsDeserializationCallback(const VSerializationContext& context)

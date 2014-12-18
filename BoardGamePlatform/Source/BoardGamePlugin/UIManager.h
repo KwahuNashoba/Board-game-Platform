@@ -30,7 +30,7 @@ private:
 	void OnTick(float deltaTime) HKV_OVERRIDE;
 	//VCursor *GetCurrentCursor(VGUIUserInfo_t& user) HKV_OVERRIDE; //TODO: nisam siguran da ovo treba
 
-	bool GetClosestPointOnNavMeshUnderCursor(hkVector4& point, hkVector4 const& searchPoint);
+	bool GetClosestPointOnNavMeshUnderCursor(hkVector4& point);
 
 	void InitInputMap();
 	hkvVec2 GetCursorPosition(IVGUIContext const* context) const;

@@ -46,8 +46,8 @@ void BG_UIManager::OnTick(float deltaTime)
 	VDialog::OnTick(deltaTime);
 	if(m_inputMap->GetTrigger(iClickTouch) > 0.0f)
 	{
-		hkVector4 targetPoint, placeHolder; //TODO: u zavisnosti od f-je ispod obrisi drugu promenljivu
-		GetClosestPointOnNavMeshUnderCursor(targetPoint, placeHolder);
+		hkVector4 targetPoint;
+		GetClosestPointOnNavMeshUnderCursor(targetPoint);
 		hkvVec3 convertedTargetPoint;
 		vHavokConversionUtils::PhysVecToVisVecLocal(targetPoint, convertedTargetPoint);
 		//check if click is inside the board
@@ -67,7 +67,7 @@ void BG_UIManager::OnTick(float deltaTime)
 	//TODO: verovatno ce treba da se doda jos neki input...pauza, quit i sl
 }
 
-bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point, hkVector4 const& searchPoint)
+bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point)
 {
 	IVGUIContext *context = GetContext();
 	VASSERT(context);
@@ -88,8 +88,7 @@ bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point, hkVecto
 		point.setInterpolate(rayStart, rayEnd, hit.m_hitFraction);
 		return true;
 	}
-	//TODO: ovde u else grani trazi najblizu tacku na navMeshu ako promasi mesh i tu koristi searchPoint
-	//ako ti ne bude trebao taj deo da implementiras izbaci drugi parametar f-je
+
 	return false;
 }
 

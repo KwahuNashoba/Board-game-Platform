@@ -18,7 +18,7 @@ BG_DarkWarriorEntity::BG_DarkWarriorEntity()
 
 VType* BG_DarkWarriorEntity::GetControllerComponentType()
 {
-	return V_RUNTIME_CLASS(BG_DarkWarriorControllerComponent);
+	return V_RUNTIME_CLASS(BG_ControllerComponent);
 }
 
 void BG_DarkWarriorEntity::InitFunction()

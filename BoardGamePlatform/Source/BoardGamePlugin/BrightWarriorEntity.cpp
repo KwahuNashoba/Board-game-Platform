@@ -18,7 +18,7 @@ BG_BrightWarriorEntity::BG_BrightWarriorEntity()
 
 VType* BG_BrightWarriorEntity::GetControllerComponentType()
 {
-	return V_RUNTIME_CLASS(BG_BrightWarriorControllerComponent);
+	return V_RUNTIME_CLASS(BG_ControllerComponent);
 }
 
 void BG_BrightWarriorEntity::InitFunction()

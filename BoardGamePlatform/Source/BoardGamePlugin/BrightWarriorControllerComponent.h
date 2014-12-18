@@ -3,6 +3,10 @@
 
 #include "ControllerComponent.h"
 
+
+///////////////////////////////////
+//This class is not used currently but it's a good starting point for implementig warrior specific behavior
+/////////////////////////////////
 class BG_BrightWarriorControllerComponent : public BG_ControllerComponent
 {
 public:
@@ -49,6 +53,3 @@ namespace BG_BrightWarriorControllerState
 }
 
 #endif
-
-//TODO: ovo treba da se refaktorise i da se prebace sve zajedniceke funkcije sa DarkWarriorController u nadklasu
-// za sad su iste, bukvalno :D

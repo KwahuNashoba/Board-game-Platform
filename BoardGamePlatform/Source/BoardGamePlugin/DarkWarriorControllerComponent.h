@@ -3,6 +3,9 @@
 
 #include "ControllerComponent.h"
 
+///////////////////////////////////
+//This class is not used currently but it's a good starting point for implementig warrior specific behavior
+/////////////////////////////////
 class BG_DarkWarriorControllerComponent : public BG_ControllerComponent
 {
 public:
@@ -47,6 +50,4 @@ namespace BG_DarkWarriorControllerState
 		char const *GetName() const HKV_OVERRIDE { return "BrightWarrior::MeleeAttacking"; }
 	};
 }
-
-
 #endif

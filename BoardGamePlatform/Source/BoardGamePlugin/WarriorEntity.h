@@ -14,7 +14,6 @@ namespace BG_WarriorAnimationEvent
 {
 	enum Enum
 	{
-		kTakeControl,
 		kDie,
 
 		kMove,
@@ -22,14 +21,8 @@ namespace BG_WarriorAnimationEvent
 
 		kMeleeAttack,
 		kMeleeAttackEnd,
-		//TODO: dodaj ono sto treba
-
-		//TODO: ovo nece da ti treba
-		kAoeAttack,
-		kAoeAttackEnd,
 
 		kFootStepEffect,
-		kMeleeAttackFire,
 
 		kAnimationEventCount
 	};
@@ -45,7 +38,6 @@ namespace BG_WarriorAnimationVariable
 	};
 }
 
-//TODO: postavi vrednost kako treba
 #define BG_WARRIOR_MODEL_WIDTH 100
 
 class BG_WarriorEntity : public VisBaseEntity_cl
@@ -65,14 +57,10 @@ public:
 
 	void SetVisible(bool visible);
 
-	virtual void CalcImpactReceivePosition(hkvVec3& targetPoint) const;	//TODO: mozda ne treba - returns position where enemy entity should impact this entity
-
 	virtual VType* GetControllerComponentType() { return NULL; }
 
 	virtual float GetCollisionRadius() const;
 	virtual float GetCollisionHeight() const;
-	//TODO: trebati ako implementiras napad iz daljine, u suprotnom obrisi
-	hkvVec3 const GetEyePosition() const;
 
 	vHavokBehaviorComponent *GetBehaviorComponent();
 	vHavokBehaviorComponent const *GetBehaviorComponent() const;
@@ -93,7 +81,6 @@ public:
 	virtual void Die();
 	bool IsDead() const;
 	bool IsDying() const; //TODO: proveri da li ovo treba
-	const hkvVec3 GetDeathImpulse() const; //TODO: i ovo
 
 	void InitAnimationEventIds();
 	void InitAnimationVariableIds();
@@ -135,7 +122,6 @@ protected:
 	bool m_dead;
 	bool m_dying;
 	float m_timeOfDeath;
-	hkvVec3 m_deathImpulse;
 
 	int m_animationEventIds[BG_WarriorAnimationEvent::kAnimationEventCount];
 	int m_animationVariableIds[BG_WarriorAnimationVariable::kAnimationVariableCount];

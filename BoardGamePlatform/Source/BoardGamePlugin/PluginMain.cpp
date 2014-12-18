@@ -11,7 +11,6 @@
 //
 
 #include "BoardGamePluginPCH.h"
-#include "myComponent.h"
 #include "GameManager.h"
 
 #include <Vision/Runtime/EnginePlugins/Havok/HavokPhysicsEnginePlugin/vHavokSync.hpp>
@@ -117,10 +116,6 @@ void BG_Plugin::OnInitEnginePlugin()
   
   VISION_PLUGIN_ENSURE_LOADED(vFmodEnginePlugin);
 
-  // In some cases the compiler optimizes away the full class from the plugin since it seems to be dead code. 
-  // One workaround to prevent this is to add the following helper macro into the plugin initialization code:
-  FORCE_LINKDYNCLASS( MyComponent );
-
   // Hook physics init
   vHavokPhysicsModule::OnBeforeInitializePhysics += &s_PluginInitializer;
   vHavokPhysicsModule::OnBeforeWorldCreated += &s_PluginInitializer;
@@ -129,9 +124,6 @@ void BG_Plugin::OnInitEnginePlugin()
 
   // Start our component managers and game manager here....
   GameManager::GlobalManager().OneTimeInit();
-  
-  MyComponent_ComponentManager::GlobalManager().OneTimeInit();//TODO:
-  // [...]
 
   //---------------------------------------------------------------------------------------------------------
   // register the action module with the vision engine action manager
@@ -152,9 +144,7 @@ void BG_Plugin::OnInitEnginePlugin()
 void BG_Plugin::OnDeInitEnginePlugin()
 {
   hkvLog::Info("BG_Plugin:OnDeInitEnginePlugin()");
-    
-  // Close our component managers here....
-  MyComponent_ComponentManager::GlobalManager().OneTimeDeInit();
+
   GameManager::GlobalManager().OneTimeDeInit();
   
   // Unhook physics init

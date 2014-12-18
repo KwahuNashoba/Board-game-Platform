@@ -2,9 +2,7 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="BoardGamePluginModule.h" />
-    <ClInclude Include="myComponent.h" />
     <ClInclude Include="GameManager.h" />
-    <ClInclude Include="TemplateAction.h" />
     <ClInclude Include="WarriorEntity.h" />
     <ClInclude Include="ControllerComponent.h" />
     <ClInclude Include="BehaviorWorldListener.h" />
@@ -16,13 +14,12 @@
     <ClInclude Include="DarkWarriorControllerComponent.h" />
     <ClInclude Include="GameLogic.h" />
     <ClInclude Include="CheckersGameLogic.h" />
+    <ClInclude Include="Serializer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardGamePluginPCH.cpp" />
-    <ClCompile Include="myComponent.cpp" />
     <ClCompile Include="PluginMain.cpp" />
     <ClCompile Include="GameManager.cpp" />
-    <ClCompile Include="TemplateAction.cpp" />
     <ClCompile Include="WarriorEntity.cpp" />
     <ClCompile Include="ControllerComponent.cpp" />
     <ClCompile Include="BehaviorWorldListener.cpp" />
@@ -33,5 +30,6 @@
     <ClCompile Include="DarkWarriorControllerComponent.cpp" />
     <ClCompile Include="GameLogic.cpp" />
     <ClCompile Include="CheckersGameLogic.cpp" />
+    <ClCompile Include="Serializer.cpp" />
   </ItemGroup>
 </Project>
