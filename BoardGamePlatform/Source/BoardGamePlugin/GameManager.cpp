@@ -16,6 +16,8 @@
 #include "UIManager.h"
 #include "CheckersGameLogic.h"
 
+#include <Vision\Runtime\EnginePlugins\VisionEnginePlugin\Scene\VPrefab.hpp>
+
 GameManager GameManager::g_GameManager;
 
 GameManager::GameManager()
@@ -278,7 +280,7 @@ void GameManager::OnUpdateSceneBegin()
 					y == (int)(m_selectedWarrior->GetPosition().y/BG_WARRIOR_MODEL_WIDTH))
 				{
 					m_selectedWarrior = NULL;
-					//dehajlajtuj moguce poteze
+					DeHighlightFields();
 				}
 				else
 				{
@@ -314,7 +316,7 @@ void GameManager::OnUpdateSceneBegin()
 
 						m_selectedWarrior->GetControllerComponent()->SetTargets(targets);
 
-						//TODO: dodaj da dehajlajtuje moguca polja
+						DeHighlightFields();
 					}
 				}			
 			}
@@ -329,7 +331,7 @@ void GameManager::OnUpdateSceneBegin()
 
 						m_selectedWarrior = m_board[x][y];
 						m_possibleMoves = m_gameLogic->PossibleMoves(hkvVec2(x,y), m_whiteNext);
-						//TODO: hajlajtuj moguca polja
+						HighlightFields();
 					}
 				}
 				else
@@ -340,7 +342,7 @@ void GameManager::OnUpdateSceneBegin()
 
 						m_selectedWarrior = m_board[x][y];
 						m_possibleMoves = m_gameLogic->PossibleMoves(hkvVec2(x,y), m_whiteNext);
-						//TODO: hajlajtuj moguca polja
+						HighlightFields();
 					}
 				}
 			}
@@ -360,6 +362,57 @@ void GameManager::OnUpdateSceneBegin()
 		m_playingTheMoveEnd = false;
 
 		m_whiteNext = !m_whiteNext;
+	}
+}
+
+
+void GameManager::HighlightFields()
+{
+    VPrefab* highlight;
+
+	m_highlights.RemoveAll();
+
+	VPrefabInstanceInfo info;
+    info.m_bOutputInstances = true;
+
+	if(m_whiteNext)
+	{
+		highlight = VPrefabManager::GlobalManager().LoadPrefab("Prefabs/Highlight_green.vprefab");
+	}
+	else
+	{
+		highlight = VPrefabManager::GlobalManager().LoadPrefab("Prefabs/Highlight_blue.vprefab");
+	}
+
+	//highlight players position
+	info.m_vInstancePos = hkvVec3((m_startPosition.x + 0.5)*BG_WARRIOR_MODEL_WIDTH, (m_startPosition.y + 0.5)*BG_WARRIOR_MODEL_WIDTH, 0.2);
+	highlight->Instantiate(info);
+
+	m_highlights.Add(vstatic_cast<VisBaseEntity_cl*>(info.m_Instances[0]));
+
+	//highlight possible moves
+	if(m_possibleMoves != NULL)
+	{
+		for(int i = 0; i < m_possibleMoves.GetSize(); i++)
+		{
+			info.m_vInstancePos = hkvVec3((m_possibleMoves.GetAt(i).x + 0.5)*BG_WARRIOR_MODEL_WIDTH, (m_possibleMoves.GetAt(i).y + 0.5)*BG_WARRIOR_MODEL_WIDTH, 0.2);
+			highlight->Instantiate(info);
+
+			m_highlights.Add(vstatic_cast<VisBaseEntity_cl*>(info.m_Instances[0]));
+		}
+	}
+}
+
+void GameManager::DeHighlightFields()
+{
+	if(m_highlights.GetSize() > 0)
+	{
+		for(int i = 0; i < m_highlights.GetSize(); i++)
+		{
+			m_highlights.GetAt(i)->DisposeObject();
+		}
+
+		m_highlights.RemoveAll();
 	}
 }
 

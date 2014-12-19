@@ -43,6 +43,8 @@ models/guardian_caster/guardian_caster.model	Models/Guardian_Caster/Guardian_Cas
 models/guardian_caster/guardian_caster_staff.model	Models/Guardian_Caster/Guardian_Caster_Staff.model	LODSwitchDistances=
 models/guardian_melee/guardian_melee.model	Models/Guardian_Melee/Guardian_Melee.model	LODSwitchDistances=
 models/guardian_melee/guardian_melee_polearm.model	Models/Guardian_Melee/Guardian_Melee_Polearm.model	LODSwitchDistances=
+models/highlight plane_blue.model	Models/Highlight plane_blue.model	LODSwitchDistances=
+models/highlight plane_green.model	Models/Highlight plane_green.model	LODSwitchDistances=
 models/misc/charheight.model	Models/Misc/CharHeight.Model	LODSwitchDistances=
 models/misc/cube.model	Models/Misc/Cube.Model	LODSwitchDistances=
 models/misc/plane.model	Models/Misc/Plane.Model	LODSwitchDistances=
@@ -60,9 +62,14 @@ models/textures/barbarian/barbarian_weapon_axe_n.tga	AssetMgmt_data/transformed/
 models/textures/dark_warrior/dark_warrior_bones.png	AssetMgmt_data/transformed/dark_warrior_bonesc4np19xclgdtc.dds	sRGB=false
 models/textures/dark_warrior/dark_warrior_cloth.png	AssetMgmt_data/transformed/dark_warrior_cloth1hxbnpnclgdtc.dds	sRGB=false
 models/textures/dark_warrior/dark_warrior_wepons.tga	AssetMgmt_data/transformed/dark_warrior_wepons3xczvwjclgdtc.dds	sRGB=false
-particles/[originals]/spirit_trails.tga	AssetMgmt_data/transformed/spirit_trails7shxs3jclgdtc.dds	sRGB=false
+models/textures/highlight_blue.png	AssetMgmt_data/transformed/highlight_blue3dxc#vxclgdtc.dds	sRGB=false
+models/textures/highlight_green.png	AssetMgmt_data/transformed/highlight_greendj5w7d4clgdtc.dds	sRGB=false
+particles/effect01.vpfx	Particles/effect01.vpfx	
 particles/explosion_page.dds	AssetMgmt_data/transformed/explosion_page8ntjrzjclgdtc.dds	sRGB=false
+particles/fieldhighlight.vpfx	Particles/FieldHighlight.vpfx	
+particles/flaregroup.dds	AssetMgmt_data/transformed/flaregrouph6sg7zjclgdtc.dds	sRGB=false
 particles/groundfog.dds	AssetMgmt_data/transformed/groundfog96btc8jclgdtc.dds	sRGB=false
+particles/haloring_06.dds	AssetMgmt_data/transformed/haloring_068qw9tc4clgdtc.dds	sRGB=false
 particles/magic_01_d.tga	AssetMgmt_data/transformed/magic_01_d7m6##ssclgdtc.dds	sRGB=false
 particles/magic_02_d.tga	AssetMgmt_data/transformed/magic_02_d67#wgv8clgdtc.dds	sRGB=false
 particles/smoke.dds	AssetMgmt_data/transformed/smokef0bryq4clgdtc.dds	sRGB=false
@@ -73,9 +80,11 @@ particles/spirit_trails_swirl.tga	AssetMgmt_data/transformed/spirit_trails_swirl
 particles/spirit_trails_swirl1.tga	AssetMgmt_data/transformed/spirit_trails_swirl16lgfdz8clgdtc.dds	sRGB=false
 particles/star.dds	AssetMgmt_data/transformed/star1v8889sclgdtc.dds	sRGB=false
 particles/steam.dds	AssetMgmt_data/transformed/steamgfc5ddjclgdtc.dds	sRGB=false
+prefabs/highlight_blue.prefab	Prefabs/Highlight_blue.prefab	
+prefabs/highlight_green.prefab	Prefabs/Highlight_green.prefab	
 prefabs/terrains.prefab	Prefabs/Terrains.prefab	
-scenes/battlefield_p01.dds	AssetMgmt_data/transformed/battlefield_p01b8z4kpxclgdtc.dds	sRGB=false
-scenes/battlefield_p02.dds	AssetMgmt_data/transformed/battlefield_p027js8s9dclgdtc.dds	sRGB=false
+scenes/battlefield_p01.dds	AssetMgmt_data/transformed/battlefield_p019p8sycnclgdtc.dds	sRGB=false
+scenes/battlefield_p02.dds	AssetMgmt_data/transformed/battlefield_p025hl2fnnclgdtc.dds	sRGB=false
 scenes/volume_890365b7_00000074.vmesh	Scenes/Volume_890365b7_00000074.vmesh	LODSwitchDistances=
 scenes/volume_890365b7_000000ba.vmesh	Scenes/Volume_890365b7_000000ba.vmesh	LODSwitchDistances=
 shaders/misc_00/multassigned.bmp	AssetMgmt_data/transformed/multassigned824c8cnclgdtc.dds	sRGB=false

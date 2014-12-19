@@ -56,6 +56,10 @@ private:
 	//IVisCallbackHendler_cl
 	void OnHandleCallback(IVisCallbackDataObject_cl *callbackData) HKV_OVERRIDE;
 
+	//Used to highlight/dehighlight fields on board
+	void HighlightFields();
+	void DeHighlightFields();
+
 private:
 	VString m_sceneFileName;
 
@@ -76,6 +80,8 @@ private:
 	VArray<hkvVec2> m_possibleMoves;	//possible moves for currently selected warrior
 	hkvVec2 m_startPosition;
 	hkvVec2 m_endPosition;
+
+	VArray<VisBaseEntity_cl*> m_highlights;
 
 	bool m_whiteNext;					//true if white player plays next, false if it's black
 };
