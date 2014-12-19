@@ -1,0 +1,6 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="Material #46/_saxaulBark" userflags="0" diffuse="..\Textures\BARK_002.BMP" Lighting="Fullbright" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="1" specexp="8" parallaxscale="-0.03" parallaxbias="-0.015" ambient="255,255,255,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+        <Material name="Material #46/Standard 2" userflags="0" diffuse="..\Textures\BARK_002.BMP" Lighting="Lightmapping" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="2" parallaxscale="-0.03" parallaxbias="-0.015" ambient="149,149,149,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+    </Materials>
+</root>

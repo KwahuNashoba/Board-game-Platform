@@ -1,0 +1,8 @@
+<root>
+    <Resources Version="1" Count="4" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/Fog_volume.vmesh_data\materials.xml" OwnerRes="3" Size="773" />
+        <Resource Manager="Textures" Filename="PlainWhite.DDS" CustomInt="1,64" Size="64" />
+        <Resource Manager="EffectLibs" Filename="Shaders\VolumetricEffects.ShaderLib" Size="24048" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/Fog_volume.vmesh" CustomInt="1,1" Size="56" />
+    </Resources>
+</root>

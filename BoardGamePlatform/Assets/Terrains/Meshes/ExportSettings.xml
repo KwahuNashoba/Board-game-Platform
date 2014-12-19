@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TerrainMeshExportSettings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <_bAutomaticExport>false</_bAutomaticExport>
+  <_bSimplifyMesh>true</_bSimplifyMesh>
+  <_bUseLegacySolver>true</_bUseLegacySolver>
+  <_bBakedLightmaps>true</_bBakedLightmaps>
+  <_iTextureResolution>512</_iTextureResolution>
+  <_fMaxErrorDistance>25</_fMaxErrorDistance>
+  <_fLoadedDistance>-1</_fLoadedDistance>
+  <_fCacheInMargin>1000</_fCacheInMargin>
+  <_fCacheOutMargin>1000</_fCacheOutMargin>
+</TerrainMeshExportSettings>

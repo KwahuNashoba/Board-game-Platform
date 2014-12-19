@@ -1,0 +1,10 @@
+<root>
+    <Resources Version="1" Count="6" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/SpiritTrails2.vmesh_data\materials.xml" OwnerRes="3" Size="725" />
+        <Resource Manager="Textures" Filename="Particles\spirit_trails_swirl1.tga" CustomInt="1,64" Size="1398108" />
+        <Resource Manager="EffectLibs" Filename="Shaders\BoardGame.ShaderLib" Size="7368" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/SpiritTrails2.vmesh" CustomInt="1,1" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

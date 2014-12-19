@@ -1,0 +1,1 @@
+vLux.exe "" -project "C:\Users\Danilo\Desktop\Board-game-Platform\BoardGamePlatform\Assets" -tempfolder "C:\Users\Danilo\Desktop\Board-game-Platform\BoardGamePlatform\Assets\Scenes\BattleField.scene.Layers" -out "Scenes\BattleField" -quiet -minimized -config "C:\Users\Danilo\Desktop\Board-game-Platform\BoardGamePlatform\Assets\Scenes\BattleField.scene.Layers\lighting.cfg"

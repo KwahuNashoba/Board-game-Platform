@@ -1,0 +1,191 @@
+﻿<!--HBT-->
+<HBT version="1.0" appversion="2014.05" namespace="_Dark_Warrior_hkc_">
+    <HBT_ITEM type="HavokTools.hkCharacter" name="Dark_Warrior.hkc" priority="1">
+        <hkCharacter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCharacter:Dark_Warrior.hkc:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <BehaviorFile>
+                <MangledTargetNames>
+                    <string>_Dark_Warrior_hkb_:HavokTools.hkRefFile:Dark_Warrior.hkb:IncomingRefs</string>
+                </MangledTargetNames>
+            </BehaviorFile>
+            <StateMachine>
+                <MangledTargetNames>
+                    <string>_Dark_Warrior_hkb_:HavokTools.hkStateMachine:Dark_Warrior_Root_SM:IncomingRefs</string>
+                </MangledTargetNames>
+            </StateMachine>
+            <Rig>
+                <MangledTargetNames>
+                    <string>_Dark_Warrior_HKT_:HavokTools.hkCharacterHKX:Dark_Warrior.HKT:IncomingRefs</string>
+                </MangledTargetNames>
+            </Rig>
+            <Ragdoll>
+                <MangledTargetNames />
+            </Ragdoll>
+            <DeformableSkins>
+                <MangledTargetNames>
+                    <string>_Dark_Warrior_HKT_:HavokTools.hkCharacterHKX:Dark_Warrior.HKT:IncomingRefs</string>
+                </MangledTargetNames>
+            </DeformableSkins>
+            <RigidSkins>
+                <MangledTargetNames />
+            </RigidSkins>
+            <SkeletonMappers>
+                <MangledTargetNames />
+            </SkeletonMappers>
+            <UseRigidSkin />
+            <UseDeformableSkin />
+            <UseSkeletonMapper />
+            <Sequence>
+                <MangledTargetNames />
+            </Sequence>
+            <UseSequence>false</UseSequence>
+            <Gamepad>
+                <MangledTargetNames />
+            </Gamepad>
+            <UseGamepad>false</UseGamepad>
+            <InitialX>0</InitialX>
+            <InitialY>0</InitialY>
+            <InitialZ>0</InitialZ>
+            <UniformCharacterScale>0.01</UniformCharacterScale>
+            <InitialRotation>0</InitialRotation>
+            <SavedSettingsNames>
+                <string>Default</string>
+            </SavedSettingsNames>
+            <SavedSettingsValues>
+                <ArrayOfFloat>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>1</float>
+                </ArrayOfFloat>
+            </SavedSettingsValues>
+            <SavedLODNames />
+            <SavedLODValues />
+            <CurrentLODName>Default (All Bones)</CurrentLODName>
+            <MirrorPartitionPairMap />
+            <MirrorBonePairMap />
+            <MirrorAxis />
+            <MirroredStringList1 />
+            <MirroredStringList2 />
+            <CharacterPropertyOverrides />
+            <LuaScriptOnCharacterActivated />
+            <LuaScriptOnCharacterDeactivated />
+            <LuaFilesChecked>
+                <string>Dark_Warrior.hks</string>
+            </LuaFilesChecked>
+            <Skins>
+                <FileNameMeshNamePair>
+                    <m_meshName>Skelet</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Kapuljaca</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Mask</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Povez_Desni</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Povez_Levi</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Krpa_kolenu</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Noga_povez_desni</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Noga_povez_levi</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Skirt</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>l2</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>r4</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>l1</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>l3</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>r5</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>r3</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>r1</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>r2</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>l5</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>l4</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Sheld</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+                <FileNameMeshNamePair>
+                    <m_meshName>Sword</m_meshName>
+                    <m_fileName>..\Dark_Warrior\CharacterAssets\Dark_Warrior.HKT</m_fileName>
+                </FileNameMeshNamePair>
+            </Skins>
+            <BoneAttachments />
+            <BoneAttachmentBoneIndices />
+            <BoneAttachmentTransforms />
+            <ProxyHeight>1.7</ProxyHeight>
+            <ProxyRadius>0.4</ProxyRadius>
+            <ProxyCollisionFilterInfo>1</ProxyCollisionFilterInfo>
+            <CustomCharacterControllerCinfo>
+                <MangledTargetNames />
+            </CustomCharacterControllerCinfo>
+            <FootIkEnabled>false</FootIkEnabled>
+            <FootIkDriverInfo>
+                <MangledTargetNames />
+            </FootIkDriverInfo>
+            <HandIkEnabled>false</HandIkEnabled>
+            <HandIkDriverInfo>
+                <MangledTargetNames />
+            </HandIkDriverInfo>
+            <AiControlEnabled>false</AiControlEnabled>
+            <AiControlDriverInfo>
+                <MangledTargetNames />
+            </AiControlDriverInfo>
+            <NumLODBones>64</NumLODBones>
+        </hkCharacter>
+    </HBT_ITEM>
+</HBT>

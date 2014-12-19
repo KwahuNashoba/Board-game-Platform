@@ -1,0 +1,14 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="Shield" userflags="0" diffuse="..\Textures\Dark_Warrior\Dark_Warrior_wepons.tga" Lighting="LightGrid" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="2" parallaxscale="-0.03" parallaxbias="-0.015" ambient="171,239,150,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+        <Material name="Bones" userflags="0" diffuse="..\Textures\Dark_Warrior\Dark_Warrior_bones.png" normalmap="..\..\Textures\Skelet_NM.tif" specularmap="..\..\Textures\Skelet_Ambijent.tif" Lighting="LightGrid" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="2.2974" parallaxscale="-0.03" parallaxbias="-0.015" ambient="201,162,94,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1">
+            <AuxTexture index="0" filename="..\..\Textures\Skelet_Def.png" />
+            <AuxTexture index="1" filename="..\..\Textures\Slelet_Cavity.tif" />
+        </Material>
+        <Material name="Sword" userflags="0" diffuse="..\Textures\Dark_Warrior\Dark_Warrior_wepons.tga" normalmap="..\..\Textures\Oruzje_NM.psd" Lighting="LightGrid" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0.39" specexp="24.2515" parallaxscale="-0.03" parallaxbias="-0.015" ambient="151,151,235,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+        <Material name="Cloth" userflags="0" diffuse="..\Textures\Dark_Warrior\Dark_Warrior_cloth.png" normalmap="..\..\Textures\Odeca_NM.tif" specularmap="..\..\Textures\Odeca_Ambient.tif" Lighting="LightGrid" pass="Auto" transparency="alpha" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0.26" specexp="48.5029" parallaxscale="-0.03" parallaxbias="-0.015" ambient="54,83,57,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1">
+            <AuxTexture index="0" filename="..\..\Textures\Dif.psd" />
+            <AuxTexture index="1" filename="..\..\Textures\Odeca_Cavit.tif" />
+        </Material>
+    </Materials>
+</root>

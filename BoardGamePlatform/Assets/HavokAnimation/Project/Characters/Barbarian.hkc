@@ -1,0 +1,152 @@
+﻿<!--HBT-->
+<HBT version="1.0" appversion="2014.05" namespace="_Barbarian_hkc_">
+    <HBT_ITEM type="HavokTools.hkCharacter" name="Barbarian.hkc" priority="1">
+        <hkCharacter xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCharacter:Barbarian.hkc:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <BehaviorFile>
+                <MangledTargetNames>
+                    <string>_Barbarian_hkb_:HavokTools.hkRefFile:Barbarian.hkb:IncomingRefs</string>
+                </MangledTargetNames>
+            </BehaviorFile>
+            <StateMachine>
+                <MangledTargetNames>
+                    <string>_Barbarian_hkb_:HavokTools.hkStateMachine:Barbarian_Root_FSM:IncomingRefs</string>
+                </MangledTargetNames>
+            </StateMachine>
+            <Rig>
+                <MangledTargetNames>
+                    <string>_Barbarian_hkt_:HavokTools.hkCharacterHKX:Barbarian.hkt:IncomingRefs</string>
+                </MangledTargetNames>
+            </Rig>
+            <Ragdoll>
+                <MangledTargetNames />
+            </Ragdoll>
+            <DeformableSkins>
+                <MangledTargetNames>
+                    <string>_Barbarian_hkt_:HavokTools.hkCharacterHKX:Barbarian.hkt:IncomingRefs</string>
+                </MangledTargetNames>
+            </DeformableSkins>
+            <RigidSkins>
+                <MangledTargetNames />
+            </RigidSkins>
+            <SkeletonMappers>
+                <MangledTargetNames />
+            </SkeletonMappers>
+            <UseRigidSkin />
+            <UseDeformableSkin />
+            <UseSkeletonMapper />
+            <Sequence>
+                <MangledTargetNames />
+            </Sequence>
+            <UseSequence>false</UseSequence>
+            <Gamepad>
+                <MangledTargetNames />
+            </Gamepad>
+            <UseGamepad>false</UseGamepad>
+            <InitialX>0</InitialX>
+            <InitialY>0</InitialY>
+            <InitialZ>0</InitialZ>
+            <UniformCharacterScale>0.01</UniformCharacterScale>
+            <InitialRotation>0</InitialRotation>
+            <SavedSettingsNames>
+                <string>Default</string>
+            </SavedSettingsNames>
+            <SavedSettingsValues>
+                <ArrayOfFloat>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>0</float>
+                    <float>1</float>
+                </ArrayOfFloat>
+            </SavedSettingsValues>
+            <SavedLODNames />
+            <SavedLODValues />
+            <CurrentLODName>Default (All Bones)</CurrentLODName>
+            <MirrorPartitionPairMap />
+            <MirrorBonePairMap />
+            <MirrorAxis />
+            <MirroredStringList1 />
+            <MirroredStringList2 />
+            <CharacterPropertyOverrides />
+            <LuaScriptOnCharacterActivated />
+            <LuaScriptOnCharacterDeactivated />
+            <LuaFilesChecked>
+                <string>Barbarian.hks</string>
+            </LuaFilesChecked>
+            <Skins>
+                <FileNameMeshNamePair>
+                    <m_meshName>barbarian_low</m_meshName>
+                    <m_fileName>..\Barbarian\CharacterAssets\Barbarian.hkt</m_fileName>
+                </FileNameMeshNamePair>
+            </Skins>
+            <BoneAttachments />
+            <BoneAttachmentBoneIndices />
+            <BoneAttachmentTransforms />
+            <ProxyHeight>1.7</ProxyHeight>
+            <ProxyRadius>0.4</ProxyRadius>
+            <ProxyCollisionFilterInfo>1</ProxyCollisionFilterInfo>
+            <CustomCharacterControllerCinfo>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo00:IncomingRefs</string>
+                    <string xsi:nil="true" />
+                </MangledTargetNames>
+            </CustomCharacterControllerCinfo>
+            <FootIkEnabled>false</FootIkEnabled>
+            <FootIkDriverInfo>
+                <MangledTargetNames />
+            </FootIkDriverInfo>
+            <HandIkEnabled>false</HandIkEnabled>
+            <HandIkDriverInfo>
+                <MangledTargetNames />
+            </HandIkDriverInfo>
+            <AiControlEnabled>false</AiControlEnabled>
+            <AiControlDriverInfo>
+                <MangledTargetNames />
+            </AiControlDriverInfo>
+            <NumLODBones>72</NumLODBones>
+        </hkCharacter>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkCustomCharacterControllerCinfo" name="CustomCharacterControllerCinfo00" priority="50">
+        <hkCustomCharacterControllerCinfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkCustomCharacterControllerCinfo:CustomCharacterControllerCinfo00:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes />
+            <Notes />
+            <X>0</X>
+            <Y>0</Y>
+            <NodeType>Character Rigid Body Cinfo</NodeType>
+            <ParameterList>
+                <Names>
+                    <string>m_mass</string>
+                    <string>m_friction</string>
+                    <string>m_maxLinearVelocity</string>
+                    <string>m_allowedPenetrationDepth</string>
+                    <string>m_maxSlope</string>
+                    <string>m_maxForce</string>
+                    <string>m_unweldingHeightOffsetFactor</string>
+                    <string>m_maxSpeedForSimplexSolver</string>
+                    <string>m_supportDistance</string>
+                    <string>m_hardSupportDistance</string>
+                </Names>
+                <Values>
+                    <anyType xsi:type="xsd:float">100</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                    <anyType xsi:type="xsd:float">20</anyType>
+                    <anyType xsi:type="xsd:float">-0.1</anyType>
+                    <anyType xsi:type="xsd:float">1.04719758</anyType>
+                    <anyType xsi:type="xsd:float">1000</anyType>
+                    <anyType xsi:type="xsd:float">0.5</anyType>
+                    <anyType xsi:type="xsd:float">10</anyType>
+                    <anyType xsi:type="xsd:float">0.1</anyType>
+                    <anyType xsi:type="xsd:float">0</anyType>
+                </Values>
+            </ParameterList>
+        </hkCustomCharacterControllerCinfo>
+    </HBT_ITEM>
+</HBT>

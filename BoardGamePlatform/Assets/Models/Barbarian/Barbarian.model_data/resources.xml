@@ -1,0 +1,9 @@
+<root>
+    <Resources Version="1" Count="5" PathType="Project">
+        <Resource Manager="FILE" Filename="Models/Barbarian/Barbarian.model_data\materials.xml" OwnerRes="4" Size="1490" />
+        <Resource Manager="Textures" Filename="Models\Textures\Barbarian\Barbarian_Belt_Low_d.tga" CustomInt="1,64" Size="174776" />
+        <Resource Manager="Textures" Filename="Models\Textures\Barbarian\Barbarian_Body_Low_d.tga" CustomInt="1,64" Size="699064" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShadersFog.ShaderLib" Size="3540544" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Barbarian/Barbarian.model" CustomInt="1,2" Size="112" />
+    </Resources>
+</root>

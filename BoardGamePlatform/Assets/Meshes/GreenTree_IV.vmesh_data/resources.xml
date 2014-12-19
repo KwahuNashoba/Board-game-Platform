@@ -1,0 +1,10 @@
+<root>
+    <Resources Version="1" Count="6" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/GreenTree_IV.vmesh_data\materials.xml" OwnerRes="4" Size="916" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="Textures" Filename="Textures\Bark-0516.tga" CustomInt="1,64" Size="1398100" />
+        <Resource Manager="Textures" Filename="Textures\treesTextureNo1738_preview.png" CustomInt="1,64" Size="348000" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/GreenTree_IV.vmesh" CustomInt="1,1" Size="112" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

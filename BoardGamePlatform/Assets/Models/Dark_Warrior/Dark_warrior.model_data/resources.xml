@@ -1,0 +1,22 @@
+<root>
+    <Resources Version="1" Count="18" PathType="Project">
+        <Resource Manager="Animations" Filename="Models/Dark_Warrior/Dark_warrior.anim" Size="1024" />
+        <Resource Manager="FILE" Filename="Models/Dark_Warrior/Dark_warrior.model_data\materials.xml" OwnerRes="15" Size="2368" />
+        <Resource Manager="Textures" Filename="Models\Textures\Dark_Warrior\Dark_Warrior_bones.png" CustomInt="1,64" Size="1398128" />
+        <Resource Manager="Textures" Filename="Models\Textures\Dark_Warrior\Dark_Warrior_cloth.png" CustomInt="1,64" Size="1398128" />
+        <Resource Manager="Textures" Filename="Models\Textures\Dark_Warrior\Dark_Warrior_wepons.tga" CustomInt="1,64" Size="699064" />
+        <Resource Manager="EffectLibs" Filename="Shaders\BaseShaders.ShaderLib" Size="63088" />
+        <Resource Manager="Textures" Filename="Textures\Dif.psd" CustomInt="1,0" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Odeca_Ambient.tif" CustomInt="1,64" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Odeca_Cavit.tif" CustomInt="1,0" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Odeca_NM.tif" CustomInt="1,0" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Oruzje_NM.psd" CustomInt="1,0" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Skelet_Ambijent.tif" CustomInt="1,64" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Skelet_Def.png" CustomInt="1,0" Size="1398128" />
+        <Resource Manager="Textures" Filename="Textures\Skelet_NM.tif" CustomInt="1,0" Size="340" />
+        <Resource Manager="Textures" Filename="Textures\Slelet_Cavity.tif" CustomInt="1,0" Size="340" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Dark_Warrior/Dark_warrior.model" CustomInt="1,2" Size="224" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

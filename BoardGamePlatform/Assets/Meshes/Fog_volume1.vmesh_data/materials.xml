@@ -1,0 +1,7 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="__DEFAULT__" userflags="0" diffuse="..\Textures\Fog_base.tga" Lighting="Lightmapping" pass="Auto" transparency="additive" doublesided="FALSE" depthwrite="FALSE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="1" parallaxscale="-0.03" parallaxbias="-0.015" ambient="0,0,0,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1">
+            <Shader library="..\Shaders\VolumetricEffects.ShaderLib" effect="VolumetricEffect" paramstring="CullMode=back;DepthWrite=false;MaterialParams=0,1,-0.03,-0.015;AlphaThreshold=0.25;MaterialAmbient=0,0,0;FadeParams=5000,1,1,0.1;EdgeFadeFalloff=10;FogFade=True;EdgeFade=True;" />
+        </Material>
+    </Materials>
+</root>

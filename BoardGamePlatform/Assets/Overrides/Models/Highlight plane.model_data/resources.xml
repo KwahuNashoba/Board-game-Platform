@@ -1,0 +1,11 @@
+<root>
+    <Resources Version="1" Count="7" PathType="Project">
+        <Resource Manager="Animations" Filename="Models/Highlight plane.anim" Size="1024" />
+        <Resource Manager="FILE" Filename="Models/Highlight plane.model_data\materials.xml" OwnerRes="4" Size="685" />
+        <Resource Manager="Textures" Filename="Models\Textures\Highlight_gray.png" CustomInt="1,64" Size="349524" />
+        <Resource Manager="EffectLibs" Filename="Shaders\BoardGame.ShaderLib" Size="9824" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Highlight plane.model" CustomInt="1,2" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

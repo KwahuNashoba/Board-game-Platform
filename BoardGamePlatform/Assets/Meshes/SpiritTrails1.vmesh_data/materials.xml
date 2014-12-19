@@ -1,0 +1,7 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="02 - Default" userflags="0" diffuse="..\Particles\spirit_trails_portrait.tga" Lighting="Lightmapping" pass="Auto" transparency="additive" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="2" parallaxscale="-0.03" parallaxbias="-0.015" ambient="0,0,0,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1">
+            <Shader library="..\Shaders\BoardGame.ShaderLib" effect="scroller_right.forward" paramstring="CullMode=back;DepthWrite=true;MaterialParams=0,2,-0.03,-0.015;AlphaThreshold=0.25;MaterialAmbient=0,0,0;" />
+        </Material>
+    </Materials>
+</root>

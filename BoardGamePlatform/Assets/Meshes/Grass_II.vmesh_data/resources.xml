@@ -1,0 +1,11 @@
+<root>
+    <Resources Version="1" Count="7" PathType="Project">
+        <Resource Manager="FILE" Filename="Meshes/Grass_II.vmesh_data\materials.xml" OwnerRes="5" Size="596" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="Textures" Filename="Textures\grass_texture.png" CustomInt="1,64" Size="87408" />
+        <Resource Manager="Textures" Filename="Textures\grass_texture_HEIGHT.png" CustomInt="1,0" Size="87408" />
+        <Resource Manager="Textures" Filename="Textures\grass_texture_normal_map.png" CustomInt="1,0" Size="43704" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Meshes/Grass_II.vmesh" CustomInt="1,1" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>

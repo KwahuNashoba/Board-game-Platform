@@ -1,0 +1,5 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="grass_mat" userflags="0" diffuse="..\Textures\grass_texture.png" normalmap="..\Textures\grass_texture_normal_map.png" Lighting="Lightmapping" pass="Auto" transparency="premultipliedalpha" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="2" parallaxscale="-0.03" parallaxbias="-0.015" ambient="75,68,38,255" sortingkey="0" alphathreshold="0.25" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" specularmap="..\Textures\grass_texture_HEIGHT.png" />
+    </Materials>
+</root>

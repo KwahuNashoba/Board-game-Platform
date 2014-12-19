@@ -1,0 +1,10 @@
+<root>
+    <Resources Version="1" Count="6" PathType="Project">
+        <Resource Manager="FILE" Filename="Models/Highlight plane_green.model_data\materials.xml" OwnerRes="3" Size="691" />
+        <Resource Manager="Textures" Filename="Models\Textures\Highlight_green.png" CustomInt="1,64" Size="349524" />
+        <Resource Manager="EffectLibs" Filename="Shaders\BoardGame.ShaderLib" Size="9824" />
+        <Resource Manager="Static/Dynamic Meshes" Filename="Models/Highlight plane_green.model" CustomInt="1,2" Size="56" />
+        <Resource Manager="EffectLibs" Filename="Shaders\MobileShaders.ShaderLib" Size="3540544" />
+        <Resource Manager="EffectLibs" Filename="Shaders\vMaterial.ShaderLib" Size="392352" />
+    </Resources>
+</root>
