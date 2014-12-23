@@ -422,7 +422,7 @@ void BG_ControllerState::MeleeAttacking::OnProcessAnimationEvent(BG_ControllerCo
 	{
 		controller->SetState(BG_ControllerStateId::kMoving);
 	}
-	else if(warrior->GetIdForAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttack) == animationEvent.getId())
+	else if(warrior->GetIdForAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttackImpact) == animationEvent.getId())
 	{
 		controller->GetTarget()->Die();
 	}

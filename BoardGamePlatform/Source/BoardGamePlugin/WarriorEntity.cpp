@@ -224,7 +224,6 @@ void BG_WarriorEntity::SetAnimationVariable(BG_WarriorAnimationVariable::Enum co
 
 void BG_WarriorEntity::InitAnimationEventIds()
 {
-	//TODO: ovde ce ti mozda trebati event zam oruzje koje udara u protivnika
 	hkStringMap<int> const& eventNameToIdMap = vHavokBehaviorModule::GetInstance()->getBehaviorWorld()->accessEventLinker().m_nameToIdMap;
 	m_animationEventIds[BG_WarriorAnimationEvent::kDie] = eventNameToIdMap.getWithDefault("Die", -1);
 
@@ -232,6 +231,7 @@ void BG_WarriorEntity::InitAnimationEventIds()
 	m_animationEventIds[BG_WarriorAnimationEvent::kMoveEnd] = eventNameToIdMap.getWithDefault("MoveEnd", -1);
 
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttack] = eventNameToIdMap.getWithDefault("MeleeAttack", -1);
+	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttackImpact] = eventNameToIdMap.getWithDefault("MeleeAttackImpact", -1);
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttackEnd] = eventNameToIdMap.getWithDefault("MeleeAttackEnd", -1);
 
 	m_animationEventIds[BG_WarriorAnimationEvent::kFootStepRight] = eventNameToIdMap.getWithDefault("FootstepRight", -1);

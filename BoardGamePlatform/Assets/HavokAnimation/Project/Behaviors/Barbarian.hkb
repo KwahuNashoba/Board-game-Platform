@@ -217,6 +217,7 @@
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger08:ParentNodes</string>
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger09:ParentNodes</string>
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger20:ParentNodes</string>
+                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger15:ParentNodes</string>
                 </MangledTargetNames>
             </ClipEventTriggers>
             <PlaybackSpeedMultiplierCharprop>
@@ -573,7 +574,7 @@
                         </MangledTargetNames>
                     </anyType>
                     <anyType xsi:type="xsd:string" />
-                    <anyType xsi:type="xsd:string">onUpdateMove()</anyType>
+                    <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
@@ -1834,7 +1835,7 @@
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
-                    <anyType xsi:type="xsd:string">onHandleEventMeleeAttack()</anyType>
+                    <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                 </Values>
             </ParameterList>
@@ -2862,26 +2863,11 @@
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
-                    <anyType xsi:type="xsd:string">onHandleEventDead()</anyType>
+                    <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                 </Values>
             </ParameterList>
         </hkCustomGenerator>
-    </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkEvent" name="DyingEnd" priority="1">
-        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkEvent:DyingEnd:IncomingRefs</MangledName>
-            </IncomingRefs>
-            <ParentNodes>
-                <MangledName>__local__:HavokTools.hkEvent:DyingEnd:ParentNodes</MangledName>
-            </ParentNodes>
-            <Notes />
-            <CustomNotes />
-            <Global>false</Global>
-            <Silent>false</Silent>
-            <SyncPoint>false</SyncPoint>
-        </hkEvent>
     </HBT_ITEM>
     <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger04" priority="50">
         <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -2893,9 +2879,7 @@
             </ParentNodes>
             <Notes />
             <Event>
-                <MangledTargetNames>
-                    <string>__local__:HavokTools.hkEvent:DyingEnd:ParentNodes</string>
-                </MangledTargetNames>
+                <MangledTargetNames />
             </Event>
             <EventPayload>
                 <MangledTargetNames />
@@ -2962,6 +2946,7 @@
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger10:ParentNodes</string>
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger11:ParentNodes</string>
                     <string>__local__:HavokTools.hkEventTrigger:EventTrigger21:ParentNodes</string>
+                    <string>__local__:HavokTools.hkEventTrigger:EventTrigger14:ParentNodes</string>
                 </MangledTargetNames>
             </ClipEventTriggers>
             <PlaybackSpeedMultiplierCharprop>
@@ -3645,7 +3630,7 @@
                     <string>__local__:HavokTools.hkCustomEventPayload:NEP_MeleeAttackFire:ParentNodes</string>
                 </MangledTargetNames>
             </EventPayload>
-            <Time>0.366</Time>
+            <Time>0.333333343</Time>
             <UseRelativeToEnd>false</UseRelativeToEnd>
             <UseAcyclic>false</UseAcyclic>
         </hkEventTrigger>
@@ -3862,19 +3847,6 @@
             <Notes />
         </hkBehaviorFile>
     </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkEvent" name="EndMeleeAttacking" priority="1">
-        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkEvent:EndMeleeAttacking:IncomingRefs</MangledName>
-            </IncomingRefs>
-            <ParentNodes />
-            <Notes />
-            <CustomNotes />
-            <Global>false</Global>
-            <Silent>false</Silent>
-            <SyncPoint>false</SyncPoint>
-        </hkEvent>
-    </HBT_ITEM>
     <HBT_ITEM type="HavokTools.hkBehaviorFile" name="Barbarian.hkb" priority="1">
         <hkBehaviorFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
             <IncomingRefs />
@@ -3888,19 +3860,6 @@
             <ParentNodes />
             <Notes />
         </hkBehaviorFile>
-    </HBT_ITEM>
-    <HBT_ITEM type="HavokTools.hkEvent" name="TakeControl" priority="1">
-        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <IncomingRefs>
-                <MangledName>__local__:HavokTools.hkEvent:TakeControl:IncomingRefs</MangledName>
-            </IncomingRefs>
-            <ParentNodes />
-            <Notes />
-            <CustomNotes />
-            <Global>false</Global>
-            <Silent>false</Silent>
-            <SyncPoint>false</SyncPoint>
-        </hkEvent>
     </HBT_ITEM>
     <HBT_ITEM type="HavokTools.hkEvent" name="MeleeAttackFire" priority="1">
         <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
@@ -4115,7 +4074,7 @@
             <EventPayload>
                 <MangledTargetNames />
             </EventPayload>
-            <Time>0.13333334</Time>
+            <Time>0.1333333</Time>
             <UseRelativeToEnd>false</UseRelativeToEnd>
             <UseAcyclic>false</UseAcyclic>
         </hkEventTrigger>
@@ -4197,6 +4156,65 @@
                 <MangledTargetNames />
             </EventPayload>
             <Time>0.6666667</Time>
+            <UseRelativeToEnd>false</UseRelativeToEnd>
+            <UseAcyclic>false</UseAcyclic>
+        </hkEventTrigger>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEvent" name="MeleeAttackImpact" priority="1">
+        <hkEvent xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEvent:MeleeAttackImpact:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEvent:MeleeAttackImpact:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <CustomNotes />
+            <Global>false</Global>
+            <Silent>false</Silent>
+            <SyncPoint>false</SyncPoint>
+        </hkEvent>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger14" priority="50">
+        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger14:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger14:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:MeleeAttackImpact:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <EventPayload>
+                <MangledTargetNames />
+            </EventPayload>
+            <Time>0.366</Time>
+            <UseRelativeToEnd>false</UseRelativeToEnd>
+            <UseAcyclic>false</UseAcyclic>
+        </hkEventTrigger>
+    </HBT_ITEM>
+    <HBT_ITEM type="HavokTools.hkEventTrigger" name="EventTrigger15" priority="50">
+        <hkEventTrigger xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <IncomingRefs>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger15:IncomingRefs</MangledName>
+            </IncomingRefs>
+            <ParentNodes>
+                <MangledName>__local__:HavokTools.hkEventTrigger:EventTrigger15:ParentNodes</MangledName>
+            </ParentNodes>
+            <Notes />
+            <Event>
+                <MangledTargetNames>
+                    <string>__local__:HavokTools.hkEvent:MeleeAttackImpact:ParentNodes</string>
+                </MangledTargetNames>
+            </Event>
+            <EventPayload>
+                <MangledTargetNames />
+            </EventPayload>
+            <Time>0.366666675</Time>
             <UseRelativeToEnd>false</UseRelativeToEnd>
             <UseAcyclic>false</UseAcyclic>
         </hkEventTrigger>
