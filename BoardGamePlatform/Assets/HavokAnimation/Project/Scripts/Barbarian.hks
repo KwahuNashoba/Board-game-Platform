@@ -2,9 +2,10 @@
 g_characterProperties =
 {	
 	m_idleFidgetMinWait = 10.0
-	, m_idleFidgetMaxWait = 30.0
+	, m_idleFidgetMaxWait = 40.0
 	, m_idleToMoveThreshold = 0.01
 	
+	,m_randomFidgetInterval = 10
 	, m_idleTime = 0.0
 }
 
@@ -12,17 +13,8 @@ function g_characterProperties:update()
 	self.m_idleTime = self.m_idleTime + hkbGetTimestep();
 end
 
-function ShouldMove()
-	return (hkbGetVariable("MoveSpeed") >= g_characterProperties.m_idleToMoveThreshold);
-end
-
-function ShouldMeleeAttack()
-	return (hkbGetVariable("MeleeAttacking"));
-end
-
 function ShouldFidget()
-	local randomFidgetInterval = math.random(g_characterProperties.m_idleFidgetMinWait, g_characterProperties.m_idleFidgetMaxWait);
-	return (hkbIsNodeActive("Idle_Fidget") == false and g_characterProperties.m_idleTime >= randomFidgetInterval);
+	return (hkbIsNodeActive("Idle_Fidget") == false and g_characterProperties.m_idleTime >= g_characterProperties.m_randomFidgetInterval);
 end
 
 function DoFidget()
@@ -37,10 +29,7 @@ function DoFidget()
 	end
 		
 	g_characterProperties.m_idleTime = 0;
-end
-
-function ShouldDie()
-	return (hkbGetVariable("Dying"));
+	randomFidgetInterval = math.random(g_characterProperties.m_idleFidgetMinWait, g_characterProperties.m_idleFidgetMaxWait);
 end
 
 -- /////////////////////////////////////////////////////////////////////////////
@@ -48,49 +37,12 @@ end
 -- /////////////////////////////////////////////////////////////////////////////
 function onActivateIdle()
 	g_characterProperties.m_idleTime = 0;
+	g_characterProperties.m_randomFidgetInterval = math.random(g_characterProperties.m_idleFidgetMinWait, g_characterProperties.m_idleFidgetMaxWait);
 end
 
-function onUpdateIdle()	
-	if (ShouldMove()) then
-		hkbFireEvent("Move");
-	elseif (ShouldFidget()) then
+function onUpdateIdle()
+	if (ShouldFidget()) then
 		DoFidget();
-	elseif (ShouldMeleeAttack()) then
-		hkbFireEvent("MeleeAttack");
-	end
-end
-
-
--- /////////////////////////////////////////////////////////////////////////////
--- Move State
--- /////////////////////////////////////////////////////////////////////////////
-function onUpdateMove()	
-	-- should we return to idle?
-	if (ShouldMove() == false) then
-		hkbFireEvent("MoveEnd");
-	elseif (ShouldMeleeAttack()) then
-		hkbFireEvent("MeleeAttack");
-	end
-end
-
-
--- /////////////////////////////////////////////////////////////////////////////
--- MeleeAttack States
--- /////////////////////////////////////////////////////////////////////////////
-function onHandleEventMeleeAttack()
-	-- listen for the "MeleeAttackEnd" event
-	local eventName = hkbGetHandleEventName();
-	if (eventName == "MeleeAttackEnd") then
-		hkbSetVariable("MeleeAttacking", false);
-		hkbSetVariable("MeleeWeaponActive", false);
-	end
-	
-	if (eventName == "MeleeWeaponActiveStart") then
-		hkbSetVariable("MeleeWeaponActive", true);
-	end
-	
-	if (eventName == "MeleeWeaponActiveEnd") then
-		hkbSetVariable("MeleeWeaponActive", false);
 	end
 end
 
@@ -99,16 +51,5 @@ end
 -- /////////////////////////////////////////////////////////////////////////////
 function onUpdateAlive()
 	g_characterProperties:update();
-	
-	if (ShouldDie()) then
-		hkbFireEvent("Die");
-	end
 end
 
-function onHandleEventDead()
-	-- listen for the "DyingEnd" event
-	local eventName = hkbGetHandleEventName();
-	if (eventName == "DyingEnd") then
-		hkbSetVariable("Dying", false);
-	end	
-end

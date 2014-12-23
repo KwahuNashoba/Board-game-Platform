@@ -2,6 +2,7 @@
 #include "DarkWarriorEntity.h"
 #include "ControllerComponent.h"
 #include "DarkWarriorControllerComponent.h"
+#include "SoundHelper.h"
 
 #include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
@@ -14,6 +15,7 @@ BG_DarkWarriorEntity::BG_DarkWarriorEntity()
 	:BG_WarriorEntity(),
 	m_dyingDuration(3.8f)
 {
+	m_soundHelper = new BG_SoundHelper(false);
 }
 
 VType* BG_DarkWarriorEntity::GetControllerComponentType()
@@ -31,17 +33,22 @@ void BG_DarkWarriorEntity::InitFunction()
 	m_havokBehavior->m_behaviorName = "Dark_Warrior.hkt";
 	AddComponent(m_havokBehavior);
 
-	VTextureObject *textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_cloth.png");
+	VTextureObject *textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_cloth_d.png");
 	GetMesh()->GetSurface(3)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_cloth_n.png");
+	GetMesh()->GetSurface(3)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 
-	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_bones.png");
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_bones_d.png");
 	GetMesh()->GetSurface(1)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_bones_n.png");
+	GetMesh()->GetSurface(1)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 
-	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons.tga");
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons_d.tga");
 	GetMesh()->GetSurface(2)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
-
-	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons.tga");
 	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Dark_Warrior/Dark_Warrior_wepons_n.tga");
+	GetMesh()->GetSurface(2)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
+	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 
 	m_collisionRadius = 40;
 	m_collisionHeight = 160;
@@ -56,7 +63,6 @@ void BG_DarkWarriorEntity::InitFunction()
 void BG_DarkWarriorEntity::PostInitialize()
 {
 	BG_WarriorEntity::PostInitialize();
-	//TODO: postavi audio
 }
 
 void BG_DarkWarriorEntity::OnTick(float deltaTime)

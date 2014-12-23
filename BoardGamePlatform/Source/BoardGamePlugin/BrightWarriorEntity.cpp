@@ -2,9 +2,12 @@
 #include "BrightWarriorEntity.h"
 #include "ControllerComponent.h"
 #include "BrightWarriorControllerComponent.h"
+#include "SoundHelper.h"
 
 #include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
+#include <Vision\Runtime\EnginePlugins\VisionEnginePlugin\Scene\VPrefab.hpp>
+#include <Vision/Runtime/EnginePlugins/VisionEnginePlugin/Components/VSkeletalBoneProxy.hpp>
 
 V_IMPLEMENT_SERIAL(BG_BrightWarriorEntity, BG_WarriorEntity, 0, &g_BoardGamePluginModule);
 START_VAR_TABLE(BG_BrightWarriorEntity, BG_WarriorEntity, "Bright warrior enity", 0, "Models/Barbarian/Barbarian.model")
@@ -14,6 +17,7 @@ BG_BrightWarriorEntity::BG_BrightWarriorEntity()
 	:BG_WarriorEntity(),
 	m_dyingDuration(3.8f)
 {
+	m_soundHelper = new BG_SoundHelper(true);
 }
 
 VType* BG_BrightWarriorEntity::GetControllerComponentType()
@@ -56,7 +60,26 @@ void BG_BrightWarriorEntity::InitFunction()
 void BG_BrightWarriorEntity::PostInitialize()
 {
 	BG_WarriorEntity::PostInitialize();
-	//TODO: postavi audio
+
+	//load weapon model
+	m_weapon = Vision::Game.CreateEntity("VisBaseEntity_cl", hkvVec3(0,0,0), "Models/Barbarian/Barbarian_Axe.model");
+
+	//load textures - diffuse & normal map
+	VTextureObject *textureHandler = Vision::TextureManager.Load2DTexture("Models/Textures/Barbarian/Barbarian_Weapon_Axe_d.tga");
+	m_weapon->GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_Diffuse, textureHandler);
+
+	textureHandler = Vision::TextureManager.Load2DTexture("Models/Textures/Barbarian/Barbarian_Weapon_Axe_n.tga");
+	m_weapon->GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
+
+	VSkeletalBoneProxyObject* boneProxy = new VSkeletalBoneProxyObject();
+	boneProxy->AttachToEntityBone(this, "right_attachment_jnt");
+	boneProxy->UpdateBoneBinding();
+
+	m_weapon->AttachToParent(boneProxy);
+
+	m_weapon->ResetLocalTransformation();
+	m_weapon->SetLocalPosition(hkvVec3(0,0,0));
+	m_weapon->SetLocalOrientation(hkvVec3(0,0,0));
 }
 
 void BG_BrightWarriorEntity::OnTick(float deltaTime)

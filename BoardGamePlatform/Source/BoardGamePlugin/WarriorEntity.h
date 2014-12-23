@@ -10,6 +10,8 @@ typedef VSmartPtr<BG_ControllerComponent> BG_ControllerComponentPtr;
 class vHavokCharacterController;
 typedef VSmartPtr<vHavokCharacterController> vHavokCharacterControllerPtr;
 
+class BG_SoundHelper;
+
 namespace BG_WarriorAnimationEvent
 {
 	enum Enum
@@ -20,9 +22,11 @@ namespace BG_WarriorAnimationEvent
 		kMoveEnd,
 
 		kMeleeAttack,
+		kMeleeAttackImpact,
 		kMeleeAttackEnd,
 
-		kFootStepEffect,
+		kFootStepRight,
+		kFootStepLeft,
 
 		kAnimationEventCount
 	};
@@ -135,7 +139,11 @@ protected:
 	// Havok Character Proxy
 	vHavokCharacterControllerPtr m_characterController;
 
-	//Effects TODO:
+	//Effects
+	BG_SoundHelper *m_soundHelper;
+
+	//Weapon
+	VisBaseEntity_cl* m_weapon;
 
 private:
 	V_DECLARE_SERIAL_DLLEXP(BG_WarriorEntity, BG_PLUGIN_IMPEXP);

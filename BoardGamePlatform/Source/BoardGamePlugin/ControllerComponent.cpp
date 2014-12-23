@@ -331,6 +331,7 @@ void BG_ControllerState::Moving::OnTick(BG_ControllerComponent *controller, floa
 	BG_WarriorEntity *target = controller->GetTarget();
 	hkvVec3 targetPoint;
 
+	//TODO: sto bi ti se ovo ispitivalo svakog frejma kad su mete staticne i ne beze
 	//KILL 'EM ALL!
 	if(target)
 	{
@@ -395,6 +396,8 @@ void BG_ControllerState::MeleeAttacking::OnEnterState(BG_ControllerComponent *co
 	BG_ControllerStateBase::OnEnterState(controller);
 
 	controller->GetWarriorEntity()->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttack);
+
+	//TODO: probaj jos ovde da mu kazes da se okrene prema meti, mada mozda ce i da stigne da se se okrene kad pozoves Die() i pravom trenutku
 }
 
 void BG_ControllerState::MeleeAttacking::OnTick(BG_ControllerComponent *controller, float deltaTime)
@@ -495,7 +498,7 @@ void BG_ControllerHelper::GetProjectedDirAndDistFromTarget(BG_WarriorEntity cons
 float BG_ControllerHelper::GetMinDistanceToAttack(BG_WarriorEntity const* warrior, BG_WarriorEntity *const target)
 {
 	//TODO: ovo ti mozda treba a mozda i ne - ce ti treba pa ce ti usi mrdaju!
-	float f = 130;
+	float f = 150;
 	return f;
 }
 

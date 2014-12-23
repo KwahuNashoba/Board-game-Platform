@@ -1,6 +1,3 @@
-barbarian.anim	Barbarian.anim	
-barbarian.model	Barbarian.model	LODSwitchDistances=
-barbarian.vcolmesh	Barbarian.vcolmesh	
 fonts/arial32_00.dds	Fonts/Arial32_00.dds	sRGB=false
 fonts/arial_18_00.dds	Fonts/Arial_18_00.dds	sRGB=false
 fonts/arial_22_00.dds	Fonts/Arial_22_00.dds	sRGB=false
@@ -36,6 +33,7 @@ models/barbarian/barbarian_pauldron_l_low.model	Models/Barbarian/Barbarian_Pauld
 models/barbarian/barbarian_pauldron_r_low.model	Models/Barbarian/Barbarian_Pauldron_R_Low.model	LODSwitchDistances=
 models/barbarian/barbarian_weapon_axe.model	Models/Barbarian/Barbarian_Weapon_Axe.model	LODSwitchDistances=
 models/barbarian/barbarian_weapon_sword.model	Models/Barbarian/Barbarian_Weapon_Sword.model	LODSwitchDistances=
+models/crown.model	Models/Crown.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.anim	Models/Dark_Warrior/Dark_warrior.anim	
 models/dark_warrior/dark_warrior.model	Models/Dark_Warrior/Dark_warrior.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.vcolmesh	Models/Dark_Warrior/Dark_warrior.vcolmesh	

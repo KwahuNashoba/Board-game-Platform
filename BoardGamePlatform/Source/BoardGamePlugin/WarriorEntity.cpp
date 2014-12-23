@@ -1,8 +1,9 @@
 #include "BoardGamePluginPCH.h"
-#include "WarriorEntity.h"
 #include "GameManager.h"
 #include "ControllerComponent.h"
 #include "Serializer.h"
+#include "SoundHelper.h"
+#include "WarriorEntity.h"
 
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
 #include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
@@ -31,8 +32,6 @@ BG_WarriorEntity::BG_WarriorEntity()
 	m_dying(false),
 	m_timeOfDeath(0.0f)
 {
-	//TODO: add effect initialization
-
 	for(int i = 0; i<BG_WarriorAnimationEvent::kAnimationEventCount; i++)
 	{
 		m_animationEventIds[i] = -1;
@@ -45,7 +44,6 @@ void BG_WarriorEntity::InitFunction()
 
 void BG_WarriorEntity::InitializeProperties()
 {
-	//TODO: InitializeCharacterEffects();
 }
 
 void BG_WarriorEntity::PostInitialize()
@@ -154,6 +152,9 @@ void BG_WarriorEntity::Die()
 	m_timeOfDeath = Vision::GetTimer()->GetTime();
 
 	//TODO: stop all effects
+	m_soundHelper->PlayFromPosition(BG_SoundEvent::eDie, GetPosition());
+	m_soundHelper->DeInitSoundEffects();
+	m_soundHelper = NULL;
 
 	RaiseAnimationEvent(BG_WarriorAnimationEvent::kDie);
 
@@ -233,7 +234,8 @@ void BG_WarriorEntity::InitAnimationEventIds()
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttack] = eventNameToIdMap.getWithDefault("MeleeAttack", -1);
 	m_animationEventIds[BG_WarriorAnimationEvent::kMeleeAttackEnd] = eventNameToIdMap.getWithDefault("MeleeAttackEnd", -1);
 
-	m_animationEventIds[BG_WarriorAnimationEvent::kFootStepEffect] = eventNameToIdMap.getWithDefault("FootStepEffect", -1);
+	m_animationEventIds[BG_WarriorAnimationEvent::kFootStepRight] = eventNameToIdMap.getWithDefault("FootstepRight", -1);
+	m_animationEventIds[BG_WarriorAnimationEvent::kFootStepLeft] = eventNameToIdMap.getWithDefault("FootstepLeft", -1);
 }
 
 void BG_WarriorEntity::InitAnimationVariableIds()
@@ -280,7 +282,19 @@ void BG_WarriorEntity::ProcessAnimationEvents()
 
 void BG_WarriorEntity::OnProcessAnimationEvent(hkbEvent const& behaviorEvent)
 {
-	//TODO: dodaj obradu za footstep i jos neke ako treba
+	//play right footstep sound
+	if(GetIdForAnimationEvent(BG_WarriorAnimationEvent::kFootStepRight) == behaviorEvent.getId())
+	{
+		m_soundHelper->PlayFromPosition(BG_SoundEvent::eFootstepRight, GetPosition());
+		return;
+	}
+	//play left footstep sound
+	if(GetIdForAnimationEvent(BG_WarriorAnimationEvent::kFootStepLeft) == behaviorEvent.getId())
+	{
+		m_soundHelper->PlayFromPosition(BG_SoundEvent::eFootStepLeft, GetPosition());
+		return;
+	}
+	//TODO: dodaj obradu za udarac oruzja
 }
 
 void BG_WarriorEntity::UpdateBehaviorWorldFromModel()

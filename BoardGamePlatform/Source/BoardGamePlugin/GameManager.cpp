@@ -1,10 +1,11 @@
 /*
- *
- * Confidential Information of Telekinesys Research Limited (t/a Havok). Not for disclosure or distribution without Havok's
- * prior written consent. This software contains code, techniques and know-how which is confidential and proprietary to Havok.
- * Product and Trade Secret source code contains trade secrets of Havok. Havok Software (C) Copyright 1999-2014 Telekinesys Research Limited t/a Havok. All Rights Reserved. Use of this software is subject to the terms of an end user license agreement.
- *
- */
+*
+* Confidential Information of Telekinesys Research Limited (t/a Havok). Not for disclosure or distribution without Havok's
+* prior written consent. This software contains code, techniques and know-how which is confidential and proprietary to Havok.
+* Product and Trade Secret source code contains trade secrets of Havok. Havok Software (C) Copyright 1999-2014 Telekinesys Research Limited t/a Havok. All Rights Reserved. Use of this software is subject to the terms of an end user license agreement.
+*
+*/
+
 
 #include "BoardGamePluginPCH.h"
 #include "GameManager.h"
@@ -15,7 +16,6 @@
 #include "ControllerComponent.h"
 #include "UIManager.h"
 #include "CheckersGameLogic.h"
-
 #include <Vision\Runtime\EnginePlugins\VisionEnginePlugin\Scene\VPrefab.hpp>
 
 GameManager GameManager::g_GameManager;
@@ -29,32 +29,28 @@ GameManager::GameManager()
 	m_startPosition()
 {
 }
-
 void GameManager::OneTimeInit()
 {
-  m_bPlayingTheGame = false;
-
-  // the game manager should listen to the following callbacks:
-  Vision::Callbacks.OnEditorModeChanged += this;
-  Vision::Callbacks.OnBeforeSceneLoaded += this;
-  Vision::Callbacks.OnAfterSceneLoaded += this;
-  Vision::Callbacks.OnBeforeSceneUnloaded += this;
-  Vision::Callbacks.OnAfterSceneUnloaded += this;
-  Vision::Callbacks.OnUpdateSceneBegin += this;
-  Vision::Callbacks.OnWorldDeInit += this;
+	m_bPlayingTheGame = false;
+	// the game manager should listen to the following callbacks:
+	Vision::Callbacks.OnEditorModeChanged += this;
+	Vision::Callbacks.OnBeforeSceneLoaded += this;
+	Vision::Callbacks.OnAfterSceneLoaded += this;
+	Vision::Callbacks.OnBeforeSceneUnloaded += this;
+	Vision::Callbacks.OnAfterSceneUnloaded += this;
+	Vision::Callbacks.OnUpdateSceneBegin += this;
+	Vision::Callbacks.OnWorldDeInit += this;
 }
-
 void GameManager::OneTimeDeInit()
 {
-  Vision::Callbacks.OnEditorModeChanged -= this;
-  Vision::Callbacks.OnBeforeSceneLoaded -= this;
-  Vision::Callbacks.OnAfterSceneLoaded -= this;
-  Vision::Callbacks.OnBeforeSceneUnloaded -= this;
-  Vision::Callbacks.OnAfterSceneUnloaded -= this;
-  Vision::Callbacks.OnUpdateSceneBegin -= this;
-  Vision::Callbacks.OnWorldDeInit -= this;
+	Vision::Callbacks.OnEditorModeChanged -= this;
+	Vision::Callbacks.OnBeforeSceneLoaded -= this;
+	Vision::Callbacks.OnAfterSceneLoaded -= this;
+	Vision::Callbacks.OnBeforeSceneUnloaded -= this;
+	Vision::Callbacks.OnAfterSceneUnloaded -= this;
+	Vision::Callbacks.OnUpdateSceneBegin -= this;
+	Vision::Callbacks.OnWorldDeInit -= this;
 }
-
 void GameManager::AddWarrior(BG_WarriorEntity* warrior, int x, int y)
 {
 	VASSERT(!m_board[x][y]);
@@ -63,112 +59,98 @@ void GameManager::AddWarrior(BG_WarriorEntity* warrior, int x, int y)
 		m_board[x][y] = warrior;
 	}
 }
-
 BG_BrightWarriorEntity* GameManager::CreateBrightWarriorEntity(const hkvVec3& position)
 {
 	BG_BrightWarriorEntity* entity = static_cast<BG_BrightWarriorEntity*>(Vision::Game.CreateEntity("BG_BrightWarriorEntity", position));
 	VASSERT(entity);
-
 	return entity;
 }
-
 BG_DarkWarriorEntity* GameManager::CreateDarkWarriorEntity(const hkvVec3& position)
 {
 	BG_DarkWarriorEntity* entity = static_cast<BG_DarkWarriorEntity*>(Vision::Game.CreateEntity("BG_DarkWarriorEntity", position));
 	VASSERT(entity);
-
 	return entity;
 }
-
 void GameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
 {
-
-  if (pData->m_pSender==&Vision::Callbacks.OnUpdateSceneBegin)
-  {
-	  for(int i = 0; i< 8; i++)
-	  {
-		  for(int j = 0; j < 8; j++)
-		  {
-			  if(m_board[i][j] != NULL)
-				  Vision::Message.Print(1,610 + i * 10,(7-j)*10,"%c", m_board[i][j] != NULL ? (m_board[i][j]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId() ? 'B' : 'D') : ' ');
-		  }
-	  }
-
-	  if(m_selectedWarrior)
-	  {
-		  Vision::Message.Print(1,50,200, "MoveSpeed: %f", m_selectedWarrior->GetControllerComponent()->GetSpeed());		  		
-		  Vision::Message.Print(1,50,250, m_selectedWarrior->GetControllerComponent()->GetCurentStateName());
-		  if(m_possibleMoves.GetSize() > 0)
-		  {
-			for(int i = 0; i<m_possibleMoves.GetSize(); i++)
+	if (pData->m_pSender==&Vision::Callbacks.OnUpdateSceneBegin)
+	{
+		for(int i = 0; i< 8; i++)
+		{
+			for(int j = 0; j < 8; j++)
 			{
-				Vision::Message.Print(1, 50, 100+ i*33, "x: %d  y: %d", (int)m_possibleMoves.GetAt(i).x, (int)m_possibleMoves.GetAt(i).y);
+				if(m_board[i][j] != NULL)
+					Vision::Message.Print(1,610 + i * 10,(7-j)*10,"%c", m_board[i][j] != NULL ? (m_board[i][j]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId() ? 'B' : 'D') : ' ');
 			}
-		  }
-		  else
-		  {
-			  Vision::Message.Print(1,50,100, "No possible moves for selected warrior");
-		  }
-
-		  if(m_selectedWarrior->GetControllerComponent()->GetTarget())
+		}
+		if(m_selectedWarrior)
+		{
+			Vision::Message.Print(1,50,200, "MoveSpeed: %f", m_selectedWarrior->GetControllerComponent()->GetSpeed());
+			Vision::Message.Print(1,50,250, m_selectedWarrior->GetControllerComponent()->GetCurentStateName());
+			if(m_possibleMoves.GetSize() > 0)
+			{
+				for(int i = 0; i<m_possibleMoves.GetSize(); i++)
+				{
+					Vision::Message.Print(1, 50, 100+ i*33, "x: %d y: %d", (int)m_possibleMoves.GetAt(i).x, (int)m_possibleMoves.GetAt(i).y);
+				}
+			}
+			else
+			{
+				Vision::Message.Print(1,50,100, "No possible moves for selected warrior");
+			}
+			if(m_selectedWarrior->GetControllerComponent()->GetTarget())
 			{
 				int x = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().x/BG_WARRIOR_MODEL_WIDTH;
 				int y = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().y/BG_WARRIOR_MODEL_WIDTH;
-				Vision::Message.Print(1,50,300, "Attacking x: %d  y: %d", x, y);
+				Vision::Message.Print(1,50,300, "Attacking x: %d y: %d", x, y);
 			}
-	  }
-	  else
-	  {
-		  Vision::Message.Print(1,50,100, "No selected warrior");
-	  }
-	  
-	  OnUpdateSceneBegin();
-      //This callback will be triggered at the beginning of every frame
-      //You can add your own per frame logic here
-      return;
-  }
-
-  if (pData->m_pSender==&Vision::Callbacks.OnEditorModeChanged)
-  {
-	  // when vForge switches back from EDITORMODE_PLAYING_IN_GAME, turn off our play the game mode
-	  if (((VisEditorModeChangedDataObject_cl *)pData)->m_eNewMode != VisEditorManager_cl::EDITORMODE_PLAYING_IN_GAME)
-		  SetPlayTheGame(false);
-	  return;
-  }
-
-  if (pData->m_pSender==&Vision::Callbacks.OnBeforeSceneLoaded)
-  {
-	  OnBeforeSceneLoaded(static_cast<VisSceneLoadedDataObject_cl*>(pData)->m_szSceneFileName);
-	  return;
-  }
-
-  if (pData->m_pSender==&Vision::Callbacks.OnAfterSceneLoaded)
-  {
-	  OnAfterSceneLoaded();
-	  //gets triggered when the play-the-game vForge is started or outside vForge after loading the scene
-	  if (Vision::Editor.IsPlayingTheGame())
-		  SetPlayTheGame(true);
-	  return;
-  }
-
-  if(pData->m_pSender==&Vision::Callbacks.OnBeforeSceneUnloaded)
-  {
-	  OnBeforeSceneUnloaded();
-	  return;
-  }
-  if(pData->m_pSender==&Vision::Callbacks.OnAfterSceneUnloaded)
-  {
-	  OnAfterSceneUnloaded();
-	  return;
-  }
-
-  if (pData->m_pSender==&Vision::Callbacks.OnWorldDeInit) 
-  {
-     // this is important when running outside vForge
-    SetPlayTheGame(false);
-	m_gameLogic = NULL;
-    return;
-  }
+		}
+		else
+		{
+			Vision::Message.Print(1,50,100, "No selected warrior");
+		}
+		OnUpdateSceneBegin();
+		//This callback will be triggered at the beginning of every frame
+		//You can add your own per frame logic here
+		return;
+	}
+	if (pData->m_pSender==&Vision::Callbacks.OnEditorModeChanged)
+	{
+		// when vForge switches back from EDITORMODE_PLAYING_IN_GAME, turn off our play the game mode
+		if (((VisEditorModeChangedDataObject_cl *)pData)->m_eNewMode != VisEditorManager_cl::EDITORMODE_PLAYING_IN_GAME)
+			SetPlayTheGame(false);
+		return;
+	}
+	if (pData->m_pSender==&Vision::Callbacks.OnBeforeSceneLoaded)
+	{
+		OnBeforeSceneLoaded(static_cast<VisSceneLoadedDataObject_cl*>(pData)->m_szSceneFileName);
+		return;
+	}
+	if (pData->m_pSender==&Vision::Callbacks.OnAfterSceneLoaded)
+	{
+		OnAfterSceneLoaded();
+		//gets triggered when the play-the-game vForge is started or outside vForge after loading the scene
+		if (Vision::Editor.IsPlayingTheGame())
+			SetPlayTheGame(true);
+		return;
+	}
+	if(pData->m_pSender==&Vision::Callbacks.OnBeforeSceneUnloaded)
+	{
+		OnBeforeSceneUnloaded();
+		return;
+	}
+	if(pData->m_pSender==&Vision::Callbacks.OnAfterSceneUnloaded)
+	{
+		OnAfterSceneUnloaded();
+		return;
+	}
+	if (pData->m_pSender==&Vision::Callbacks.OnWorldDeInit)
+	{
+		// this is important when running outside vForge
+		SetPlayTheGame(false);
+		m_gameLogic = NULL;
+		return;
+	}
 }
 
 
