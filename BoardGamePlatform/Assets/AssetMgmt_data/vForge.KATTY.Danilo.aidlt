@@ -126,31 +126,23 @@ meshes/spirittrails.vmesh	Meshes/SpiritTrails.vmesh	LODSwitchDistances=
 meshes/spirittrails1.vmesh	Meshes/SpiritTrails1.vmesh	LODSwitchDistances=
 meshes/spirittrails2.vmesh	Meshes/SpiritTrails2.vmesh	LODSwitchDistances=
 models/barbarian/barbarian.model	Models/Barbarian/Barbarian.model	LODSwitchDistances=
-textures/wood+pattern+texture+15.tga	Textures/wood+pattern+texture+15.tga	sRGB=false
-textures/treestextureno8807_preview.tga	Textures/treesTextureNo8807_preview.tga	sRGB=false
-textures/treestextureno8802_preview.tga	Textures/treesTextureNo8802_preview.tga	sRGB=false
-models/textures/dark_warrior/dark_warrior_wepons_d.tga	Models/Textures/Dark_Warrior/Dark_Warrior_wepons_d.tga	sRGB=false
+models/barbarian/barbarian_axe.model	Models/Barbarian/Barbarian_Axe.model	LODSwitchDistances=
 models/crown.model	Models/Crown.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.anim	Models/Dark_Warrior/Dark_warrior.anim	
 models/dark_warrior/dark_warrior.model	Models/Dark_Warrior/Dark_warrior.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.vcolmesh	Models/Dark_Warrior/Dark_warrior.vcolmesh	
-textures/treestextureno7681_preview.png	Textures/treesTextureNo7681_preview.png	sRGB=false
-textures/treestextureno1738_preview.png	Textures/treesTextureNo1738_preview.png	sRGB=false
-textures/treestextureno1736_preview.png	Textures/treesTextureNo1736_preview.png	sRGB=false
-textures/tree bark.tga	Textures/Tree bark.tga	sRGB=false
 models/highlight plane_blue.model	Models/Highlight plane_blue.model	LODSwitchDistances=
 models/highlight plane_green.model	Models/Highlight plane_green.model	LODSwitchDistances=
-prefabs/weapon_axe.prefab	Prefabs/Weapon_Axe.prefab	
-models/barbarian/barbarian_axe.model	Models/Barbarian/Barbarian_Axe.model	LODSwitchDistances=
+models/textures/barbarian/barbarian_belt_low_d.tga	Models/Textures/Barbarian/Barbarian_Belt_Low_d.tga	sRGB=false
+models/textures/barbarian/barbarian_belt_low_n.tga	Models/Textures/Barbarian/Barbarian_Belt_Low_n.tga	sRGB=false
 models/textures/barbarian/barbarian_body_low_d.tga	Models/Textures/Barbarian/Barbarian_Body_Low_d.tga	sRGB=false
 models/textures/barbarian/barbarian_body_low_n.tga	Models/Textures/Barbarian/Barbarian_Body_Low_n.tga	sRGB=false
-textures/treestextureno7691_preview.png	Textures/treesTextureNo7691_preview.png	sRGB=false
-textures/treestextureno7689_preview.png	Textures/treesTextureNo7689_preview.png	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_d.tga	Models/Textures/Barbarian/Barbarian_Weapon_Axe_d.tga	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_n.tga	Models/Textures/Barbarian/Barbarian_Weapon_Axe_n.tga	sRGB=false
-textures/wood-textures-high-quality-6.tga	Textures/wood-textures-high-quality-6.tga	sRGB=false
-models/textures/dark_warrior/dark_warrior_cloth_d.png	Models/Textures/Dark_Warrior/Dark_Warrior_cloth_d.png	sRGB=false
 models/textures/dark_warrior/dark_warrior_bones_d.png	Models/Textures/Dark_Warrior/Dark_Warrior_bones_d.png	sRGB=false
+models/textures/dark_warrior/dark_warrior_cloth_d.png	Models/Textures/Dark_Warrior/Dark_Warrior_cloth_d.png	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_d.tga	Models/Textures/Dark_Warrior/Dark_Warrior_wepons_d.tga	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_n.tga	Models/Textures/Dark_Warrior/Dark_Warrior_wepons_n.tga	sRGB=false
 models/textures/highlight_blue.png	Models/Textures/Highlight_blue.png	sRGB=false
 models/textures/highlight_green.png	Models/Textures/Highlight_green.png	sRGB=false
 particles/effect01.vpfx	Particles/effect01.vpfx	
@@ -166,6 +158,7 @@ particles/spirit_trails_swirl1.tga	Particles/spirit_trails_swirl1.tga	sRGB=false
 prefabs/highlight_blue.prefab	Prefabs/Highlight_blue.prefab	
 prefabs/highlight_green.prefab	Prefabs/Highlight_green.prefab	
 prefabs/terrains.prefab	Prefabs/Terrains.prefab	
+prefabs/weapon_axe.prefab	Prefabs/Weapon_Axe.prefab	
 scenes/battlefield_p01.dds	Scenes/BattleField_P01.dds	sRGB=false
 scenes/battlefield_p02.dds	Scenes/BattleField_P02.dds	sRGB=false
 scenes/volume_890365b7_00000074.vmesh	Scenes/Volume_890365b7_00000074.vmesh	LODSwitchDistances=
@@ -199,6 +192,13 @@ textures/grib.jpg	Textures/GRIB.jpg	sRGB=false
 textures/nature_bark_0004_02_preview.tga	Textures/nature_bark_0004_02_preview.tga	sRGB=false
 textures/opacity map.tga	Textures/Opacity map.tga	sRGB=false
 textures/skelet_def.png	Textures/Skelet_Def.png	sRGB=false
-models/textures/barbarian/barbarian_belt_low_d.tga	Models/Textures/Barbarian/Barbarian_Belt_Low_d.tga	sRGB=false
-models/textures/barbarian/barbarian_belt_low_n.tga	Models/Textures/Barbarian/Barbarian_Belt_Low_n.tga	sRGB=false
-models/textures/dark_warrior/dark_warrior_wepons_n.tga	Models/Textures/Dark_Warrior/Dark_Warrior_wepons_n.tga	sRGB=false
+textures/tree bark.tga	Textures/Tree bark.tga	sRGB=false
+textures/treestextureno1736_preview.png	Textures/treesTextureNo1736_preview.png	sRGB=false
+textures/treestextureno1738_preview.png	Textures/treesTextureNo1738_preview.png	sRGB=false
+textures/treestextureno7681_preview.png	Textures/treesTextureNo7681_preview.png	sRGB=false
+textures/treestextureno7689_preview.png	Textures/treesTextureNo7689_preview.png	sRGB=false
+textures/treestextureno7691_preview.png	Textures/treesTextureNo7691_preview.png	sRGB=false
+textures/treestextureno8802_preview.tga	Textures/treesTextureNo8802_preview.tga	sRGB=false
+textures/treestextureno8807_preview.tga	Textures/treesTextureNo8807_preview.tga	sRGB=false
+textures/wood+pattern+texture+15.tga	Textures/wood+pattern+texture+15.tga	sRGB=false
+textures/wood-textures-high-quality-6.tga	Textures/wood-textures-high-quality-6.tga	sRGB=false

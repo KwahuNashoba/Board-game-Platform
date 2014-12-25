@@ -75,40 +75,9 @@ void GameManager::OnHandleCallback(IVisCallbackDataObject_cl *pData)
 {
 	if (pData->m_pSender==&Vision::Callbacks.OnUpdateSceneBegin)
 	{
-		for(int i = 0; i< 8; i++)
-		{
-			for(int j = 0; j < 8; j++)
-			{
-				if(m_board[i][j] != NULL)
-					Vision::Message.Print(1,610 + i * 10,(7-j)*10,"%c", m_board[i][j] != NULL ? (m_board[i][j]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId() ? 'B' : 'D') : ' ');
-			}
-		}
-		if(m_selectedWarrior)
-		{
-			Vision::Message.Print(1,50,200, "MoveSpeed: %f", m_selectedWarrior->GetControllerComponent()->GetSpeed());
-			Vision::Message.Print(1,50,250, m_selectedWarrior->GetControllerComponent()->GetCurentStateName());
-			if(m_possibleMoves.GetSize() > 0)
-			{
-				for(int i = 0; i<m_possibleMoves.GetSize(); i++)
-				{
-					Vision::Message.Print(1, 50, 100+ i*33, "x: %d y: %d", (int)m_possibleMoves.GetAt(i).x, (int)m_possibleMoves.GetAt(i).y);
-				}
-			}
-			else
-			{
-				Vision::Message.Print(1,50,100, "No possible moves for selected warrior");
-			}
-			if(m_selectedWarrior->GetControllerComponent()->GetTarget())
-			{
-				int x = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().x/BG_WARRIOR_MODEL_WIDTH;
-				int y = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().y/BG_WARRIOR_MODEL_WIDTH;
-				Vision::Message.Print(1,50,300, "Attacking x: %d y: %d", x, y);
-			}
-		}
-		else
-		{
-			Vision::Message.Print(1,50,100, "No selected warrior");
-		}
+		//debug info
+		ShowDebugOutput();
+
 		OnUpdateSceneBegin();
 		//This callback will be triggered at the beginning of every frame
 		//You can add your own per frame logic here
@@ -330,7 +299,8 @@ void GameManager::OnUpdateSceneBegin()
 			}
 		}
 	}
-	else if(m_playingTheMoveEnd) //if move is finished, update board state and alow next move to be played
+	//if move is finished, update board state, alow next move to be played and check game status
+	else if(m_playingTheMoveEnd)
 	{
 		//update warrior position on board		
 		m_board[(int)m_endPosition.x][(int)m_endPosition.y]	= m_selectedWarrior;
@@ -344,6 +314,27 @@ void GameManager::OnUpdateSceneBegin()
 		m_playingTheMoveEnd = false;
 
 		m_whiteNext = !m_whiteNext;
+
+		//check if the game should end //TODO: ovo mozda prebacis u neku funkciju
+		int gameStatus = m_gameLogic->GameOver();
+		switch(gameStatus)
+		{
+			//game over bright wins
+			case 1:
+				//TODO: pobedio svetli
+				m_bPlayingTheGame = false;
+				return;
+			//game over dark wins
+			case 2:
+				//TODO:
+				m_bPlayingTheGame = false;
+				return;
+			//game over tie
+			case 0:
+				//TODO:
+				m_bPlayingTheGame = false;
+				return;
+		}
 	}
 }
 
@@ -397,6 +388,55 @@ void GameManager::DeHighlightFields()
 		m_highlights.RemoveAll();
 	}
 }
+
+void GameManager::ShowDebugOutput()
+{
+	//print board state
+	for(int i = 0; i< 8; i++)
+		{
+			for(int j = 0; j < 8; j++)
+			{
+				if(m_board[i][j] != NULL)
+					Vision::Message.Print(1,610 + i * 10,(7-j)*10,"%c", m_board[i][j] != NULL ? (m_board[i][j]->GetTypeId() == BG_BrightWarriorEntity::GetClassTypeId() ? 'B' : 'D') : ' ');
+			}
+		}
+	
+	//print speed, current state and possible moves
+	if(m_selectedWarrior)
+	{
+		//speed
+		Vision::Message.Print(1,50,200, "MoveSpeed: %f", m_selectedWarrior->GetControllerComponent()->GetSpeed());
+		
+		//current state
+		Vision::Message.Print(1,50,250, m_selectedWarrior->GetControllerComponent()->GetCurentStateName());
+		
+		//possible moves
+		if(m_possibleMoves.GetSize() > 0)
+		{
+			for(int i = 0; i<m_possibleMoves.GetSize(); i++)
+			{
+				Vision::Message.Print(1, 50, 100+ i*33, "x: %d y: %d", (int)m_possibleMoves.GetAt(i).x, (int)m_possibleMoves.GetAt(i).y);
+			}
+		}
+		else
+		{
+			Vision::Message.Print(1,50,100, "No possible moves for selected warrior");
+		}
+
+		//target
+		if(m_selectedWarrior->GetControllerComponent()->GetTarget())
+		{
+			int x = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().x/BG_WARRIOR_MODEL_WIDTH;
+			int y = m_selectedWarrior->GetControllerComponent()->GetTarget()->GetPosition().y/BG_WARRIOR_MODEL_WIDTH;
+			Vision::Message.Print(1,50,300, "Attacking x: %d y: %d", x, y);
+		}
+	}
+	else
+	{
+		Vision::Message.Print(1,50,100, "No selected warrior");
+	}
+}
+
 
 /*
  * Havok SDK - Base file, BUILD(#20140328)

@@ -16,6 +16,8 @@
     <ClInclude Include="CheckersGameLogic.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="SoundHelper.h" />
+    <ClInclude Include="GameAI.h" />
+    <ClInclude Include="BitBoardHelper.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardGamePluginPCH.cpp" />
@@ -33,5 +35,7 @@
     <ClCompile Include="CheckersGameLogic.cpp" />
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="SoundHelper.cpp" />
+    <ClCompile Include="GameAI.cpp" />
+    <ClCompile Include="BitBoardHelper.cpp" />
   </ItemGroup>
 </Project>

@@ -9,14 +9,14 @@ public:
 	BG_GameLogic();
 
 	//returns array of possible moves for currently selected player
-	virtual VArray<hkvVec2> PossibleMoves(hkvVec2& from, bool whitePlayer) = 0;
+	virtual VArray<hkvVec2> PossibleMoves(hkvVec2& const from, bool whitePlayer) = 0;
 
 	//returns array of targets that should be eliminated from board
 	//since derived classes should implement their own representation of board state(aside of matrix representation given in GameManager),
 	//state should be alterd inside this function
-	virtual VArray<hkvVec2> PlayMove(hkvVec2& from, hkvVec2& to, bool whitePlayer) = 0;
+	virtual VArray<hkvVec2> PlayMove(hkvVec2& const from, hkvVec2& const to, bool whitePlayer) = 0;
 
-	//returns -1 if not over, 0 if it's tie, 1 if p1 wins and 2 if p2 wins
+	//returns 3(11) if not over, 0(00) if it's tie, 1(01) if bright wins and 2(10) if dark wins
 	virtual int GameOver() = 0;
 };
 

@@ -29,18 +29,11 @@ meshes/spirittrails.vmesh	Meshes/SpiritTrails.vmesh	LODSwitchDistances=
 meshes/spirittrails1.vmesh	Meshes/SpiritTrails1.vmesh	LODSwitchDistances=
 meshes/spirittrails2.vmesh	Meshes/SpiritTrails2.vmesh	LODSwitchDistances=
 models/barbarian/barbarian.model	Models/Barbarian/Barbarian.model	LODSwitchDistances=
-models/barbarian/barbarian_pauldron_l_low.model	Models/Barbarian/Barbarian_Pauldron_L_Low.model	LODSwitchDistances=
-models/barbarian/barbarian_pauldron_r_low.model	Models/Barbarian/Barbarian_Pauldron_R_Low.model	LODSwitchDistances=
-models/barbarian/barbarian_weapon_axe.model	Models/Barbarian/Barbarian_Weapon_Axe.model	LODSwitchDistances=
-models/barbarian/barbarian_weapon_sword.model	Models/Barbarian/Barbarian_Weapon_Sword.model	LODSwitchDistances=
+models/barbarian/barbarian_axe.model	Models/Barbarian/Barbarian_Axe.model	LODSwitchDistances=
 models/crown.model	Models/Crown.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.anim	Models/Dark_Warrior/Dark_warrior.anim	
 models/dark_warrior/dark_warrior.model	Models/Dark_Warrior/Dark_warrior.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.vcolmesh	Models/Dark_Warrior/Dark_warrior.vcolmesh	
-models/guardian_caster/guardian_caster.model	Models/Guardian_Caster/Guardian_Caster.model	LODSwitchDistances=
-models/guardian_caster/guardian_caster_staff.model	Models/Guardian_Caster/Guardian_Caster_Staff.model	LODSwitchDistances=
-models/guardian_melee/guardian_melee.model	Models/Guardian_Melee/Guardian_Melee.model	LODSwitchDistances=
-models/guardian_melee/guardian_melee_polearm.model	Models/Guardian_Melee/Guardian_Melee_Polearm.model	LODSwitchDistances=
 models/highlight plane_blue.model	Models/Highlight plane_blue.model	LODSwitchDistances=
 models/highlight plane_green.model	Models/Highlight plane_green.model	LODSwitchDistances=
 models/misc/charheight.model	Models/Misc/CharHeight.Model	LODSwitchDistances=
@@ -51,26 +44,24 @@ models/misc/sphere.model	Models/Misc/Sphere.Model	LODSwitchDistances=
 models/misc/torus.model	Models/Misc/Torus.Model	LODSwitchDistances=
 models/textures/barbarian/barbarian_belt_low_d.tga#android-default	AssetMgmt_data/transformed/barbarian_belt_low_d744vjkjclgdtc.etc	sRGB=false
 models/textures/barbarian/barbarian_belt_low_d.tga#android-pvr	AssetMgmt_data/transformed/barbarian_belt_low_d744vjkjclgdtc.pvr	sRGB=false
-models/textures/barbarian/barbarian_belt_low_n.tga#android-default	AssetMgmt_data/transformed/barbarian_belt_low_n2c#kt30clgdtc.etc	sRGB=false
-models/textures/barbarian/barbarian_belt_low_n.tga#android-pvr	AssetMgmt_data/transformed/barbarian_belt_low_n2c#kt30clgdtc.pvr	sRGB=false
+models/textures/barbarian/barbarian_belt_low_n.tga#android-default	AssetMgmt_data/transformed/barbarian_belt_low_n02dp2f0clgdtc.etc	sRGB=false
+models/textures/barbarian/barbarian_belt_low_n.tga#android-pvr	AssetMgmt_data/transformed/barbarian_belt_low_n02dp2f0clgdtc.pvr	sRGB=false
 models/textures/barbarian/barbarian_body_low_d.tga#android-default	AssetMgmt_data/transformed/barbarian_body_low_dcyxtnzjclgdtc.etc	sRGB=false
 models/textures/barbarian/barbarian_body_low_d.tga#android-pvr	AssetMgmt_data/transformed/barbarian_body_low_dcyxtnzjclgdtc.pvr	sRGB=false
 models/textures/barbarian/barbarian_body_low_n.tga#android-default	AssetMgmt_data/transformed/barbarian_body_low_n2k97j58clgdtc.etc	sRGB=false
 models/textures/barbarian/barbarian_body_low_n.tga#android-pvr	AssetMgmt_data/transformed/barbarian_body_low_n2k97j58clgdtc.pvr	sRGB=false
-models/textures/barbarian/barbarian_pauldron_l_low_d.tga#android-default	AssetMgmt_data/transformed/barbarian_pauldron_l_logr9fgt0clgdtc.etc	sRGB=false
-models/textures/barbarian/barbarian_pauldron_l_low_d.tga#android-pvr	AssetMgmt_data/transformed/barbarian_pauldron_l_logr9fgt0clgdtc.pvr	sRGB=false
-models/textures/barbarian/barbarian_pualdron_r_low_d.tga#android-default	AssetMgmt_data/transformed/barbarian_pualdron_r_lo9201nm4clgdtc.etc	sRGB=false
-models/textures/barbarian/barbarian_pualdron_r_low_d.tga#android-pvr	AssetMgmt_data/transformed/barbarian_pualdron_r_lo9201nm4clgdtc.pvr	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_d.tga#android-default	AssetMgmt_data/transformed/barbarian_weapon_axe_dg75mrj4clgdtc.rgba	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_d.tga#android-pvr	AssetMgmt_data/transformed/barbarian_weapon_axe_dg75mrj4clgdtc.pvr	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_n.tga#android-default	AssetMgmt_data/transformed/barbarian_weapon_axe_n3cql5zjclgdtc.rgba	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_n.tga#android-pvr	AssetMgmt_data/transformed/barbarian_weapon_axe_n3cql5zjclgdtc.pvr	sRGB=false
-models/textures/dark_warrior/dark_warrior_bones.png#android-default	AssetMgmt_data/transformed/dark_warrior_bonesc4np19xclgdtc.rgba	sRGB=false
-models/textures/dark_warrior/dark_warrior_bones.png#android-pvr	AssetMgmt_data/transformed/dark_warrior_bonesc4np19xclgdtc.pvr	sRGB=false
-models/textures/dark_warrior/dark_warrior_cloth.png#android-default	AssetMgmt_data/transformed/dark_warrior_cloth1hxbnpnclgdtc.rgba	sRGB=false
-models/textures/dark_warrior/dark_warrior_cloth.png#android-pvr	AssetMgmt_data/transformed/dark_warrior_cloth1hxbnpnclgdtc.pvr	sRGB=false
-models/textures/dark_warrior/dark_warrior_wepons.tga#android-default	AssetMgmt_data/transformed/dark_warrior_wepons3xczvwjclgdtc.etc	sRGB=false
-models/textures/dark_warrior/dark_warrior_wepons.tga#android-pvr	AssetMgmt_data/transformed/dark_warrior_wepons3xczvwjclgdtc.pvr	sRGB=false
+models/textures/dark_warrior/dark_warrior_bones_d.png#android-default	AssetMgmt_data/transformed/dark_warrior_bones_d6gv5t2nclgdtc.rgba	sRGB=false
+models/textures/dark_warrior/dark_warrior_bones_d.png#android-pvr	AssetMgmt_data/transformed/dark_warrior_bones_d6gv5t2nclgdtc.pvr	sRGB=false
+models/textures/dark_warrior/dark_warrior_cloth_d.png#android-default	AssetMgmt_data/transformed/dark_warrior_cloth_db9tm7tjclgdtc.rgba	sRGB=false
+models/textures/dark_warrior/dark_warrior_cloth_d.png#android-pvr	AssetMgmt_data/transformed/dark_warrior_cloth_db9tm7tjclgdtc.pvr	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_d.tga#android-default	AssetMgmt_data/transformed/dark_warrior_wepons_d14d7grdclgdtc.etc	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_d.tga#android-pvr	AssetMgmt_data/transformed/dark_warrior_wepons_d14d7grdclgdtc.pvr	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_n.tga#android-default	AssetMgmt_data/transformed/dark_warrior_wepons_n39v8pb4clgdtc.etc	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_n.tga#android-pvr	AssetMgmt_data/transformed/dark_warrior_wepons_n39v8pb4clgdtc.pvr	sRGB=false
 models/textures/highlight_blue.png#android-default	AssetMgmt_data/transformed/highlight_blue3dxc#vxclgdtc.rgba	sRGB=false
 models/textures/highlight_blue.png#android-pvr	AssetMgmt_data/transformed/highlight_blue3dxc#vxclgdtc.pvr	sRGB=false
 models/textures/highlight_green.png#android-default	AssetMgmt_data/transformed/highlight_greendj5w7d4clgdtc.rgba	sRGB=false
@@ -108,6 +99,7 @@ particles/steam.dds#android-pvr	AssetMgmt_data/transformed/steamgfc5ddjclgdtc.pv
 prefabs/highlight_blue.prefab	Prefabs/Highlight_blue.prefab	
 prefabs/highlight_green.prefab	Prefabs/Highlight_green.prefab	
 prefabs/terrains.prefab	Prefabs/Terrains.prefab	
+prefabs/weapon_axe.prefab	Prefabs/Weapon_Axe.prefab	
 scenes/battlefield_p01.dds#android-default	AssetMgmt_data/transformed/battlefield_p019p8sycnclgdtc.rgba	sRGB=false
 scenes/battlefield_p01.dds#android-pvr	AssetMgmt_data/transformed/battlefield_p019p8sycnclgdtc.pvr	sRGB=false
 scenes/battlefield_p02.dds#android-default	AssetMgmt_data/transformed/battlefield_p025hl2fnnclgdtc.rgba	sRGB=false

@@ -60,6 +60,9 @@ private:
 	void HighlightFields();
 	void DeHighlightFields();
 
+	//visual debuging
+	void ShowDebugOutput();
+
 private:
 	VString m_sceneFileName;
 

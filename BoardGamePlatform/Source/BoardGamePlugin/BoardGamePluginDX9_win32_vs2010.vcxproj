@@ -16,6 +16,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BehaviorWorldListener.h" />
+    <ClInclude Include="BitBoardHelper.h" />
+    <ClInclude Include="GameAI.h" />
     <ClInclude Include="SoundHelper.h" />
     <ClInclude Include="BoardGamePluginPCH.h" />
     <ClInclude Include="BrightWarriorControllerComponent.h" />
@@ -33,6 +35,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BehaviorWorldListener.cpp" />
+    <ClCompile Include="BitBoardHelper.cpp" />
+    <ClCompile Include="GameAI.cpp" />
     <ClCompile Include="SoundHelper.cpp" />
     <ClCompile Include="BrightWarriorControllerComponent.cpp" />
     <ClCompile Include="BrightWarriorEntity.cpp" />

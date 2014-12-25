@@ -1,0 +1,5 @@
+<root>
+    <Materials override="TRUE">
+        <Material name="Barbarian_Weapon_Axe" userflags="0" diffuse="..\Textures\Barbarian\Barbarian_Weapon_Axe_d.tga" normalmap="..\Textures\Barbarian\Barbarian_Weapon_Axe_d.tga" Lighting="LightGrid" pass="Auto" transparency="opaque" doublesided="FALSE" depthwrite="TRUE" datadirectoryrelative="FALSE" zbias="0,0,0" specmul="0" specexp="0.3" parallaxscale="-0.03" parallaxbias="-0.015" ambient="0,0,0,255" sortingkey="0" alphathreshold="-1" lightmapsize="128,128" lightmapgran="0" lightmapID="-1" />
+    </Materials>
+</root>

@@ -29,18 +29,11 @@ meshes/spirittrails.vmesh	Meshes/SpiritTrails.vmesh	LODSwitchDistances=
 meshes/spirittrails1.vmesh	Meshes/SpiritTrails1.vmesh	LODSwitchDistances=
 meshes/spirittrails2.vmesh	Meshes/SpiritTrails2.vmesh	LODSwitchDistances=
 models/barbarian/barbarian.model	Models/Barbarian/Barbarian.model	LODSwitchDistances=
-models/barbarian/barbarian_pauldron_l_low.model	Models/Barbarian/Barbarian_Pauldron_L_Low.model	LODSwitchDistances=
-models/barbarian/barbarian_pauldron_r_low.model	Models/Barbarian/Barbarian_Pauldron_R_Low.model	LODSwitchDistances=
-models/barbarian/barbarian_weapon_axe.model	Models/Barbarian/Barbarian_Weapon_Axe.model	LODSwitchDistances=
-models/barbarian/barbarian_weapon_sword.model	Models/Barbarian/Barbarian_Weapon_Sword.model	LODSwitchDistances=
+models/barbarian/barbarian_axe.model	Models/Barbarian/Barbarian_Axe.model	LODSwitchDistances=
 models/crown.model	Models/Crown.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.anim	Models/Dark_Warrior/Dark_warrior.anim	
 models/dark_warrior/dark_warrior.model	Models/Dark_Warrior/Dark_warrior.model	LODSwitchDistances=
 models/dark_warrior/dark_warrior.vcolmesh	Models/Dark_Warrior/Dark_warrior.vcolmesh	
-models/guardian_caster/guardian_caster.model	Models/Guardian_Caster/Guardian_Caster.model	LODSwitchDistances=
-models/guardian_caster/guardian_caster_staff.model	Models/Guardian_Caster/Guardian_Caster_Staff.model	LODSwitchDistances=
-models/guardian_melee/guardian_melee.model	Models/Guardian_Melee/Guardian_Melee.model	LODSwitchDistances=
-models/guardian_melee/guardian_melee_polearm.model	Models/Guardian_Melee/Guardian_Melee_Polearm.model	LODSwitchDistances=
 models/highlight plane_blue.model	Models/Highlight plane_blue.model	LODSwitchDistances=
 models/highlight plane_green.model	Models/Highlight plane_green.model	LODSwitchDistances=
 models/misc/charheight.model	Models/Misc/CharHeight.Model	LODSwitchDistances=
@@ -50,16 +43,15 @@ models/misc/point.model	Models/Misc/Point.Model	LODSwitchDistances=
 models/misc/sphere.model	Models/Misc/Sphere.Model	LODSwitchDistances=
 models/misc/torus.model	Models/Misc/Torus.Model	LODSwitchDistances=
 models/textures/barbarian/barbarian_belt_low_d.tga	AssetMgmt_data/transformed/barbarian_belt_low_d744vjkjclgdtc.dds	sRGB=false
-models/textures/barbarian/barbarian_belt_low_n.tga	AssetMgmt_data/transformed/barbarian_belt_low_n2c#kt30clgdtc.dds	sRGB=false
+models/textures/barbarian/barbarian_belt_low_n.tga	AssetMgmt_data/transformed/barbarian_belt_low_n02dp2f0clgdtc.dds	sRGB=false
 models/textures/barbarian/barbarian_body_low_d.tga	AssetMgmt_data/transformed/barbarian_body_low_dcyxtnzjclgdtc.dds	sRGB=false
 models/textures/barbarian/barbarian_body_low_n.tga	AssetMgmt_data/transformed/barbarian_body_low_n2k97j58clgdtc.dds	sRGB=false
-models/textures/barbarian/barbarian_pauldron_l_low_d.tga	AssetMgmt_data/transformed/barbarian_pauldron_l_logr9fgt0clgdtc.dds	sRGB=false
-models/textures/barbarian/barbarian_pualdron_r_low_d.tga	AssetMgmt_data/transformed/barbarian_pualdron_r_lo9201nm4clgdtc.dds	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_d.tga	AssetMgmt_data/transformed/barbarian_weapon_axe_dg75mrj4clgdtc.dds	sRGB=false
 models/textures/barbarian/barbarian_weapon_axe_n.tga	AssetMgmt_data/transformed/barbarian_weapon_axe_n3cql5zjclgdtc.dds	sRGB=false
-models/textures/dark_warrior/dark_warrior_bones.png	AssetMgmt_data/transformed/dark_warrior_bonesc4np19xclgdtc.dds	sRGB=false
-models/textures/dark_warrior/dark_warrior_cloth.png	AssetMgmt_data/transformed/dark_warrior_cloth1hxbnpnclgdtc.dds	sRGB=false
-models/textures/dark_warrior/dark_warrior_wepons.tga	AssetMgmt_data/transformed/dark_warrior_wepons3xczvwjclgdtc.dds	sRGB=false
+models/textures/dark_warrior/dark_warrior_bones_d.png	AssetMgmt_data/transformed/dark_warrior_bones_d6gv5t2nclgdtc.dds	sRGB=false
+models/textures/dark_warrior/dark_warrior_cloth_d.png	AssetMgmt_data/transformed/dark_warrior_cloth_db9tm7tjclgdtc.dds	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_d.tga	AssetMgmt_data/transformed/dark_warrior_wepons_d14d7grdclgdtc.dds	sRGB=false
+models/textures/dark_warrior/dark_warrior_wepons_n.tga	AssetMgmt_data/transformed/dark_warrior_wepons_n39v8pb4clgdtc.dds	sRGB=false
 models/textures/highlight_blue.png	AssetMgmt_data/transformed/highlight_blue3dxc#vxclgdtc.dds	sRGB=false
 models/textures/highlight_green.png	AssetMgmt_data/transformed/highlight_greendj5w7d4clgdtc.dds	sRGB=false
 particles/effect01.vpfx	Particles/effect01.vpfx	
@@ -81,6 +73,7 @@ particles/steam.dds	AssetMgmt_data/transformed/steamgfc5ddjclgdtc.dds	sRGB=false
 prefabs/highlight_blue.prefab	Prefabs/Highlight_blue.prefab	
 prefabs/highlight_green.prefab	Prefabs/Highlight_green.prefab	
 prefabs/terrains.prefab	Prefabs/Terrains.prefab	
+prefabs/weapon_axe.prefab	Prefabs/Weapon_Axe.prefab	
 scenes/battlefield_p01.dds	AssetMgmt_data/transformed/battlefield_p019p8sycnclgdtc.dds	sRGB=false
 scenes/battlefield_p02.dds	AssetMgmt_data/transformed/battlefield_p025hl2fnnclgdtc.dds	sRGB=false
 scenes/volume_890365b7_00000074.vmesh	Scenes/Volume_890365b7_00000074.vmesh	LODSwitchDistances=

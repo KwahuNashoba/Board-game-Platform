@@ -903,59 +903,7 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Barbarian/Barbarian_Pauldron_L_Low.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 407888330,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207191400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Barbarian/Barbarian_Pauldron_R_Low.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Barbarian_Pualdron_R_Low_d.tga",
-                    "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 1161906109,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207306400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Barbarian/Barbarian_Weapon_Axe.model": {
+        "Models/Barbarian/Barbarian_Axe.model": {
             "AssetType": "Model",
             "Common": {
                 "Tags": "__NEW_ASSET__",
@@ -971,34 +919,7 @@
             "File": {
                 "Hash": 143796790,
                 "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207384400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Barbarian/Barbarian_Weapon_Sword.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Barbarian_Weapon_Sword_d.tga",
-                    "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2085763052,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207528400000
+                "LastEditTime": 1419291633545000000
             },
             "Model": {
                 "LODSwitchDistances": [
@@ -1108,114 +1029,6 @@
                 "Hash": 1478402706,
                 "TimeStamp": 1418343312044400000,
                 "LastEditTime": 1418343323512400000
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Guardian_Caster/Guardian_Caster.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Guardian_Caster_Body_D.tga",
-                    "Shaders/MobileShadersFog.ShaderLib",
-                    "Textures/Cubemap_Specular_01.dds"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2109750518,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207792400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Guardian_Caster/Guardian_Caster_Staff.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Guardian_Caster_Weapon_Staff_d.tga",
-                    "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2875749805,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319207924400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Guardian_Melee/Guardian_Melee.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Guardian_Melee_Body_D.tga",
-                    "Shaders/MobileShadersFog.ShaderLib",
-                    "Textures/Cubemap_Specular_01.dds"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 3316904348,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319208022400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Guardian_Melee/Guardian_Melee_Polearm.model": {
-            "AssetType": "Model",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-                    "Models/Textures/Guardian_Melee_Weapon_Polearm_d.tga",
-                    "Shaders/BaseShaders.ShaderLib",
-                    "Shaders/vMaterial.ShaderLib"
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 3649161943,
-                "TimeStamp": 1395972948000000000,
-                "LastEditTime": 1418319208124400000
-            },
-            "Model": {
-                "LODSwitchDistances": [
-
-                ]
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -1453,8 +1266,8 @@
             },
             "File": {
                 "Hash": 1913868428,
-                "TimeStamp": 1395972972000000000,
-                "LastEditTime": 1418161780187000000
+                "TimeStamp": 1395972948000000000,
+                "LastEditTime": 1419296576167000000
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -1479,9 +1292,9 @@
                 ]
             },
             "File": {
-                "Hash": 637417752,
-                "TimeStamp": 1395972972000000000,
-                "LastEditTime": 1418161784900000000
+                "Hash": 20095592,
+                "TimeStamp": 1419296844563000000,
+                "LastEditTime": 1419296878073000000
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -1548,60 +1361,6 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Textures/Barbarian/Barbarian_Pauldron_L_Low_d.tga": {
-            "AssetType": "Texture",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 3953503944,
-                "TimeStamp": 1395972972000000000,
-                "LastEditTime": 1418161794527000000
-            },
-            "Texture": {
-                "FileFormat": "TGA",
-                "Width": 256,
-                "Height": 256,
-                "HasAlpha": false,
-                "sRGB": false
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
-        "Models/Textures/Barbarian/Barbarian_Pualdron_R_Low_d.tga": {
-            "AssetType": "Texture",
-            "Common": {
-                "Tags": "__NEW_ASSET__",
-                "Dependencies": [
-
-                ],
-                "Variants": [
-
-                ]
-            },
-            "File": {
-                "Hash": 2432709785,
-                "TimeStamp": 1395972972000000000,
-                "LastEditTime": 1418161794667000000
-            },
-            "Texture": {
-                "FileFormat": "TGA",
-                "Width": 256,
-                "Height": 256,
-                "HasAlpha": false,
-                "sRGB": false
-            },
-            "Transformations": {
-                "TemplateName": "Default"
-            }
-        },
         "Models/Textures/Barbarian/Barbarian_Weapon_Axe_d.tga": {
             "AssetType": "Texture",
             "Common": {
@@ -1656,7 +1415,7 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Textures/Dark_Warrior/Dark_Warrior_bones.png": {
+        "Models/Textures/Dark_Warrior/Dark_Warrior_bones_d.png": {
             "AssetType": "Texture",
             "Common": {
                 "Tags": "__NEW_ASSET__",
@@ -1668,9 +1427,9 @@
                 ]
             },
             "File": {
-                "Hash": 2869008987,
-                "TimeStamp": 1419269589364000000,
-                "LastEditTime": 1419269592132000000
+                "Hash": 1734916373,
+                "TimeStamp": 1419274835332000000,
+                "LastEditTime": 1419297363749000000
             },
             "Texture": {
                 "FileFormat": "PNG",
@@ -1683,7 +1442,7 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Textures/Dark_Warrior/Dark_Warrior_cloth.png": {
+        "Models/Textures/Dark_Warrior/Dark_Warrior_cloth_d.png": {
             "AssetType": "Texture",
             "Common": {
                 "Tags": "__NEW_ASSET__",
@@ -1695,9 +1454,9 @@
                 ]
             },
             "File": {
-                "Hash": 1877419452,
-                "TimeStamp": 1419272317608000000,
-                "LastEditTime": 1419272318669000000
+                "Hash": 2766563276,
+                "TimeStamp": 1419272672807000000,
+                "LastEditTime": 1419297345681000000
             },
             "Texture": {
                 "FileFormat": "PNG",
@@ -1710,7 +1469,7 @@
                 "TemplateName": "Default"
             }
         },
-        "Models/Textures/Dark_Warrior/Dark_Warrior_wepons.tga": {
+        "Models/Textures/Dark_Warrior/Dark_Warrior_wepons_d.tga": {
             "AssetType": "Texture",
             "Common": {
                 "Tags": "__NEW_ASSET__",
@@ -1722,9 +1481,36 @@
                 ]
             },
             "File": {
-                "Hash": 1043323612,
-                "TimeStamp": 1418484424181000000,
-                "LastEditTime": 1418753283162400000
+                "Hash": 305196731,
+                "TimeStamp": 1419276962235000000,
+                "LastEditTime": 1419297463478000000
+            },
+            "Texture": {
+                "FileFormat": "TGA",
+                "Width": 1024,
+                "Height": 1024,
+                "HasAlpha": false,
+                "sRGB": false
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Models/Textures/Dark_Warrior/Dark_Warrior_wepons_n.tga": {
+            "AssetType": "Texture",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 887690577,
+                "TimeStamp": 1419297441553000000,
+                "LastEditTime": 1419297468523000000
             },
             "Texture": {
                 "FileFormat": "TGA",
@@ -2264,6 +2050,26 @@
                 "Hash": 3639415605,
                 "TimeStamp": 1418076268257200000,
                 "LastEditTime": 1418076271040200000
+            },
+            "Transformations": {
+                "TemplateName": "Default"
+            }
+        },
+        "Prefabs/Weapon_Axe.prefab": {
+            "AssetType": "Prefab",
+            "Common": {
+                "Tags": "__NEW_ASSET__",
+                "Dependencies": [
+
+                ],
+                "Variants": [
+
+                ]
+            },
+            "File": {
+                "Hash": 3787866996,
+                "TimeStamp": 1419294847499000000,
+                "LastEditTime": 1419294848609000000
             },
             "Transformations": {
                 "TemplateName": "Default"
@@ -5859,40 +5665,10 @@
             "TimeStamp": 0,
             "LastEditTime": 1416057447469800000
         },
-        "Models/Textures/Barbarian_Pualdron_R_Low_d.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057447788800000
-        },
         "Models/Textures/Barbarian_Weapon_Axe_d.tga": {
             "Hash": 0,
             "TimeStamp": 0,
-            "LastEditTime": 1416057447908800000
-        },
-        "Models/Textures/Barbarian_Weapon_Sword_d.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057448081800000
-        },
-        "Models/Textures/Guardian_Caster_Body_D.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057446913800000
-        },
-        "Models/Textures/Guardian_Caster_Weapon_Staff_d.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057447171800000
-        },
-        "Models/Textures/Guardian_Melee_Body_D.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057446502800000
-        },
-        "Models/Textures/Guardian_Melee_Weapon_Polearm_d.tga": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057446736800000
+            "LastEditTime": 1419291632525000000
         },
         "Models/Textures/magic_02_d.tga": {
             "Hash": 0,
@@ -5918,11 +5694,6 @@
             "Hash": 0,
             "TimeStamp": 0,
             "LastEditTime": 1367313600118715300
-        },
-        "Textures/Cubemap_Specular_01.dds": {
-            "Hash": 0,
-            "TimeStamp": 0,
-            "LastEditTime": 1416057446502800000
         },
         "Textures/Dif.psd": {
             "Hash": 0,
