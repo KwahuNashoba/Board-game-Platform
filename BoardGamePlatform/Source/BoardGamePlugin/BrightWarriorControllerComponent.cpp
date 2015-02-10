@@ -118,7 +118,6 @@ void BG_BrightWarriorControllerState::Moving::OnTick(BG_ControllerComponent *con
 void BG_BrightWarriorControllerState::MeleeAttacking::OnEnterState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnEnterState(controller);
-	//TODO: create effects
 }
 
 void BG_BrightWarriorControllerState::MeleeAttacking::OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent)

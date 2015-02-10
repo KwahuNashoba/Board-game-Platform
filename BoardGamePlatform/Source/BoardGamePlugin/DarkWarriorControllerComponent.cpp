@@ -120,7 +120,6 @@ void BG_DarkWarriorControllerState::Moving::OnTick(BG_ControllerComponent *const
 void BG_DarkWarriorControllerState::MeleeAttacking::OnEnterState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnEnterState(controller);
-	//TODO: create effects
 }
 
 void BG_DarkWarriorControllerState::MeleeAttacking::OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent)

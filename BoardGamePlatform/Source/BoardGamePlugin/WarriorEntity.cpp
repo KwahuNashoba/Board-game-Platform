@@ -6,10 +6,14 @@
 #include "WarriorEntity.h"
 
 #include <Vision\Runtime\EnginePlugins\Havok\HavokPhysicsEnginePlugin\vHavokCharacterController.hpp>
-#include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
 
+#include <Vision\Runtime\EnginePlugins\Havok\HavokBehaviorEnginePlugin\vHavokBehaviorComponent.hpp>
 #include <Behavior/Behavior/Event/hkbEventQueue.h>
 #include <Behavior/Behavior/World/hkbWorld.h>
+
+#include <Vision/Runtime/Base/Types/VType.hpp>
+
+#include <Vision\Runtime\EnginePlugins\VisionEnginePlugin\Rendering\Effects\BlobShadow.hpp>
 
 
 V_IMPLEMENT_SERIAL(BG_WarriorEntity, VisBaseEntity_cl, 0, &g_BoardGamePluginModule);
@@ -29,7 +33,6 @@ BG_WarriorEntity::BG_WarriorEntity()
 	m_sensorSize(128.0f),
 	m_desiredSpeed(100.0f),
 	m_dead(false),
-	m_dying(false),
 	m_timeOfDeath(0.0f)
 {
 	for(int i = 0; i<BG_WarriorAnimationEvent::kAnimationEventCount; i++)
@@ -92,11 +95,15 @@ void BG_WarriorEntity::PostInitialize()
 	m_characterController->SetPosition(GetPosition());
 	AddComponent(m_characterController);
 	//m_characterController->SetDebugRendering(true);
+
+	//attach blob shadow
+	VBlobShadow *blobShadow = new VBlobShadow();
+	blobShadow->SetSize(50.f,0.f);
+	blobShadow->SetColor(VColorRef(UBYTE(128),UBYTE(128),UBYTE(128), UBYTE(13)));
+	AddComponent(blobShadow);
 	
 	//Used to put warrior back on board after deserialization
-	GameManager::GlobalManager().AddWarrior(this, (int)GetPosition().x/BG_WARRIOR_MODEL_WIDTH, (int)GetPosition().y/BG_WARRIOR_MODEL_WIDTH);
-
-	//TODO: create ambient character effects
+	//GameManager::GlobalManager().SetWarrior(this, (int)GetPosition().x/BG_WARRIOR_MODEL_WIDTH, (int)GetPosition().y/BG_WARRIOR_MODEL_WIDTH);
 }
 
 //Called to shut down the character
@@ -117,7 +124,7 @@ void BG_WarriorEntity::ThinkFunction()
 	if(IsDead())
 	{
 		float timeDif = Vision::GetTimer()->GetTime() - m_timeOfDeath;
-		if(timeDif > 4)
+		if(timeDif > 2)
 			DisposeObject();
 		return;
 	}
@@ -151,14 +158,18 @@ void BG_WarriorEntity::Die()
 	m_dead = true;
 	m_timeOfDeath = Vision::GetTimer()->GetTime();
 
-	//TODO: stop all effects
 	m_soundHelper->PlayFromPosition(BG_SoundEvent::eDie, GetPosition());
+
 	m_soundHelper->DeInitSoundEffects();
 	m_soundHelper = NULL;
 
 	RaiseAnimationEvent(BG_WarriorAnimationEvent::kDie);
 
-	//TODO: obrisi senku
+	VBlobShadow *blobShadow = static_cast<VBlobShadow *>(Components().GetComponentOfType(V_RUNTIME_CLASS(VBlobShadow)));
+	if(blobShadow)
+	{
+	RemoveComponent(blobShadow);
+	}
 
 	SetController(NULL);
 
@@ -169,17 +180,14 @@ void BG_WarriorEntity::Die()
 
 	SetCollisionMesh(NULL);
 
-	//TODO: napravi effect za umiranje
+	//Remove reference to this entity in board matrix
+	GameManager::GlobalManager().SetWarrior(NULL, GetPosition().x/BG_WARRIOR_MODEL_WIDTH, GetPosition().y/BG_WARRIOR_MODEL_WIDTH);
+
 }
 
 bool BG_WarriorEntity::IsDead() const
 {
 	return m_dead;
-}
-
-bool BG_WarriorEntity::IsDying() const
-{
-	return m_dying;
 }
 
 float BG_WarriorEntity::GetCollisionRadius() const

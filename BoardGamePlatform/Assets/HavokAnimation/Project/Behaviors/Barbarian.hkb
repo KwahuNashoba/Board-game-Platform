@@ -574,7 +574,7 @@
                         </MangledTargetNames>
                     </anyType>
                     <anyType xsi:type="xsd:string" />
-                    <anyType xsi:type="xsd:string" />
+                    <anyType xsi:type="xsd:string">onUpdateMove()</anyType>
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />

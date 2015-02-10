@@ -80,11 +80,8 @@ public:
 	void RaiseAnimationEvent(BG_WarriorAnimationEvent::Enum animationEvent);
 	void SetAnimationVariable(BG_WarriorAnimationVariable::Enum animationVariable, float value);
 
-	//Effects TODO: add functions regarding effects
-
 	virtual void Die();
 	bool IsDead() const;
-	bool IsDying() const; //TODO: proveri da li ovo treba
 
 	void InitAnimationEventIds();
 	void InitAnimationVariableIds();
@@ -124,7 +121,6 @@ protected:
 	float m_desiredSpeed;
 
 	bool m_dead;
-	bool m_dying;
 	float m_timeOfDeath;
 
 	int m_animationEventIds[BG_WarriorAnimationEvent::kAnimationEventCount];

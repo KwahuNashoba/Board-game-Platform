@@ -51,6 +51,8 @@ public:
 	void SetNextTarget();
 	BG_WarriorEntity* GetTarget() const { return vstatic_cast<BG_WarriorEntity*>(m_currentTarget); }
 	
+
+
 	void SetTargetPoint(hkvVec3 const& targetPoint) { m_targetPoint = targetPoint; }
 	hkvVec3 const& GetTargetPoint() { return m_targetPoint; }
 
@@ -115,6 +117,7 @@ namespace BG_ControllerState
 	class Moving : public BG_ControllerStateBase
 	{
 		void OnEnterState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
+		//void OnProcessAnimationEvent(BG_ControllerComponent *const controller, hkbEvent const& animationEvent) HKV_OVERRIDE;
 		void OnTick(BG_ControllerComponent *const controller, float deltaTime) HKV_OVERRIDE;
 		void OnExitState(BG_ControllerComponent *const controller) HKV_OVERRIDE;
 

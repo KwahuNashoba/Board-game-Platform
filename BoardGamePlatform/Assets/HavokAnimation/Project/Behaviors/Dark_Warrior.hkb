@@ -156,8 +156,8 @@
                 <MangledName>__local__:HavokTools.hkState:Idle:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>68.52217</X>
-            <Y>141.151352</Y>
+            <X>87.5609055</X>
+            <Y>99.68796</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:Dark Warrior_attack.HKT_to_Dark Warrior_idle.HKT:StateTo</string>
@@ -447,8 +447,8 @@
                 <MangledName>__local__:HavokTools.hkState:Attack:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>231.039276</X>
-            <Y>178.481812</Y>
+            <X>207.314926</X>
+            <Y>208.700943</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:Dark Warrior_idle.HKT_to_Dark Warrior_attack.HKT:StateTo</string>
@@ -546,8 +546,8 @@
                 <MangledName>__local__:HavokTools.hkState:IdleFidget:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>-9.149097</X>
-            <Y>205.461914</Y>
+            <X>14.2968788</X>
+            <Y>221.04007</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:Idle_to_IdleFidget:StateTo</string>
@@ -903,9 +903,9 @@
                 <MangledTargetNames />
             </CurrentStateIDVariable>
             <MaxSimultaneousTransitions>32</MaxSimultaneousTransitions>
-            <OffsetX>31.2248459</OffsetX>
-            <OffsetY>-29.78836</OffsetY>
-            <Zoom>1.211001</Zoom>
+            <OffsetX>-2.82776642</OffsetX>
+            <OffsetY>-59.99768</OffsetY>
+            <Zoom>1.29856789</Zoom>
             <WrapAroundStateID>false</WrapAroundStateID>
             <SelfTransitionMode>DontTransition</SelfTransitionMode>
         </hkStateMachine>
@@ -1131,8 +1131,8 @@
                 <MangledName>__local__:HavokTools.hkState:Move:ParentNodes</MangledName>
             </ParentNodes>
             <Notes />
-            <X>97.33333</X>
-            <Y>278</Y>
+            <X>112.52169</X>
+            <Y>299.683044</Y>
             <TransitionsIn>
                 <MangledTargetNames>
                     <string>__local__:HavokTools.hkTransition:Dark Warrior_idle.HKT_to_Move:StateTo</string>
@@ -1812,7 +1812,7 @@
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
-                    <anyType xsi:type="xsd:string">onHandleEventMeleeAttack()</anyType>
+                    <anyType xsi:type="xsd:string" />
                     <anyType xsi:type="xsd:string" />
                 </Values>
             </ParameterList>

@@ -74,7 +74,7 @@ BG_Plugin g_BoardGamePlugin;
 DECLARE_THIS_MODULE(g_BoardGamePluginModule, MAKE_VERSION(1,0),
                     "Board game Plugin", 
                     "danilo.hadzi.pesic@gmail.com",
-					"Plugin that allows implementing logic board games based on black vs white \"dots\" such as Five in a row, Checkers...etc"
+					"Plugin that allows implementing logic board games based on black vs white \"dots\" such as Lines in action, Checkers...etc"
 					, &g_BoardGamePlugin);
 
 

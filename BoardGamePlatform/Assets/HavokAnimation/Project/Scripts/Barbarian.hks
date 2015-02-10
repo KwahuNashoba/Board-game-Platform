@@ -13,6 +13,10 @@ function g_characterProperties:update()
 	self.m_idleTime = self.m_idleTime + hkbGetTimestep();
 end
 
+function ShouldMove()
+	return (hkbGetVariable("MoveSpeed") >= g_characterProperties.m_idleToMoveThreshold);
+end
+
 function ShouldFidget()
 	return (hkbIsNodeActive("Idle_Fidget") == false and g_characterProperties.m_idleTime >= g_characterProperties.m_randomFidgetInterval);
 end
@@ -41,8 +45,20 @@ function onActivateIdle()
 end
 
 function onUpdateIdle()
-	if (ShouldFidget()) then
+	if (ShouldMove()) then
+		hkbFireEvent("Move");
+	elseif (ShouldFidget()) then
 		DoFidget();
+	end
+end
+
+-- /////////////////////////////////////////////////////////////////////////////
+-- Move State
+-- /////////////////////////////////////////////////////////////////////////////
+function onUpdateMove()	
+	-- should we return to idle?
+	if (ShouldMove() == false) then
+		hkbFireEvent("MoveEnd");
 	end
 end
 

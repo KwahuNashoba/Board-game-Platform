@@ -6,6 +6,8 @@
 class BG_GameLogic : public VRefCounter
 {
 public:
+	//constructor of derived class should initiate board structure and its start state
+	//using BG_BoardState template class
 	BG_GameLogic();
 
 	//returns array of possible moves for currently selected player
@@ -21,8 +23,4 @@ public:
 };
 
 #endif
-
-//TODO: vidi gde ces da cuvas podatke o tome ko od igraca je komp
-//mozes da ih cuvas ovde i iniciras ih kad kreiras klasu -> menadzer nema pojma da postoji AI
-//mozes u menadzeru -> menadzer poziva direktno AI funkcije
 

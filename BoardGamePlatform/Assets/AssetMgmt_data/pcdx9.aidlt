@@ -74,13 +74,13 @@ prefabs/highlight_blue.prefab	Prefabs/Highlight_blue.prefab
 prefabs/highlight_green.prefab	Prefabs/Highlight_green.prefab	
 prefabs/terrains.prefab	Prefabs/Terrains.prefab	
 prefabs/weapon_axe.prefab	Prefabs/Weapon_Axe.prefab	
-scenes/battlefield_p01.dds	AssetMgmt_data/transformed/battlefield_p019p8sycnclgdtc.dds	sRGB=false
-scenes/battlefield_p02.dds	AssetMgmt_data/transformed/battlefield_p025hl2fnnclgdtc.dds	sRGB=false
+scenes/battlefield_p01.dds	AssetMgmt_data/transformed/battlefield_p010dv7sm4clgdtc.dds	sRGB=false
+scenes/battlefield_p02.dds	AssetMgmt_data/transformed/battlefield_p027f58j7sclgdtc.dds	sRGB=false
 scenes/volume_890365b7_00000074.vmesh	Scenes/Volume_890365b7_00000074.vmesh	LODSwitchDistances=
 scenes/volume_890365b7_000000ba.vmesh	Scenes/Volume_890365b7_000000ba.vmesh	LODSwitchDistances=
 shaders/misc_00/multassigned.bmp	AssetMgmt_data/transformed/multassigned824c8cnclgdtc.dds	sRGB=false
 terrains/auxiliarytextures/diffusereplacement_00_00.dds	AssetMgmt_data/transformed/diffusereplacement_00_000q9prsclgdtc.dds	sRGB=false
-terrains/auxiliarytextures/normalmap_00_00.dds	AssetMgmt_data/transformed/normalmap_00_004mp8wfdclgdtc.dds	sRGB=false
+terrains/auxiliarytextures/normalmap_00_00.dds	AssetMgmt_data/transformed/normalmap_00_0002y1cj4clgdtc.dds	sRGB=false
 terrains/auxiliarytextures/weightmap0_00_00.dds	AssetMgmt_data/transformed/weightmap0_00_00cmc6gssclgdtc.dds	sRGB=false
 terrains/auxiliarytextures/weightmap1_00_00.dds	AssetMgmt_data/transformed/weightmap1_00_0016xx97sclgdtc.dds	sRGB=false
 terrains/meshes/sector_00_00.vcolmesh	Terrains/Meshes/Sector_00_00.vcolmesh	

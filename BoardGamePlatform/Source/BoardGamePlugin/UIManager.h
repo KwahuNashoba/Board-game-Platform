@@ -8,13 +8,16 @@
 class BG_ControllerComponent;
 typedef VSmartPtr<BG_ControllerComponent> BG_ControllerComponentPtr;
 
-enum BG_Inputs
+namespace BG_Inputs
 {
-	iInvalid = -1,
-	iClickTouch = 0,
+	enum Enum
+	{
+		iInvalid = -1,
+		iClickTouch = 0,
 
-	iCount
-};
+		iCount
+	};
+}
 
 class BG_UIManager : public VDialog
 {
@@ -28,7 +31,6 @@ private:
 	void OnActivate() HKV_OVERRIDE;
 	void OnDeactivate() HKV_OVERRIDE;
 	void OnTick(float deltaTime) HKV_OVERRIDE;
-	//VCursor *GetCurrentCursor(VGUIUserInfo_t& user) HKV_OVERRIDE; //TODO: nisam siguran da ovo treba
 
 	bool GetClosestPointOnNavMeshUnderCursor(hkVector4& point);
 

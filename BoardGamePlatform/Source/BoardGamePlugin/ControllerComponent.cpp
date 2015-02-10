@@ -41,7 +41,7 @@ BG_ControllerComponent::BG_ControllerComponent(int id, int componentFlag)
 	: IVObjectComponent(id, componentFlag),
 	m_currentStateId(BG_ControllerStateId::kIdling),
 	m_settingState(false),
-	m_sensorSize(100.0f),
+	m_sensorSize(30.0f),
 	m_desiredSpeed(100.0f),
 	m_cachedDirection(0.0f, 0.0f, 0.0f),
 	m_cachedSpeed(0.0f),
@@ -95,7 +95,7 @@ void BG_ControllerComponent::CancelRequestedPath()
 float BG_ControllerComponent::GetPathGoalReachedTolerance() const
 {
 	hkaiPathFollowingBehavior* pathFollowingBehavior = static_cast<hkaiPathFollowingBehavior*>(m_aiBehavior.val());
-	float const radiusMultiplier = hkvMath::Max(0.0f, pathFollowingBehavior->getCharacterRadiusMultiplier() - 1.0f);
+	float const radiusMultiplier = hkvMath::Max(0.0f, pathFollowingBehavior->getCharacterRadiusMultiplier() - 1.f);
 	float const tolerance = m_aiCharacter->getRadius() * radiusMultiplier + pathFollowingBehavior->getPathFollowingProperties()->m_goalDistTolerance;
 	return HK2VIS_FLOAT_SCALED(tolerance);
 }
@@ -148,7 +148,7 @@ void BG_ControllerComponent::OnTick(float deltaTime)
 	hkaiCharacter *const aiCharacter = m_aiCharacter;
 
 	hkaiCharacterUtil::ProjectToMeshSettings projectToMeshSettings;
-	//apply motion info to controlled mesh and move the mesh
+	//apply motion info to ai character and project it to navmesh
 	hkaiCharacterUtil::integrateMotionAndProjectToMesh(deltaTime, aiWorld, &aiCharacter, 1, projectToMeshSettings);
 
 	//perform additional processing specific to current state
@@ -201,6 +201,7 @@ void BG_ControllerComponent::SetOwner(VisTypedEngineObject_cl* newOwner)
 		//set bounding box parameters
 		avoidanceProperties->m_localSensorAabb.m_max.setAll3(sensorSize);
 		avoidanceProperties->m_localSensorAabb.m_min.setNeg3(avoidanceProperties->m_localSensorAabb.m_max);
+		avoidanceProperties->m_dodgingPenalty = 10;
 
 		hkaiCharacter::Cinfo characterInfo;
 		vHavokConversionUtils::VisVecToPhysVecLocal(position, characterInfo.m_initialPosition);
@@ -317,7 +318,6 @@ void BG_ControllerState::Moving::OnEnterState(BG_ControllerComponent *const cont
 {
 	BG_ControllerStateBase::OnEnterState(controller);
 	BG_WarriorEntity *const warriorEntity = controller->GetWarriorEntity();
-	//TODO: create moving effect
 	controller->SetFinalDirection();
 	controller->SetNextTarget();
 	warriorEntity->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMove);
@@ -331,7 +331,6 @@ void BG_ControllerState::Moving::OnTick(BG_ControllerComponent *controller, floa
 	BG_WarriorEntity *target = controller->GetTarget();
 	hkvVec3 targetPoint;
 
-	//TODO: sto bi ti se ovo ispitivalo svakog frejma kad su mete staticne i ne beze
 	//KILL 'EM ALL!
 	if(target)
 	{
@@ -376,7 +375,7 @@ void BG_ControllerState::Moving::OnTick(BG_ControllerComponent *controller, floa
 
 	hkvVec3 direction;
 	BG_ControllerHelper::CalcDirection(direction, warrior->GetDirection(), controller->GetDirection(), 0.25);
-	controller->GetWarriorEntity()->SetDirection(direction);
+	warrior->SetDirection(direction);
 }
 
 void BG_ControllerState::Moving::OnExitState(BG_ControllerComponent *const controller)
@@ -384,7 +383,6 @@ void BG_ControllerState::Moving::OnExitState(BG_ControllerComponent *const contr
 	BG_ControllerStateBase::OnExitState(controller);
 	BG_WarriorEntity *const warriorEntity = controller->GetWarriorEntity();
 	controller->CancelRequestedPath();
-	//TODO: pause moving effect
 	warriorEntity->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMoveEnd);
 }
 
@@ -394,10 +392,8 @@ void BG_ControllerState::Moving::OnExitState(BG_ControllerComponent *const contr
 void BG_ControllerState::MeleeAttacking::OnEnterState(BG_ControllerComponent *const controller)
 {
 	BG_ControllerStateBase::OnEnterState(controller);
-
+	
 	controller->GetWarriorEntity()->RaiseAnimationEvent(BG_WarriorAnimationEvent::kMeleeAttack);
-
-	//TODO: probaj jos ovde da mu kazes da se okrene prema meti, mada mozda ce i da stigne da se se okrene kad pozoves Die() i pravom trenutku
 }
 
 void BG_ControllerState::MeleeAttacking::OnTick(BG_ControllerComponent *controller, float deltaTime)
@@ -408,7 +404,7 @@ void BG_ControllerState::MeleeAttacking::OnTick(BG_ControllerComponent *controll
 
 	if(target)
 	{
-		BG_ControllerHelper::FaceTowards(controller, target->GetPosition(), deltaTime);
+		BG_ControllerHelper::FaceTowards(controller, target->GetPosition(), 0.3);
 	}
 }
 
@@ -432,9 +428,12 @@ void BG_ControllerState::MeleeAttacking::OnProcessAnimationEvent(BG_ControllerCo
 //Helper functions
 void BG_ControllerHelper::CalcDirection(hkvVec3& resultDirection, hkvVec3& currentDirection, hkvVec3& desiredDirection, float t)
 {
+	// if |a| == |b| == 1 then a.x*b.x + a.y*b.y == 1 if they are colinear - same goes for 3D vectors
+	//the lower the value the wider the angle
 	if(currentDirection.dot(desiredDirection) < 0.99f)
 	{
 		float const dot = currentDirection.dot(desiredDirection);
+		//compute angle difference of current and desired direction(acos(dot)) and get portion of it in %(t parameter)
 		float const theta = hkvMath::acosRad(dot) * hkvMath::clamp(t, 0.f, 1.f);
 		hkvVec3 const vec = (desiredDirection - currentDirection * dot).getNormalized();
 		resultDirection = currentDirection * hkvMath::cosRad(theta) + vec * hkvMath::sinRad(theta);
@@ -484,6 +483,7 @@ void BG_ControllerHelper::FaceTowards(BG_ControllerComponent* controller, hkvVec
 	{
 		BG_ControllerHelper::CalcDirection(dir, controller->GetWarriorEntity()->GetDirection(), fromToProjectedDir, t);
 	}
+	controller->GetWarriorEntity()->SetDirection(dir);
 }
 
 void BG_ControllerHelper::GetProjectedDirAndDistFromTarget(BG_WarriorEntity const* warrior, BG_WarriorEntity *const target, hkvVec3& outDir, float& outDst)
@@ -563,6 +563,4 @@ hkBool32 LocalSteeringFilter::isCharacterEnabled(hkaiCharacter const *aiCharacte
 hkBool32 LocalSteeringFilter::isObstacleEnabled(hkaiCharacter const *aiCharacter, hkaiObstacleGenerator const *otherObstacle) const
 {
 	return 1;
-	//TODO: proveri ovo!!! stavio sam da vraca uvek true posto bi u igri trebalo da napada samo entitije koji imaju aiCharactere
-	//a to bi trebalo da resi funkcija iznad
 }

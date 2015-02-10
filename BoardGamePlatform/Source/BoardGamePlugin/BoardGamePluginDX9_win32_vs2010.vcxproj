@@ -17,7 +17,9 @@
   <ItemGroup>
     <ClInclude Include="BehaviorWorldListener.h" />
     <ClInclude Include="BitBoardHelper.h" />
-    <ClInclude Include="GameAI.h" />
+    <ClInclude Include="BoardState.h" />
+    <ClInclude Include="CheckersAITask.h" />
+    <ClInclude Include="AITask.h" />
     <ClInclude Include="SoundHelper.h" />
     <ClInclude Include="BoardGamePluginPCH.h" />
     <ClInclude Include="BrightWarriorControllerComponent.h" />
@@ -36,7 +38,8 @@
   <ItemGroup>
     <ClCompile Include="BehaviorWorldListener.cpp" />
     <ClCompile Include="BitBoardHelper.cpp" />
-    <ClCompile Include="GameAI.cpp" />
+    <ClCompile Include="CheckersAITask.cpp" />
+    <ClCompile Include="AITask.cpp" />
     <ClCompile Include="SoundHelper.cpp" />
     <ClCompile Include="BrightWarriorControllerComponent.cpp" />
     <ClCompile Include="BrightWarriorEntity.cpp" />
@@ -105,7 +108,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'">
     <ClCompile>
       <AdditionalOptions>/MP  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TESTCOMPONENT_EXPORTS;SAMPLEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TESTCOMPONENT_EXPORTS;SAMPLEPLUGIN_EXPORTS;EFFECTSMODULE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>BoardGamePluginPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)BoardGamePluginPCH.pch</PrecompiledHeaderOutputFile>

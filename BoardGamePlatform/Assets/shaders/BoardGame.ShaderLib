@@ -2852,6 +2852,7 @@ struct VS_OUT
 
   return Out;                              
 }
+
   }$SOURCECODETAG
 
   vs_function = "vs_main";
@@ -2888,8 +2889,6 @@ struct VS_OUT
 #define USE_UV0
 
 
-
-
 #ifdef PREVIEW
 			
 			texture Base_Texture; //TEX 
@@ -2911,6 +2910,8 @@ struct VS_OUT
 			#endif
 
 			#endif
+
+
 
 
 
@@ -3311,81 +3312,81 @@ inline float2 GetScreenTexCoords(PS_IN In)
   
   
 /*!float
-2
+-0.5
 */
-//! MARKER - 1cbaa0c801eb4eeeb48292c442f2d6a6
+//! MARKER - b0f78ef826cb470b9f402248e47cb212
+#ifdef PREVIEW
+			float4 VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df = tex2D( BaseTexture_Sampler, In.UV0AND1.xy );
+			#else			
+			float4 VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df = vTex2D( BaseTexture, BaseTexture_Sampler, In.UV0AND1.xy );
+			#endif
+/*!float
+VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.r
+*/
+/*!float
+VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.g
+*/
+/*!float
+VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.b
+*/
+/*!float
+VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.a
+*/
+/*!float4
+VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df
+*/
+//! MARKER - e1ebe38c69ee498db791c40800810b07
 
 /*!float
 0.3
 */
 //! MARKER - 677648f643bb4dfca71242b33b263473
-float VAR_Time_8c87a24340be443c823608e993670ddc = gTime.x * 2;
-/*!float
-VAR_Time_8c87a24340be443c823608e993670ddc
-*/
-//! MARKER - 55d000d1e2bc4c3f98508b052b4fcbee
-#ifdef PREVIEW
-			float4 VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961 = tex2D( BaseTexture_Sampler, In.UV0AND1.xy );
-			#else			
-			float4 VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961 = vTex2D( BaseTexture, BaseTexture_Sampler, In.UV0AND1.xy );
-			#endif
-/*!float
-VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.r
-*/
-/*!float
-VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.g
-*/
-/*!float
-VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.b
-*/
-/*!float
-VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.a
-*/
-/*!float4
-VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961
-*/
-//! MARKER - e1ebe38c69ee498db791c40800810b07
 
 /*!float
--0.5
+2
 */
-//! MARKER - b0f78ef826cb470b9f402248e47cb212
-float VAR_Sine_584ea14077a34566b77f384438a75168 = sin( VAR_Time_8c87a24340be443c823608e993670ddc );
+//! MARKER - 1cbaa0c801eb4eeeb48292c442f2d6a6
+float VAR_Time_5f8c9cc772fb4435bd5a40d9a5341a11 = gTime.x * 2;
 /*!float
-VAR_Sine_584ea14077a34566b77f384438a75168
+VAR_Time_5f8c9cc772fb4435bd5a40d9a5341a11
+*/
+//! MARKER - 55d000d1e2bc4c3f98508b052b4fcbee
+float VAR_Sine_e6da6e5d87724027aef8896d0ac73bac = sin( VAR_Time_5f8c9cc772fb4435bd5a40d9a5341a11 );
+/*!float
+VAR_Sine_e6da6e5d87724027aef8896d0ac73bac
 */
 //! MARKER - 2615d59240e04b29aa113c0cb72ef51f
-float VAR_Abs_60814e32ab7846af81cafe73fcceed82 = abs( VAR_Sine_584ea14077a34566b77f384438a75168 );
+float VAR_Abs_b33cbed183fb4a0c8b32fba35095793b = abs( VAR_Sine_e6da6e5d87724027aef8896d0ac73bac );
 /*!float
-VAR_Abs_60814e32ab7846af81cafe73fcceed82
+VAR_Abs_b33cbed183fb4a0c8b32fba35095793b
 */
 //! MARKER - 942cb5c5f4b04a3e8e6843e9236a447a
-float VAR_Multiply_e183bf53f0c14736b416d461d1b85f3f = (VAR_Abs_60814e32ab7846af81cafe73fcceed82 * -0.5);
+float VAR_Multiply_2dd6a79b961a482fb0dd0bc40c6c4ed2 = (0.3 * VAR_Abs_b33cbed183fb4a0c8b32fba35095793b);
 /*!float
-VAR_Multiply_e183bf53f0c14736b416d461d1b85f3f
-*/
-//! MARKER - 1e837277b85f4de4bd0a6045eb725141
-float VAR_Multiply_f03668541ea747a8be40023a17043e31 = (0.3 * VAR_Abs_60814e32ab7846af81cafe73fcceed82);
-/*!float
-VAR_Multiply_f03668541ea747a8be40023a17043e31
+VAR_Multiply_2dd6a79b961a482fb0dd0bc40c6c4ed2
 */
 //! MARKER - 4d3c526ad09c48589bad0a571ae5a8af
-float VAR_Add_ba62e0dc4ca24a589f6f94a618dca7a1 = (VAR_Multiply_f03668541ea747a8be40023a17043e31 + VAR_Multiply_e183bf53f0c14736b416d461d1b85f3f);
+float VAR_Multiply_514d41d4848048e68682069655391607 = (VAR_Abs_b33cbed183fb4a0c8b32fba35095793b * -0.5);
 /*!float
-VAR_Add_ba62e0dc4ca24a589f6f94a618dca7a1
+VAR_Multiply_514d41d4848048e68682069655391607
+*/
+//! MARKER - 1e837277b85f4de4bd0a6045eb725141
+float VAR_Add_a238d1bed17d4201a85f89bbf1b95eae = (VAR_Multiply_2dd6a79b961a482fb0dd0bc40c6c4ed2 + VAR_Multiply_514d41d4848048e68682069655391607);
+/*!float
+VAR_Add_a238d1bed17d4201a85f89bbf1b95eae
 */
 //! MARKER - 03a7eef2be5f4fa1a99a2bc4acb0322a
-float VAR_Add_d9e1efc8ceee4e4187370c05d59c7318 = (VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.a + VAR_Add_ba62e0dc4ca24a589f6f94a618dca7a1);
+float VAR_Add_0167904a0f3745a489c1c1f19108c527 = (VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.a + VAR_Add_a238d1bed17d4201a85f89bbf1b95eae);
 /*!float
-VAR_Add_d9e1efc8ceee4e4187370c05d59c7318
+VAR_Add_0167904a0f3745a489c1c1f19108c527
 */
 //! MARKER - 84a42a999c77487fa5b38f3ac0e35ed0
-float4 VAR_VectorAssembler_0cee1a4f93a7491ba2380349e8a8978b = float4( VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.r, VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.g, VAR_BaseTexture_e6ebd31b0dc249ab83cdcf3f7c6fb961.b, VAR_Add_d9e1efc8ceee4e4187370c05d59c7318 );
+float4 VAR_VectorAssembler_13335f52c23b4a2892b17df42bfe5cee = float4( VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.r, VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.g, VAR_BaseTexture_d6768ba5687244acb36b5731fb7499df.b, VAR_Add_0167904a0f3745a489c1c1f19108c527 );
 /*!float4
-VAR_VectorAssembler_0cee1a4f93a7491ba2380349e8a8978b
+VAR_VectorAssembler_13335f52c23b4a2892b17df42bfe5cee
 */
 //! MARKER - eac2daa0c3b643d6b7256799ead86478
-return VAR_VectorAssembler_0cee1a4f93a7491ba2380349e8a8978b;
+return VAR_VectorAssembler_13335f52c23b4a2892b17df42bfe5cee;
 //! MARKER - 2ede00535b644e06b35649648dd56ff8
 
 
@@ -3721,7 +3722,6 @@ struct VS_OUT
 
   return Out;                              
 }
-
   }$SOURCECODETAG
 
   vs_function = "vs_main";

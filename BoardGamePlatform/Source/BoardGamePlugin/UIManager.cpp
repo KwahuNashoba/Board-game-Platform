@@ -44,7 +44,7 @@ void BG_UIManager::OnDeactivate()
 void BG_UIManager::OnTick(float deltaTime)
 {
 	VDialog::OnTick(deltaTime);
-	if(m_inputMap->GetTrigger(iClickTouch) > 0.0f)
+	if(m_inputMap->GetTrigger(BG_Inputs::iClickTouch) > 0.0f)
 	{
 		hkVector4 targetPoint;
 		GetClosestPointOnNavMeshUnderCursor(targetPoint);
@@ -64,7 +64,6 @@ void BG_UIManager::OnTick(float deltaTime)
 	{
 		GameManager::GlobalManager().SetMouseInput(hkvVec3(-1,-1,-1));
 	}
-	//TODO: verovatno ce treba da se doda jos neki input...pauza, quit i sl
 }
 
 bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point)
@@ -94,7 +93,7 @@ bool BG_UIManager::GetClosestPointOnNavMeshUnderCursor(hkVector4& point)
 
 void BG_UIManager::InitInputMap()
 {
-	m_inputMap->MapTrigger(iClickTouch, V_MOUSE, CT_MOUSE_LEFT_BUTTON, VInputOptions::Once());
+	m_inputMap->MapTrigger(BG_Inputs::iClickTouch, V_MOUSE, CT_MOUSE_LEFT_BUTTON, VInputOptions::Once());
 
 	//TODO: dodaj za touch ako radis build za android
 }

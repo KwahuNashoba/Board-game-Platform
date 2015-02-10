@@ -19,6 +19,7 @@ class BG_BrightWarriorEntity;
 class BG_DarkWarriorEntity;
 class BG_UIManager;
 class BG_GameLogic;
+class BG_AITask;
 
 class GameManager : public IVisCallbackHandler_cl
 {
@@ -30,7 +31,9 @@ public:
 	void OneTimeDeInit();
 
 	//x and y are board coordinates NOT world coordinates (0 <= x < 8), (0 <= y < 8)
-	void AddWarrior(BG_WarriorEntity* warrior, int x, int y);
+	void SetWarrior(BG_WarriorEntity* warrior, int x, int y);
+
+	BG_WarriorEntity* GetWarrior(int x, int y) const;
 
 	//TODO: mozda ovo moze i pametnije da se odradi umesto dve funkcije koje rade gotovo istu stvar
 	BG_BrightWarriorEntity* CreateBrightWarriorEntity(const hkvVec3& position);
@@ -39,7 +42,11 @@ public:
 	// switch to play-the-game mode. When not in vForge, this is default
 	void SetPlayTheGame(bool bStatus);
 
-	void SetPlayingTheMoveEnd(bool status) {m_playingTheMoveEnd = status; };
+	void SetPlayingTheMoveEnd(bool status) { m_playingTheMoveEnd = status; };
+
+	void SetStartPosition(hkvVec2 position) { m_startPosition = position; };
+
+	void SetEndPosition(hkvVec2 position) { m_endPosition = position; };
 
 	// access one global instance of the Game manager
 	static GameManager& GlobalManager() {return GameManager::g_GameManager;}
@@ -52,6 +59,11 @@ private:
 	void OnBeforeSceneUnloaded();
 	void OnAfterSceneUnloaded();
 	void OnUpdateSceneBegin();
+
+	//make sure to change initial board state for your custom game
+	void InitBoardState();
+	
+	void HandleUserInput();
 
 	//IVisCallbackHendler_cl
 	void OnHandleCallback(IVisCallbackDataObject_cl *callbackData) HKV_OVERRIDE;
@@ -86,7 +98,9 @@ private:
 
 	VArray<VisBaseEntity_cl*> m_highlights;
 
-	bool m_whiteNext;					//true if white player plays next, false if it's black
+	bool m_brightNext;					//true if white player plays next, false if it's black
+	bool m_brightPC;
+	bool m_darkPC;
 };
 
 

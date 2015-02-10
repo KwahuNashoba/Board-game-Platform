@@ -16,8 +16,10 @@
     <ClInclude Include="CheckersGameLogic.h" />
     <ClInclude Include="Serializer.h" />
     <ClInclude Include="SoundHelper.h" />
-    <ClInclude Include="GameAI.h" />
     <ClInclude Include="BitBoardHelper.h" />
+    <ClInclude Include="BoardState.h" />
+    <ClInclude Include="CheckersAITask.h" />
+    <ClInclude Include="AITask.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BoardGamePluginPCH.cpp" />
@@ -35,7 +37,8 @@
     <ClCompile Include="CheckersGameLogic.cpp" />
     <ClCompile Include="Serializer.cpp" />
     <ClCompile Include="SoundHelper.cpp" />
-    <ClCompile Include="GameAI.cpp" />
     <ClCompile Include="BitBoardHelper.cpp" />
+    <ClCompile Include="CheckersAITask.cpp" />
+    <ClCompile Include="AITask.cpp" />
   </ItemGroup>
 </Project>

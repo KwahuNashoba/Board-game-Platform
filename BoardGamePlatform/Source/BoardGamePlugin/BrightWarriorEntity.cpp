@@ -15,7 +15,7 @@ END_VAR_TABLE
 
 BG_BrightWarriorEntity::BG_BrightWarriorEntity()
 	:BG_WarriorEntity(),
-	m_dyingDuration(3.8f)
+	m_dyingDuration(2.0f)
 {
 	m_soundHelper = new BG_SoundHelper(true);
 }
@@ -48,10 +48,10 @@ void BG_BrightWarriorEntity::InitFunction()
 	textureHandler = Vision::TextureManager.Load2DTexture("Assets/Models/Textures/Barbarian/Barbarian_Belt_Low_n.tga");
 	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 	
-	m_collisionRadius = 40;
+	m_collisionRadius = 30;
 	m_collisionHeight = 160;
-	m_sensorSize = 256;
-	m_desiredSpeed = 100;
+	m_sensorSize = 64;
+	m_desiredSpeed = 90;
 
 	PostInitialize();
 	
@@ -84,7 +84,5 @@ void BG_BrightWarriorEntity::PostInitialize()
 
 void BG_BrightWarriorEntity::OnTick(float deltaTime)
 {
-	//TODO: azuriraj poziciju zvuka
-
 	BG_WarriorEntity::OnTick(deltaTime);
 }

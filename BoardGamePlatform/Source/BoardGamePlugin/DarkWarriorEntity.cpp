@@ -13,7 +13,7 @@ END_VAR_TABLE
 
 BG_DarkWarriorEntity::BG_DarkWarriorEntity()
 	:BG_WarriorEntity(),
-	m_dyingDuration(3.8f)
+	m_dyingDuration(2.0f)
 {
 	m_soundHelper = new BG_SoundHelper(false);
 }
@@ -50,9 +50,9 @@ void BG_DarkWarriorEntity::InitFunction()
 	GetMesh()->GetSurface(2)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 	GetMesh()->GetSurface(0)->SetTexture(VisSurfaceTextures_cl::VTextureType_e::VTT_NormalMap, textureHandler);
 
-	m_collisionRadius = 40;
+	m_collisionRadius = 30;
 	m_collisionHeight = 160;
-	m_sensorSize = 256;
+	m_sensorSize = 64;
 	m_desiredSpeed = 80;
 
 	PostInitialize();
@@ -67,7 +67,5 @@ void BG_DarkWarriorEntity::PostInitialize()
 
 void BG_DarkWarriorEntity::OnTick(float deltaTime)
 {
-	//TODO: azuriraj poziciju zvuka
-
 	BG_WarriorEntity::OnTick(deltaTime);
 }
