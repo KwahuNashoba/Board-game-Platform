@@ -131,7 +131,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dev DLL|Win32'">
     <ClCompile>
       <AdditionalOptions>/MP  %(AdditionalOptions)</AdditionalOptions>
-      <PreprocessorDefinitions>TESTCOMPONENT_EXPORTS;SAMPLEPLUGIN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>TESTCOMPONENT_EXPORTS;SAMPLEPLUGIN_EXPORTS;EFFECTSMODULE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <PrecompiledHeaderFile>BoardGamePluginPCH.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)BoardGamePluginPCH.pch</PrecompiledHeaderOutputFile>

@@ -39,10 +39,10 @@ void BoardGame_App::SetupAppConfig(VisAppConfig_cl& config)
 
   // Set the initial starting position of our game window and other properties
   // if not in fullscreen. This is only relevant on windows
-  //config.m_videoConfig.m_iXRes = 1280; // Set the Window size X if not in fullscreen.
-  //config.m_videoConfig.m_iYRes = 720;  // Set the Window size Y if not in fullscreen.
-  //config.m_videoConfig.m_iXPos = 10;   // Set the Window position X if not in fullscreen.
-  //config.m_videoConfig.m_iYPos = 10;   // Set the Window position Y if not in fullscreen.
+  config.m_videoConfig.m_iXRes = 1366; // Set the Window size X if not in fullscreen.
+  config.m_videoConfig.m_iYRes = 768;  // Set the Window size Y if not in fullscreen.
+  config.m_videoConfig.m_iXPos = 50;   // Set the Window position X if not in fullscreen.
+  config.m_videoConfig.m_iYPos = 50;   // Set the Window position Y if not in fullscreen.
 
   // Name to be displayed in the windows title bar.
   config.m_videoConfig.m_szWindowTitle = "BoardGamePlatform";
@@ -50,7 +50,7 @@ void BoardGame_App::SetupAppConfig(VisAppConfig_cl& config)
   config.m_videoConfig.m_bWaitVRetrace = true;
 
   // Fullscreen mode with current desktop resolution
-  config.m_videoConfig.m_bFullScreen = true;
+  //config.m_videoConfig.m_bFullScreen = true;
   
 #if defined(WIN32)
   /*

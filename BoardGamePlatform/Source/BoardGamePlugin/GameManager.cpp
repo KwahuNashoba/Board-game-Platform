@@ -27,7 +27,7 @@ GameManager::GameManager()
 	m_selectedWarrior(NULL),
 	m_brightNext(true),
 	m_brightPC(false),
-	m_darkPC(true),
+	m_darkPC(false),
 	m_playingTheMoveStart(false),
 	m_playingTheMoveEnd(false),
 	m_startPosition()
